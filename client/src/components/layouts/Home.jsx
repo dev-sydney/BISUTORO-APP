@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ProductContext from '../../contexts/ProductContext';
+import AuthContext from '../../contexts/AuthContext';
 
 import Product from '../Product';
 import Modal from '../Modal';
@@ -9,15 +12,24 @@ import Alert from '../Alert';
 
 import './../../styles/sideBarStyle.scss';
 import './../../styles/containerStyle.scss';
+
 const Home = () => {
   const mealsContext = useContext(ProductContext);
+  const authContxt = useContext(AuthContext);
 
   const { meals, currentMeal, loadAllMeals } = mealsContext;
+  const { isAuthenticated } = authContxt;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    loadAllMeals();
-  }, [meals]);
+    if (isAuthenticated) {
+      loadAllMeals();
+    } else {
+      navigate('/login');
+    }
+  }, [isAuthenticated, meals]);
   return (
     <div className="flex_container">
       {isModalOpen && (
