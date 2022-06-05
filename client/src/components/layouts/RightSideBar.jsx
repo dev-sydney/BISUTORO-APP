@@ -5,12 +5,12 @@ import AuthContext from '../../contexts/AuthContext';
 
 import './../../styles/sideBarStyle.scss';
 
-const RightSidebar = () => {
+const RightSidebar = ({ loggedInUser }) => {
   const mealsContext = useContext(productContext);
   const authContxt = useContext(AuthContext);
 
   const { orders, removeFromOrders } = mealsContext;
-  const { loggedInUser, isLoggedIn } = authContxt;
+  const { isAuthenticated } = authContxt;
 
   const [total, setTotal] = useState(0);
 
@@ -22,7 +22,7 @@ const RightSidebar = () => {
             .map((el) => el.price)
             .reduce((prev, curr) => prev + curr, 0)
         );
-  }, [orders]);
+  }, [orders, loggedInUser]);
 
   const onItemRemove = (mealID) => () => {
     removeFromOrders(mealID);
@@ -30,7 +30,7 @@ const RightSidebar = () => {
 
   return (
     <div className="right-side">
-      {loggedInUser && isLoggedIn ? (
+      {loggedInUser && isAuthenticated ? (
         <NavLink to="/me">{loggedInUser.name.split(' ')[0]}</NavLink>
       ) : (
         ''

@@ -18,7 +18,7 @@ const Home = () => {
   const authContxt = useContext(AuthContext);
 
   const { meals, currentMeal, loadAllMeals } = mealsContext;
-  const { isAuthenticated } = authContxt;
+  const { isAuthenticated, loggedInUser } = authContxt;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Home = () => {
             ))}
         </div>
       </div>
-      <RightSidebar />
+      <RightSidebar loggedInUser={loggedInUser} />
     </div>
   );
 };
