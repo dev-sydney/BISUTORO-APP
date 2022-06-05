@@ -1,0 +1,28 @@
+.left_side {
+  border: 2px solid green;
+  width: 20em;
+  height: 41.2em;
+}
+.right-side {
+  border: 2px solid blue;
+  width: 35em;
+  .time_location {
+    border: 2px solid yellow;
+  }
+  .order_items {
+    border: 2px solid gray;
+  }
+  .totals {
+    border: 2px solid rgb(255, 0, 170);
+  }
+  .checkout_btn {
+    border: 2px solid rgb(255, 0, 0);
+  }
+  .order_item {
+    display: flex;
+    height: 5em;
+    p {
+      margin: 0px;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "627c171c5214612605247272",
+    "name": "Risotto",
+    "price": 5.89,
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 6,
+    "category": "main",
+    "serving": 400,
+    "image": "meal-1.jpg"
+  },
+  {
+    "_id": "627c171c5214612605247273",
+    "name": "Roast Potatoes",
+    "price": 4,
+    "ratingsAverage": 4.3,
+    "ratingsQuantity": 3,
+    "category": "main",
+    "serving": 300,
+    "image": "meal-2.jpg"
+  },
+  {
+    "_id": "627c171c5214612605247274",
+    "name": "Chicken Soup",
+    "price": 6.1,
+    "ratingsAverage": 3.5,
+    "ratingsQuantity": 7,
+    "category": "main",
+    "serving": 350,
+    "image": "meal-3.jpg"
+  },
+  {
+    "_id": "627c171c5214612605247275",
+    "name": "Bean Soup",
+    "price": 3.99,
+    "ratingsAverage": 4.0,
+    "ratingsQuantity": 8,
+    "category": "main",
+    "serving": 250,
+    "image": "meal-4.jpg"
+  },
+  {
+    "_id": "627c171c5214612605247276",
+    "name": "Stewed Vegetables",
+    "price": 4.99,
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 9,
+    "category": "main",
+    "serving": 400,
+    "image": "meal-5.jpg"
+  },
+  {
+    "_id": "627c171c5214612605247277",
+    "name": "Okroshka",
+    "price": 3.99,
+    "ratingsAverage": 4.2,
+    "ratingsQuantity": 6,
+    "category": "main",
+    "serving": 250,
+    "image": "meal-6.jpg"
+  }
+]
