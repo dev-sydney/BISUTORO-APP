@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
         console.log(res.data);
         dispatch({
           type: successType,
-          payload: res.data.token,
+          payload: res.data.data.user,
         });
 
         setTimeout(() => {

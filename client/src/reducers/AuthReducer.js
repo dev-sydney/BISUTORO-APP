@@ -7,21 +7,22 @@ const authReducer = (state, action) => {
       localStorage.setItem('token', action.payload);
       return {
         ...state,
-        ...action.payload,
         isAuthenticated: true,
+        loggedInUser: action.payload,
       };
     case Type.LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload);
       return {
         ...state,
-        ...action.payload,
         isAuthenticated: true,
+        loggedInUser: action.payload,
       };
     case Type.LOGOUT:
       localStorage.removeItem('token', action.payload);
       return {
         ...state,
         isAuthenticated: false,
+        loggedInUser: null,
       };
     //@TODO: FAILS
     case Type.SIGN_UP_FAILED:
@@ -30,6 +31,7 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: null,
         authMsg: action.payload,
+        loggedInUser: null,
       };
     case Type.LOGIN_FAIL:
       localStorage.removeItem('token');
@@ -37,6 +39,7 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: null,
         authMsg: action.payload,
+        loggedInUser: null,
       };
     case Type.LOGOUT_FAIL:
       localStorage.removeItem('token');
