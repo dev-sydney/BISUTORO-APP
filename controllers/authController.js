@@ -100,9 +100,7 @@ exports.signIn = catchAsyncErrors(async (req, res, next) => {
 });
 exports.signOut = catchAsyncErrors(async (req, res, next) => {
   res.cookie('jsonWebToken', 'cookieOverwritingText', {
-    expires: new Date(
-      Date.now() + process.env.JSON_WT_COOKIE_EXPIRES_IN + 10 * 1000
-    ),
+    expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
   res.status(200).json({

@@ -3,6 +3,7 @@ const User = require('./../models/userModel');
 const catchAsyncErrors = require('./../utils/catchAsyncErrors');
 const APIFeatures = require('./../utils/APIFeatures');
 const CustomError = require('../utils/CustomError');
+const Meal = require('../models/mealModel');
 
 exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
   let queryObj = { ...req.query };

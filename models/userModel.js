@@ -3,6 +3,8 @@ const validator = require('validator');
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 
+const Meal = require('./mealModel');
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -44,6 +46,12 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: {
     type: Date,
   },
+  favourites: [
+    {
+      type: mongoose.ObjectId,
+      ref: 'Meal',
+    },
+  ],
   resetPasswordToken: String,
   resetPasswordExpiresIn: Date,
 });
@@ -60,6 +68,7 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
+
 userSchema.methods.didPasswordChange = function (JWTIssueTime) {
   //console.log(this);
   //console.log(JWTIssueTime);

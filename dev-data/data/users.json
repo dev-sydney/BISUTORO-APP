@@ -2,10 +2,11 @@
   {
     "name": "Sydney Otutey",
     "email": "sydney@example.com",
-    "role": "admin",
+    "role": "manager",
     "photo": "user-1.jgp",
     "password": "test1234",
-    "passwordConfirm": "test1234"
+    "passwordConfirm": "test1234",
+    "favourites": ["627c171c5214612605247272", "627c171c5214612605247273"]
   },
   {
     "_id": "5c8a1dfa2f8fb814b56fa182",

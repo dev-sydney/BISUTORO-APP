@@ -13,6 +13,8 @@ router.get(
   mealController.getAllMeals
 );
 
+router.get('/favourite-meals', mealController.getAllFavourites);
+
 router
   .route('/')
   .post(

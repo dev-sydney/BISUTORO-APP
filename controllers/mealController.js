@@ -106,3 +106,16 @@ exports.deleteMeal = catchAsyncErrors(async (req, res, next) => {
     data: null,
   });
 });
+
+//FAVOURITE MEALS
+exports.getAllFavourites = catchAsyncErrors(async (req, res, next) => {
+  //An Array of ids of all the users favorites
+  const favouritesIds = req.user.favourites;
+  const favoriteMeals = await Meal.find({ _id: { $in: favouritesIds } });
+
+  res.status(200).json({
+    status: 'success',
+    meals: favoriteMeals.length,
+    data: favoriteMeals,
+  });
+});
