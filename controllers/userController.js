@@ -64,3 +64,29 @@ exports.getMe = catchAsyncErrors(async (req, res, next) => {
   req.params.userID = req.user._id;
   next();
 });
+//ADDING A MEAL TO FAVOURITES
+exports.addToFavourites = catchAsyncErrors(async (req, res, next) => {
+  const { mealID } = req.params;
+  if (req.user.favourites.includes(mealID))
+    return next(
+      new CustomError('Meal already belongs in your favourites', 404)
+    );
+  const favourites = [...req.user.favourites, mealID];
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { favourites },
+    {
+      new: true,
+      validateModifiedOnly: true,
+    }
+  );
+  if (!user)
+    return next(
+      new CustomError('Trouble updating favourites, please try again!', 404)
+    );
+
+  res.status(200).json({
+    status: 'success',
+  });
+});
