@@ -12,6 +12,7 @@ import Signup from './components/auth/Signup';
 import MealForm from './components/MealForm';
 import Dashboard from './components/Dashboard';
 import ProductsControl from './components/ProductsControl';
+import Favourites from './components/Favourites';
 //////////////////CONTEXT IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -30,6 +31,7 @@ function App() {
                 <Route exact path="/signup" element={<Signup />} />
                 <Route exact path="/mealform" element={<MealForm />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route exact path="/favourites" element={<Favourites />} />
                 <Route
                   exact
                   path="/dashboard/products"
