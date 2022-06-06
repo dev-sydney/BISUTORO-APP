@@ -64,7 +64,7 @@ const RightSidebar = ({ loggedInUser }) => {
       </div>
       <div className="totals">
         <span>TOTAL</span>
-        <span>{total}</span>
+        <span>{Math.round(total)}</span>
       </div>
       <div className="checkout_btn">CHECKOUT</div>
     </div>

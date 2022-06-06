@@ -33,6 +33,11 @@ const mealReducer = (state, action) => {
         ...state,
         orders: [...state.orders].filter((el) => el._id !== action.payload),
       };
+    case Type.LOAD_FAVOURITES:
+      return {
+        ...state,
+        favourites: action.payload,
+      };
     default:
       return state;
   }

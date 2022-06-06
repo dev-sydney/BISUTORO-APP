@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../../contexts/AuthContext';
 
@@ -6,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   const authContxt = useContext(AuthContext);
   const { isAuthenticated, logout } = authContxt;
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -14,18 +16,17 @@ const Navbar = () => {
           <NavLink to="/signup">
             <button>SIGN UP</button>
           </NavLink>
-          <NavLink to="/login">
-            <button
-              onClick={() => {
-                logout();
-              }}
-            >
-              LOGIN
-            </button>
-          </NavLink>
+
+          <button>LOGIN</button>
         </div>
       ) : (
-        <button>LOG OUT</button>
+        <button
+          onClick={() => {
+            logout(navigate);
+          }}
+        >
+          LOG OUT
+        </button>
       )}
     </div>
   );

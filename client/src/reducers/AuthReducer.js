@@ -18,10 +18,10 @@ const authReducer = (state, action) => {
         loggedInUser: action.payload,
       };
     case Type.LOGOUT:
-      localStorage.removeItem('token', action.payload);
+      localStorage.removeItem('token');
       return {
         ...state,
-        isAuthenticated: false,
+        isAuthenticated: null,
         loggedInUser: null,
       };
     //@TODO: FAILS

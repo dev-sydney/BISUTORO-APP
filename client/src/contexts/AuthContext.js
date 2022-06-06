@@ -77,25 +77,28 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       dispatch({
         type: failType,
-        dispatch: err.response.data.message,
+        payload: err.response.data.message,
       });
     }
   };
 
   //LOGOUT USER
-  const logout = async () => {
+  const logout = async (navigate) => {
     const config = {
       headers: {
         'Content-type': 'application/json',
       },
     };
     try {
+      console.log('logging out');
       const res = await axios.get('/api/v1/users/signout', config);
       if (res.data.status === 'success') {
         dispatch({
           type: Type.LOGOUT,
-          payload: null,
         });
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
       }
     } catch (err) {
       dispatch({

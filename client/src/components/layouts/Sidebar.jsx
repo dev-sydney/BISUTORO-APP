@@ -16,7 +16,7 @@ const Sidebar = () => {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/favorites" className="links">
+        <NavLink to="/favourites" className="links">
           FAVORITES
         </NavLink>
       </div>
@@ -30,7 +30,7 @@ const Sidebar = () => {
           FAQ
         </NavLink>
       </div>
-      {loggedInUser ? (
+      {loggedInUser && loggedInUser.role === 'manager' ? (
         <div>
           <NavLink to="/dashboard" className={'links'}>
             DASHBOARD

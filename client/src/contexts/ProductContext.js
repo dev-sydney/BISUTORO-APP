@@ -7,32 +7,11 @@ const mealContext = createContext();
 
 export const MealContextProvider = ({ children }) => {
   const initialState = {
-    // meals: [
-    //   {
-    //     _id: '627c171c5214612605247276',
-    //     name: 'Stewed Vegetables',
-    //     price: 4.99,
-    //     ratingsAverage: 4.5,
-    //     ratingsQuantity: 9,
-    //     category: 'main',
-    //     serving: 400,
-    //     image: 'meal-1.png',
-    //   },
-    //   {
-    //     _id: '627c171c5214612605247277',
-    //     name: 'Okroshka',
-    //     price: 3.99,
-    //     ratingsAverage: 4.2,
-    //     ratingsQuantity: 6,
-    //     category: 'main',
-    //     serving: 250,
-    //     image: 'meal-6.jpg',
-    //   },
-    // ],
     meals: null,
     currentMeal: null,
     orders: [],
     loadingMeals: true,
+    favourites: [],
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
   /**
@@ -40,8 +19,6 @@ export const MealContextProvider = ({ children }) => {
    * @param {Object} meal object gotten from the form
    */
   const addMeal = (meal) => {
-    meal._id = '547657fd7ge8743g7e637u';
-
     dispatch({
       type: Type.ADD_MEAL,
       payload: meal,
@@ -107,19 +84,40 @@ export const MealContextProvider = ({ children }) => {
       console.log(err.response.data.message);
     }
   };
+
+  const loadFavoriteMeals = async () => {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.get('/api/v1/meals/favourite-meals', config);
+      if (res.data.status === 'success') {
+        dispatch({
+          type: Type.LOAD_FAVOURITES,
+          payload: res.data.data,
+        });
+      }
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
   return (
     <mealContext.Provider
       value={{
         meals: state.meals,
         currentMeal: state.currentMeal,
         orders: state.orders,
+        loadingMeals: state.loadingMeals,
+        favourites: state.favourites,
         addMeal,
         deleteMeal,
         setCurrentMeal,
         addToOrder,
         removeFromOrders,
         loadAllMeals,
-        loadingMeals: state.loadingMeals,
+        loadFavoriteMeals,
       }}
     >
       {children}
