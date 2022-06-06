@@ -32,7 +32,12 @@ const Favourites = () => {
       {favourites.length > 0 ? (
         <div className="product_container">
           {favourites.map((el) => (
-            <Product key={el._id} meal={el} setIsModalOpen={setIsModalOpen} />
+            <Product
+              key={el._id}
+              meal={el}
+              setIsModalOpen={setIsModalOpen}
+              isFavouritesPage={true}
+            />
           ))}
         </div>
       ) : (

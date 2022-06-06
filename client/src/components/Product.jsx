@@ -4,9 +4,9 @@ import './../styles/productStyle.scss';
 
 import ProductContext from './../contexts/ProductContext';
 
-const Product = ({ meal, setIsModalOpen }) => {
+const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
   const mealsContext = useContext(ProductContext);
-  const { setCurrentMeal } = mealsContext;
+  const { setCurrentMeal, AddMealToFavorites } = mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
@@ -17,7 +17,19 @@ const Product = ({ meal, setIsModalOpen }) => {
     <div className="links product" onClick={setCurrent}>
       <div>
         <span>⭐{meal.ratingsAverage}</span>
-        <span>💗</span>
+        <span>
+          {isFavouritesPage ? (
+            '🗑️'
+          ) : (
+            <button
+              onClick={() => {
+                AddMealToFavorites(meal._id);
+              }}
+            >
+              💗
+            </button>
+          )}
+        </span>
       </div>
       <div>
         <img

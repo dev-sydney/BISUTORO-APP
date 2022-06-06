@@ -14,6 +14,12 @@ export const MealContextProvider = ({ children }) => {
     favourites: [],
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
+
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
   /**
    * function that dispatches a newly created meal Obj to the state
    * @param {Object} meal object gotten from the form
@@ -66,11 +72,6 @@ export const MealContextProvider = ({ children }) => {
   };
 
   const loadAllMeals = async () => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
     try {
       const res = await axios.get('/api/v1/meals/', config);
 
@@ -86,11 +87,6 @@ export const MealContextProvider = ({ children }) => {
   };
 
   const loadFavoriteMeals = async () => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
     try {
       const res = await axios.get('/api/v1/meals/favourite-meals', config);
       if (res.data.status === 'success') {
@@ -99,6 +95,13 @@ export const MealContextProvider = ({ children }) => {
           payload: res.data.data,
         });
       }
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
+  const AddMealToFavorites = async (mealID) => {
+    try {
+      await axios.patch(`/api/v1/meals/favourite-meals/${mealID}`, config);
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -118,6 +121,7 @@ export const MealContextProvider = ({ children }) => {
         removeFromOrders,
         loadAllMeals,
         loadFavoriteMeals,
+        AddMealToFavorites,
       }}
     >
       {children}
