@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import AuthContext from '../contexts/AuthContext';
+
+import Alert from './Alert';
+
 import './../styles/profileStyle.scss';
+
 const Profile = () => {
+  const authContxt = useContext(AuthContext);
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -12,9 +20,13 @@ const Profile = () => {
     newPassword: '',
     passwordConfirm: '',
   });
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const { name, email, photo } = user;
   const { currentPassword, newPassword, passwordConfirm } = passwordData;
+
+  const { updatePassword, isAuthenticated, authMsg } = authContxt;
+  const navigate = useNavigate();
 
   const onUserChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -23,9 +35,16 @@ const Profile = () => {
   const onPasswordChange = (e) => {
     setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
   };
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    updatePassword(passwordData);
+  };
+  useEffect(() => {
+    if (!isAuthenticated && !authMsg) navigate('/login');
+  }, [isAuthenticated, authMsg]);
   return (
     <div>
+      {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
       <h1>YOUR ACCOUNT SETTINGS</h1>
       <form className="user_update">
         <div>
@@ -68,7 +87,7 @@ const Profile = () => {
       </form>
 
       <div>&nbsp;</div>
-      <form className="password_form">
+      <form className="password_form" onSubmit={onSubmit}>
         <div>
           <label htmlFor="current">Current Password</label>
           <input
