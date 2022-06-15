@@ -72,9 +72,15 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.didPasswordChange = function (JWTIssueTime) {
   //console.log(this);
   //console.log(JWTIssueTime);
-  if (!this.passwordChangedAt) return false;
-
-  return Date.parse(this.passwordChangedAt) > JWTIssueTime;
+  if (this.passwordChangedAt) {
+    let changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    //console.log({ JWTIssueTime }, { changedTimeStamp });
+    return JWTIssueTime < changedTimeStamp;
+  }
+  return false;
 };
 
 userSchema.methods.setResetPasswordToken = function () {
