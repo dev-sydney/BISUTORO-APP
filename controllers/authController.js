@@ -230,10 +230,6 @@ exports.routeTester = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
-    status: 'success',
-    data: 'vibe',
-  });
-
+  createSendTokenCookie(user, res);
   //  next();
 });
