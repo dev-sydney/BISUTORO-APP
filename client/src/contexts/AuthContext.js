@@ -32,8 +32,11 @@ export const AuthProvider = ({ children }) => {
 
   //~~~~~~~~ACTIONS~~~~~~~~~~
 
-  //LOGIN USER
-
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
   //SIGN UP USER
   /**
    * This function is responsible for the signing up, as well as the logging in functionality
@@ -43,12 +46,6 @@ export const AuthProvider = ({ children }) => {
 
   //LOGIN USER
   const loginSiginUser = async (formData, navigate) => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
-
     const url = `/api/v1/users/${
       formData.passwordConfirm ? 'signup' : 'signin'
     }`;
@@ -84,11 +81,6 @@ export const AuthProvider = ({ children }) => {
 
   //LOGOUT USER
   const logout = async (navigate) => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
     try {
       console.log('logging out');
       const res = await axios.get('/api/v1/users/signout', config);
@@ -104,6 +96,28 @@ export const AuthProvider = ({ children }) => {
       dispatch({
         type: Type.LOGOUT_FAIL,
         payload: 'Unable to logout, please try again!',
+      });
+    }
+  };
+
+  //UPDATING USER PASSWORD
+  const updatePassword = async (formData) => {
+    try {
+      const res = await axios.patch(
+        '/api/v1/users/checkoutRoute',
+        formData,
+        config
+      );
+      if (res.data.status === 'success') {
+        dispatch({
+          type: Type.UPDATE_PASSWORD_SUCCESS,
+          payload: 'Password update was successful',
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: Type.UPDATE_PASSWORD_FAILED,
+        payload: err.response.data.message,
       });
     }
   };
@@ -129,6 +143,7 @@ export const AuthProvider = ({ children }) => {
         loginSiginUser,
         logout,
         clearAuthMsg,
+        updatePassword,
       }}
     >
       {children}
