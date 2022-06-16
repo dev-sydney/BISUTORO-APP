@@ -1,9 +1,49 @@
-const User = require('./../models/userModel');
+const multer = require('multer');
 
 const catchAsyncErrors = require('./../utils/catchAsyncErrors');
 const APIFeatures = require('./../utils/APIFeatures');
 const CustomError = require('../utils/CustomError');
+
 const Meal = require('../models/mealModel');
+const User = require('./../models/userModel');
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../client/public/img/users`);
+  },
+  filename: (req, file, cb) => {
+    //user-_id-timestamp.jpg
+    const fileExt = file.mimetype.split('/')[1];
+    cb(null, `user-${req.user._id}-${Date.now()}.${fileExt}`);
+  },
+});
+
+/**
+ * This function makes it possible so that we can only upload images
+ * @param {*} req
+ * @param {*} file
+ * @param {*} cb
+ */
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(
+      new CustomError(
+        'Only image uploads allowed! try uploading an image instead.',
+        400
+      ),
+      false
+    );
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.UploadPhoto = upload.single('photo');
 
 exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
   let queryObj = { ...req.query };
@@ -39,6 +79,7 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.file);
   if (req.body.password || req.body.passwordConfirm)
     return next(
       new CustomError(`This route isn't meant for updating passwords`, 400)
@@ -48,6 +89,9 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
   Object.keys(req.body).forEach((el) => {
     if (exlcudedFields.includes(el)) delete obj[el];
   });
+  if (req.file) {
+    obj.photo = req.file.filename;
+  }
   // console.log(obj);
   const user = await User.findByIdAndUpdate(req.user._id, obj, {
     new: true,
