@@ -12,7 +12,12 @@ router.patch('/resetPassword/:resetToken', authController.resetPasssword);
 
 router.use(authController.authenticateUser);
 
-router.get('/me', userController.getMe, userController.getUser);
+router.route('/me').get(userController.getMe, userController.getUser);
+
+router
+  .route('/update-me')
+  .patch(userController.UploadPhoto, userController.updateUser);
+
 router.patch('/favourite-meals/:mealID', userController.addToFavourites);
 
 router.patch('/checkoutRoute', authController.routeTester); //FOR USER UPDATING HIS/HER OWN PASSWORD
