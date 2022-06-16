@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../contexts/AuthContext';
@@ -14,7 +14,7 @@ const Profile = () => {
     email: '',
     photo: '',
   });
-
+  let fileInput = useRef();
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
@@ -25,20 +25,38 @@ const Profile = () => {
   const { name, email, photo } = user;
   const { currentPassword, newPassword, passwordConfirm } = passwordData;
 
-  const { updatePassword, isAuthenticated, authMsg } = authContxt;
+  const { updatePassword, updateData, isAuthenticated, authMsg, loggedInUser } =
+    authContxt;
   const navigate = useNavigate();
 
   const onUserChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onPasswordChange = (e) => {
     setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    updatePassword(passwordData);
-  };
+  /**
+   * This Higer order function is responsible for returning the event handler for both forms
+   * @param {Object} formData The Object gotten from the form data
+   * @param {String} userID The ._id property of the currently logged in user
+   * @returns another function, this function is the actual callback function needed for the eventlistener
+   */
+  const onSubmit =
+    (formData, userID = null) =>
+    (e) => {
+      e.preventDefault();
+      if (!userID) {
+        updatePassword(formData);
+      } else {
+        const { files } = fileInput.current;
+        formData.photo = files[0];
+        updateData(formData, loggedInUser._id);
+      }
+    };
   useEffect(() => {
     if (!isAuthenticated && !authMsg) navigate('/login');
   }, [isAuthenticated, authMsg]);
@@ -46,7 +64,15 @@ const Profile = () => {
     <div>
       {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
       <h1>YOUR ACCOUNT SETTINGS</h1>
-      <form className="user_update">
+      <form
+        className="user_update"
+        encType="multipart/form-data"
+        // onSubmit={onSubmit(user, loggedInUser._id)}
+        onSubmit={
+          // console.log(files[0]);
+          onSubmit(user, loggedInUser._id)
+        }
+      >
         <div>
           <label htmlFor="name">NAME:</label>
           <input
@@ -78,8 +104,7 @@ const Profile = () => {
             name="photo"
             accept="image/*"
             id="photo"
-            value={photo}
-            onChange={onUserChange}
+            ref={fileInput}
           />
           <label htmlFor="photo">CHOOSE A PHOTO</label>
         </div>
@@ -87,7 +112,7 @@ const Profile = () => {
       </form>
 
       <div>&nbsp;</div>
-      <form className="password_form" onSubmit={onSubmit}>
+      <form className="password_form" onSubmit={onSubmit(passwordData)}>
         <div>
           <label htmlFor="current">Current Password</label>
           <input
