@@ -122,6 +122,47 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  /**
+   * Used to update the users data
+   * @param {*} formData The Object gotten from the data
+   * @param {*} userID  The Logged in user's _id property
+   */
+  const updateData = async (formData, userID) => {
+    try {
+      let form = new FormData();
+      let obj = { ...formData }; //An object which will be filtered later, below
+
+      Object.keys(formData).forEach((el) => {
+        if (obj[el] === '' || !obj[el]) delete obj[el]; //This right here deletes fields that have empty values
+        //because the object got directly from the form(ie the 1st arg )
+        ///has values which have not been set manually by the user, initially set to ''by default
+        //And we dont want that, because it might some data in the DB to '',
+      });
+
+      Object.keys(obj).forEach((el) => {
+        form.append(`${el}`, obj[el]);
+      }); //setting the key-values pairs of the form
+
+      // for (let key of form.entries()) {
+      //   console.log(key);
+      // }
+
+      const res = await axios.patch(`/api/v1/users/update-me`, form, config);
+      if (res.data.status === 'success') {
+        dispatch({
+          type: Type.UPDATE_DATA_SUCCESS,
+          payload: res.data.data.user,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: Type.UPDATE_DATA_FAIL,
+        payload: err.response.data.message,
+      });
+      console.log(err);
+    }
+  };
+
   //CLEARING AUTH MESSAGES
   /**
    * This function clears all auth related messages
@@ -144,6 +185,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         clearAuthMsg,
         updatePassword,
+        updateData,
       }}
     >
       {children}
