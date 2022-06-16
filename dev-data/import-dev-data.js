@@ -34,9 +34,9 @@ mongoose
 
 const importDevData = async () => {
   try {
-    await User.create(users);
+    // await User.create(users);
     await Meal.create(meals);
-    await Review.create(reviews);
+    // await Review.create(reviews);
 
     console.log('Data imported successfully!👍🏽');
     process.exit();
@@ -47,8 +47,8 @@ const importDevData = async () => {
 const deleteDevData = async () => {
   try {
     await Meal.deleteMany();
-    await User.deleteMany();
-    await Review.deleteMany();
+    // await User.deleteMany();
+    // await Review.deleteMany();
 
     console.log('Data deleted successfully!👍🏽');
     process.exit();
