@@ -3,6 +3,11 @@ import * as Type from './../contexts/types';
 const authReducer = (state, action) => {
   switch (action.type) {
     //@TODO: SUCCESSES
+    case Type.UPDATE_DATA_SUCCESS:
+      return {
+        ...state,
+        loggedInUser: action.payload,
+      };
     case Type.UPDATE_PASSWORD_SUCCESS:
       return {
         ...state,
@@ -58,13 +63,17 @@ const authReducer = (state, action) => {
         ...state,
         authMsg: action.payload,
       };
+    case Type.UPDATE_DATA_FAIL:
+      return {
+        ...state,
+        authMsg: action.payload,
+      };
     //@TODO: CLEARING
 
     case Type.CLEAR_AUTH_MSG:
       return {
         ...state,
         authMsg: action.payload,
-        isAuthenticated: false,
       };
     default:
       return state;
