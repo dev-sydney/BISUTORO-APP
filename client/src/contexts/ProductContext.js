@@ -1,5 +1,7 @@
 import { createContext, useReducer } from 'react';
 import axios from 'axios';
+
+import { config } from './AuthContext';
 import * as Type from './types';
 import ProductReducer from './../reducers/ProductReducer';
 
@@ -12,24 +14,52 @@ export const MealContextProvider = ({ children }) => {
     orders: [],
     loadingMeals: true,
     favourites: [],
+    alertMsg: null,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-    },
-  };
   /**
    * function that dispatches a newly created meal Obj to the state
    * @param {Object} meal object gotten from the form
    */
-  const addMeal = (meal) => {
-    dispatch({
-      type: Type.ADD_MEAL,
-      payload: meal,
-    });
-    // console.log(state);
+  const addMeal = async (mealData) => {
+    const numericFields = [
+      'price',
+      'ratingsAverage',
+      'ratingsQuantity',
+      'serving',
+    ];
+    try {
+      const form = new FormData();
+      let filteredObj = { ...mealData };
+
+      Object.keys(filteredObj).forEach((el) => {
+        form.append(
+          `${el}`,
+          numericFields.includes(el) ? +filteredObj[el] : filteredObj[el]
+        );
+      });
+      for (let key of form.entries()) {
+        console.log(key);
+      }
+      const res = await axios.post('/api/v1/meals/', form, {
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+
+      if (res.data.status === 'success') {
+        dispatch({
+          type: Type.ADD_MEAL,
+          payload: res.data.successMsg,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: Type.ADD_MEAL_ERROR,
+        payload: err.response.data.message,
+      });
+    }
   };
   /**
    *
@@ -114,6 +144,7 @@ export const MealContextProvider = ({ children }) => {
         orders: state.orders,
         loadingMeals: state.loadingMeals,
         favourites: state.favourites,
+        alertMsg: state.alertMsg,
         addMeal,
         deleteMeal,
         setCurrentMeal,
