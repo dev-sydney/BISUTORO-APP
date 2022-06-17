@@ -19,6 +19,7 @@ router
   .route('/')
   .post(
     authController.restrictAccessTo('manager', 'admin'),
+    mealController.multerUpload,
     mealController.createMeal
   )
   .get(mealController.getAllMeals);
