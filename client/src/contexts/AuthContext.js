@@ -3,6 +3,11 @@ import axios from 'axios';
 import authReducer from '../reducers/AuthReducer';
 import * as Type from './types';
 
+export const config = {
+  headers: {
+    'Content-type': 'application/json',
+  },
+};
 const AuthContext = createContext();
 /**
  *
@@ -31,12 +36,6 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //~~~~~~~~ACTIONS~~~~~~~~~~
-
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-    },
-  };
   //SIGN UP USER
   /**
    * This function is responsible for the signing up, as well as the logging in functionality
