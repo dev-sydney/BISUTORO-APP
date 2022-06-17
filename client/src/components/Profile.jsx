@@ -12,7 +12,6 @@ const Profile = () => {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    photo: '',
   });
   let fileInput = useRef();
   const [passwordData, setPasswordData] = useState({
@@ -22,7 +21,7 @@ const Profile = () => {
   });
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const { name, email, photo } = user;
+  const { name, email } = user;
   const { currentPassword, newPassword, passwordConfirm } = passwordData;
 
   const { updatePassword, updateData, isAuthenticated, authMsg, loggedInUser } =
