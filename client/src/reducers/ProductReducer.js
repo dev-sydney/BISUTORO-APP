@@ -11,7 +11,7 @@ const mealReducer = (state, action) => {
     case Type.ADD_MEAL:
       return {
         ...state,
-        meals: [...state.meals, action.payload],
+        alertMsg: action.payload,
       };
     case Type.DELETE_MEAL:
       return {
@@ -37,6 +37,12 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         favourites: action.payload,
+      };
+    //TODO: ALERTS
+    case Type.ADD_MEAL_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
       };
     default:
       return state;
