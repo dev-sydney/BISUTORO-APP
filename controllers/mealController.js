@@ -1,3 +1,6 @@
+const multer = require('multer');
+const CustomError = require('../utils/CustomError');
+
 const Meal = require('./../models/mealModel');
 const APIFeatures = require('./../utils/APIFeatures');
 const catchAsyncErrors = require('./../utils/catchAsyncErrors');
@@ -8,48 +11,52 @@ exports.getTopMeals = (req, res, next) => {
   req.query.limit = 5;
   next();
 };
-//CREATING
-// exports.createMeal = async (req, res, next) => {
-//   try {
-//     const { name, price, ratingsAverage, category } = req.body;
 
-//     const meal = await Meal.create({
-//       name,
-//       price,
-//       ratingsAverage,
-//       category,
-//     });
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../client/public/img/meals`);
+  },
+  filename: (req, file, cb) => {
+    //meal-_id-.png;
+    const extension = file.mimetype.split('/')[1];
+    cb(null, `${file.originalname.split('.')[0]}-${Date.now()}.${extension}`);
+  },
+});
 
-//     res.status(200).json({
-//       status: 'success',
-//       data: {
-//         meal,
-//       },
-//     });
-//   } catch (err) {
-//     next(err);
-//     // res.status(400).json({
-//     //   status: 'fail',
-//     //   error: err,
-//     // });
-//   }
-// };
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(
+      new CustomError(
+        'Only image uploads allowed, try uploading an image instead',
+        400
+      ),
+      false
+    );
+  }
+};
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.multerUpload = upload.single('image');
 
 exports.createMeal = catchAsyncErrors(async (req, res, next) => {
   const { name, price, ratingsAverage, category } = req.body;
-
+  // console.log(req);
   const meal = await Meal.create({
     name,
     price,
     ratingsAverage,
     category,
+    image: req.file.filename,
   });
 
   res.status(200).json({
     status: 'success',
-    data: {
-      meal,
-    },
+    successMsg: 'Meal added successfully :)',
   });
 });
 //READING
