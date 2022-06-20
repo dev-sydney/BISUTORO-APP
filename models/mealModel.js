@@ -27,6 +27,10 @@ const mealSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 mealSchema.pre('save', function (next) {
@@ -37,7 +41,7 @@ mealSchema.pre('save', function (next) {
 });
 
 mealSchema.pre(/^find/, function (next) {
-  this.find({ isActive: { $ne: false } });
+  this.find({ isDeleted: { $ne: true } });
   next();
 });
 const Meal = mongoose.model('Meal', mealSchema);
