@@ -7,7 +7,8 @@
     "ratingsQuantity": 6,
     "category": "main",
     "serving": 400,
-    "image": "meal-1.png"
+    "image": "meal-1.png",
+    "isDeleted": false
   },
   {
     "_id": "627c171c5214612605247273",
@@ -17,7 +18,8 @@
     "ratingsQuantity": 3,
     "category": "main",
     "serving": 300,
-    "image": "meal-2.png"
+    "image": "meal-2.png",
+    "isDeleted": false
   },
   {
     "_id": "627c171c5214612605247274",
@@ -27,7 +29,8 @@
     "ratingsQuantity": 7,
     "category": "main",
     "serving": 350,
-    "image": "meal-3.png"
+    "image": "meal-3.png",
+    "isDeleted": false
   },
   {
     "_id": "627c171c5214612605247275",
@@ -37,7 +40,8 @@
     "ratingsQuantity": 8,
     "category": "main",
     "serving": 250,
-    "image": "meal-4.png"
+    "image": "meal-4.png",
+    "isDeleted": false
   },
   {
     "_id": "627c171c5214612605247276",
@@ -47,7 +51,8 @@
     "ratingsQuantity": 9,
     "category": "main",
     "serving": 400,
-    "image": "meal-5.png"
+    "image": "meal-5.png",
+    "isDeleted": false
   },
   {
     "_id": "627c171c5214612605247277",
@@ -57,6 +62,7 @@
     "ratingsQuantity": 6,
     "category": "main",
     "serving": 250,
-    "image": "meal-6.png"
+    "image": "meal-6.png",
+    "isDeleted": false
   }
 ]
