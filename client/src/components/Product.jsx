@@ -1,25 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './../styles/sideBarStyle.scss';
 import './../styles/productStyle.scss';
 
 import ProductContext from './../contexts/ProductContext';
 
 const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
+  const [isActivitated, setIsActivitated] = useState(meal.isActive);
+  useEffect(() => {
+    setIsActivitated(meal.isActive);
+    //eslint-disable-next-line
+  }, [isActivitated]);
+
   const mealsContext = useContext(ProductContext);
-  const { setCurrentMeal, AddMealToFavorites } = mealsContext;
+  const {
+    setCurrentMeal,
+    AddMealToFavorites,
+    ActivateDeactivateMeal,
+    currentMeal,
+    deleteMeal,
+  } = mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
     setIsModalOpen(true);
   };
-
+  const onActivateClick = () => {
+    ActivateDeactivateMeal(currentMeal);
+    setIsActivitated(!isActivitated);
+  };
+  const onDeleteClick = () => {
+    deleteMeal(meal._id);
+  };
   return (
     <div className="links product" onClick={setCurrent}>
       <div>
         <span>⭐{meal.ratingsAverage}</span>
         <span>
-          {isFavouritesPage ? (
-            '🗑️'
+          {!isFavouritesPage ? (
+            <div>
+              <button onClick={onDeleteClick}>🗑️</button>
+              <button onClick={onActivateClick}>
+                {isActivitated ? 'Deactivate' : 'Activate'}
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => {
