@@ -17,6 +17,7 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         meals: [...state.meals].filter((el) => el._id !== action.payload),
+        alertMsg: action.payload,
       };
     case Type.SET_CURRENT:
       return {
@@ -40,6 +41,11 @@ const mealReducer = (state, action) => {
       };
     //TODO: ALERTS
     case Type.ADD_MEAL_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
+    case Type.DELETE_MEAL_ERROR:
       return {
         ...state,
         alertMsg: action.payload,
