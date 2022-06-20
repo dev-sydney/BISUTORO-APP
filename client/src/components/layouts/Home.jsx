@@ -21,6 +21,7 @@ const Home = () => {
   const { isAuthenticated, loggedInUser } = authContxt;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFavouritesPage, setIsFavouritesPage] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const Home = () => {
     } else {
       navigate('/login');
     }
+    //eslint-disable-next-line
   }, [isAuthenticated, meals]);
   return (
     <div className="flex_container">
@@ -41,7 +43,12 @@ const Home = () => {
         <div className="product_container">
           {meals &&
             meals.map((el) => (
-              <Product meal={el} key={el._id} setIsModalOpen={setIsModalOpen} />
+              <Product
+                meal={el}
+                key={el._id}
+                setIsModalOpen={setIsModalOpen}
+                isFavouritesPage={isFavouritesPage}
+              />
             ))}
         </div>
       </div>
