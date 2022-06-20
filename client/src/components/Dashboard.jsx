@@ -1,15 +1,27 @@
-import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
+import ProductsContainer from './ProductsContainer';
+import CategoriesContainer from './CategoriesContainer';
+
+import './../styles/dashBoardStyle.scss';
+
 const Dashboard = () => {
+  const [isProductTab, setIsProductTab] = useState(true);
+  const onClick = () => {
+    setIsProductTab(!isProductTab);
+  };
+
   return (
-    <Fragment>
-      <div>
-        <NavLink to="/dashboard/products">PRODUCTS</NavLink>
+    <div className="admin">
+      <h1>DashBoard</h1>
+      <div className="controls">
+        <span onClick={onClick}>Products</span>
+        <span onClick={onClick}>Categories</span>
       </div>
       <div>
-        <NavLink to="/dashboard/categories">CATEGORIES</NavLink>
+        {isProductTab ? <ProductsContainer /> : <CategoriesContainer />}
       </div>
-    </Fragment>
+    </div>
   );
 };
 
