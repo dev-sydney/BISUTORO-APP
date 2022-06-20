@@ -58,6 +58,7 @@ const Profile = () => {
     };
   useEffect(() => {
     if (!isAuthenticated && !authMsg) navigate('/login');
+    //eslint-disable-next-line
   }, [isAuthenticated, authMsg]);
   return (
     <div>

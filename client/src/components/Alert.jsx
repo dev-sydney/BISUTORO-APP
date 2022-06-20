@@ -8,6 +8,7 @@ const Alert = ({ setIsAlertOpen }) => {
   let { authMsg, clearAuthMsg } = authContxt;
   useEffect(() => {
     authMsg && setIsAlertOpen(true);
+    //eslint-disable-next-line
   }, [authMsg]);
   return (
     <div className="alert">

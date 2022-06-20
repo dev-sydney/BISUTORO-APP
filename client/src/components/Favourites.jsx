@@ -23,6 +23,7 @@ const Favourites = () => {
     } else {
       navigate('/login');
     }
+    //eslint-disable-next-line
   }, [isAuthenticated]);
   return (
     <div className="flex_container">

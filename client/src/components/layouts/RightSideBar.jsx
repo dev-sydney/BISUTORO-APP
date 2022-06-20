@@ -22,6 +22,7 @@ const RightSidebar = ({ loggedInUser }) => {
             .map((el) => el.price)
             .reduce((prev, curr) => prev + curr, 0)
         );
+    //eslint-disable-next-line
   }, [orders, loggedInUser]);
 
   const onItemRemove = (mealID) => () => {
