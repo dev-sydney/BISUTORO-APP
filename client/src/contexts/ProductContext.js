@@ -31,17 +31,16 @@ export const MealContextProvider = ({ children }) => {
     ];
     try {
       const form = new FormData();
-      let filteredObj = { ...mealData };
 
-      Object.keys(filteredObj).forEach((el) => {
+      Object.keys(mealData).forEach((el) => {
         form.append(
           `${el}`,
-          numericFields.includes(el) ? +filteredObj[el] : filteredObj[el]
+          numericFields.includes(el) ? +mealData[el] : mealData[el]
         );
       });
-      for (let key of form.entries()) {
-        console.log(key);
-      }
+      // for (let key of form.entries()) {
+      //   console.log(key);
+      // }
       const res = await axios.post('/api/v1/meals/', form, {
         headers: {
           'Content-type': 'application/json',
@@ -65,11 +64,20 @@ export const MealContextProvider = ({ children }) => {
    *
    * @param {*} mealID ID property of the meal we want to delete
    */
-  const deleteMeal = (mealID) => {
-    dispatch({
-      type: Type.DELETE_MEAL,
-      payload: mealID,
-    });
+
+  const deleteMeal = async (mealID) => {
+    try {
+      await axios.delete(`/api/v1/meals/${mealID}`, config);
+      dispatch({
+        type: Type.DELETE_MEAL,
+        alertMsg: 'Meal deleted successfully',
+      });
+    } catch (err) {
+      dispatch({
+        type: Type.DELETE_MEAL_ERROR,
+        alertMsg: 'Trouble deleting meal, please try again!',
+      });
+    }
   };
   /**
    * Sets the selected meal as the currentMeal obj in the state
@@ -136,6 +144,21 @@ export const MealContextProvider = ({ children }) => {
       console.log(err.response.data.message);
     }
   };
+  const ActivateDeactivateMeal = async (meal) => {
+    try {
+      const res = await axios.patch(
+        `/api/v1/meals/${meal._id}`,
+        { isActive: !meal.isActive },
+        config
+      );
+      dispatch({
+        type: Type.UPDATE_DATA_SUCCESS,
+        payload: 'Updated was successful!',
+      });
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
   return (
     <mealContext.Provider
       value={{
@@ -153,6 +176,7 @@ export const MealContextProvider = ({ children }) => {
         loadAllMeals,
         loadFavoriteMeals,
         AddMealToFavorites,
+        ActivateDeactivateMeal,
       }}
     >
       {children}
