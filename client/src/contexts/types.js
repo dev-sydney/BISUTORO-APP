@@ -1,6 +1,8 @@
 export const ADD_MEAL = 'ADD_MEAL';
 export const ADD_MEAL_ERROR = 'ADD_MEAL_ERROR';
 export const DELETE_MEAL = 'DELETE_MEAL';
+export const DELETE_MEAL_ERROR = 'DELETE_MEAL_ERROR';
+
 export const ADD_TO_ORDER = 'ADD_TO_ORDER';
 export const REMOVE_FROM_ORDERS = 'REMOVE_FROM_ORDERS';
 export const SET_CURRENT = 'SET_CURRENT';
