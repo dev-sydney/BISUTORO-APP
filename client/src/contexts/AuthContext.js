@@ -1,13 +1,10 @@
 import { createContext, useReducer } from 'react';
 import axios from 'axios';
 import authReducer from '../reducers/AuthReducer';
-import * as Type from './types';
 
-export const config = {
-  headers: {
-    'Content-type': 'application/json',
-  },
-};
+import * as Type from './types';
+import { config } from '../Utilss';
+
 const AuthContext = createContext();
 /**
  *
