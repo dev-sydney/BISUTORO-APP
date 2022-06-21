@@ -29,6 +29,11 @@ const mealReducer = (state, action) => {
         ...state,
         orders: [...state.orders, action.payload],
       };
+    case Type.ADD_TO_FAVOURITES:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
     case Type.REMOVE_FROM_ORDERS:
       return {
         ...state,
@@ -41,6 +46,21 @@ const mealReducer = (state, action) => {
       };
     //TODO: ALERTS
     case Type.ADD_MEAL_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
+    case Type.LOAD_ALL_MEALS_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
+    case Type.LOAD_FAVOURITES_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
+    case Type.ADD_TO_FAVOURITES_ERROR:
       return {
         ...state,
         alertMsg: action.payload,

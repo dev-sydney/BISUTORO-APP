@@ -32,7 +32,7 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
     deleteMeal(meal._id);
   };
   return (
-    <div className="links product" onClick={setCurrent}>
+    <div className="links product">
       <div>
         <span>⭐{meal.ratingsAverage}</span>
         <span>
@@ -58,6 +58,7 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
         <img
           src={`/img/meals/${meal.image ? meal.image : 'meal-1.png'}`}
           alt="Meal"
+          onClick={setCurrent}
         />
       </div>
       <div>
