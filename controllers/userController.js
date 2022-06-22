@@ -113,7 +113,7 @@ exports.addToFavourites = catchAsyncErrors(async (req, res, next) => {
   const { mealID } = req.params;
   if (req.user.favourites.includes(mealID))
     return next(
-      new CustomError('Meal already belongs in your favourites', 404)
+      new CustomError('Meal already belongs in your favourites', 400)
     );
   const favourites = [...req.user.favourites, mealID];
 
