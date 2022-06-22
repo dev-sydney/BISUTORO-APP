@@ -12,24 +12,18 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
   }, [isActivitated]);
 
   const mealsContext = useContext(ProductContext);
-  const {
-    setCurrentMeal,
-    AddMealToFavorites,
-    ActivateDeactivateMeal,
-    currentMeal,
-    deleteMeal,
-  } = mealsContext;
+  const { setCurrentMeal, currentMeal, asyncMealActions } = mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
     setIsModalOpen(true);
   };
   const onActivateClick = () => {
-    ActivateDeactivateMeal(currentMeal);
+    asyncMealActions.ActivateDeactivateMeal(meal);
     setIsActivitated(!isActivitated);
   };
   const onDeleteClick = () => {
-    deleteMeal(meal._id);
+    asyncMealActions.deleteMeal(meal._id);
   };
   return (
     <div className="links product">
@@ -46,7 +40,7 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
           ) : (
             <button
               onClick={() => {
-                AddMealToFavorites(meal._id);
+                asyncMealActions.AddMealToFavorites(meal._id);
               }}
             >
               💗
