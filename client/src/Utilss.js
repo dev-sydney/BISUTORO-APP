@@ -1,4 +1,3 @@
-//TODO: Refactor the config
 export const config = {
   headers: {
     'Content-type': 'application/json',
