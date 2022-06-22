@@ -15,11 +15,11 @@ const Favourites = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const { favourites, currentMeal, loadFavoriteMeals } = mealContxt;
+  const { favourites, currentMeal, asyncMealActions } = mealContxt;
   const { isAuthenticated } = authcontxt;
   useEffect(() => {
     if (isAuthenticated) {
-      loadFavoriteMeals();
+      asyncMealActions.loadFavoriteMeals();
     } else {
       navigate('/login');
     }
