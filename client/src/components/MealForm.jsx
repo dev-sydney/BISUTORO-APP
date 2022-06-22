@@ -3,7 +3,7 @@ import productContext from './../contexts/ProductContext';
 
 const MealForm = () => {
   const mealContext = useContext(productContext);
-  const { addMeal } = mealContext;
+  const { asyncMealActions } = mealContext;
   const fileInput = useRef(null);
 
   const [meal, setMeal] = useState({
@@ -46,7 +46,7 @@ const MealForm = () => {
       ...meal,
       image: fileInput.current.files[0],
     });
-    addMeal(meal);
+    asyncMealActions.addMeal(meal);
   };
   return (
     <div>
