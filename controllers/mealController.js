@@ -97,6 +97,10 @@ exports.updateMeal = catchAsyncErrors(async (req, res, next) => {
     new: true,
     runValidators: true,
   });
+  if (!meal)
+    return next(
+      new CustomError('Trouble updating the meal,please try again', 400)
+    );
 
   res.status(200).json({
     status: 'success',
