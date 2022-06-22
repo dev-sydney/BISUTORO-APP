@@ -7,7 +7,7 @@ import AuthContext from '../../contexts/AuthContext';
 
 const Login = () => {
   const authContxt = useContext(AuthContext);
-  const { loginSiginUser, authMsg } = authContxt;
+  const { asyncAuthActions, authMsg } = authContxt;
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -21,7 +21,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginSiginUser(user, navigate);
+    asyncAuthActions.loginSignupUser(user, navigate);
   };
 
   return (

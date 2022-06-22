@@ -17,7 +17,7 @@ const Home = () => {
   const mealsContext = useContext(ProductContext);
   const authContxt = useContext(AuthContext);
 
-  const { meals, currentMeal, loadAllMeals } = mealsContext;
+  const { meals, currentMeal, asyncMealActions } = mealsContext;
   const { isAuthenticated, loggedInUser } = authContxt;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +26,7 @@ const Home = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      loadAllMeals();
+      asyncMealActions.loadAllMeals();
     } else {
       navigate('/login');
     }

@@ -6,7 +6,7 @@ import Alert from '../Alert';
 const Signup = () => {
   const authContxt = useContext(AuthContext);
   const navigate = useNavigate();
-  const { loginSiginUser, authMsg } = authContxt;
+  const { asyncAuthActions, authMsg } = authContxt;
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const [user, setUser] = useState({
@@ -21,7 +21,7 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginSiginUser(user, navigate);
+    asyncAuthActions.loginSignupUser(user, navigate);
   };
   return (
     <div>

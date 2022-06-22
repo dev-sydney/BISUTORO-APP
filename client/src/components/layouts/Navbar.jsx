@@ -6,7 +6,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   const authContxt = useContext(AuthContext);
-  const { isAuthenticated, logout } = authContxt;
+  const { isAuthenticated, asyncAuthActions } = authContxt;
   const navigate = useNavigate();
 
   return (
@@ -22,7 +22,7 @@ const Navbar = () => {
       ) : (
         <button
           onClick={() => {
-            logout(navigate);
+            asyncAuthActions.logout(navigate);
           }}
         >
           LOG OUT
