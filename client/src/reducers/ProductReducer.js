@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.UPDATE_DATA_SUCCESS:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
     case Type.LOAD_ALL_MEALS:
       return {
         ...state,
@@ -45,6 +50,11 @@ const mealReducer = (state, action) => {
         favourites: action.payload,
       };
     //TODO: ALERTS
+    case Type.UPDATE_DATA_FAIL:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
     case Type.ADD_MEAL_ERROR:
       return {
         ...state,
