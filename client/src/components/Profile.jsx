@@ -24,7 +24,7 @@ const Profile = () => {
   const { name, email } = user;
   const { currentPassword, newPassword, passwordConfirm } = passwordData;
 
-  const { updatePassword, updateData, isAuthenticated, authMsg, loggedInUser } =
+  const { asyncAuthActions, isAuthenticated, authMsg, loggedInUser } =
     authContxt;
   const navigate = useNavigate();
 
@@ -49,11 +49,11 @@ const Profile = () => {
     (e) => {
       e.preventDefault();
       if (!userID) {
-        updatePassword(formData);
+        asyncAuthActions.updatePassword(formData);
       } else {
         const { files } = fileInput.current;
         formData.photo = files[0];
-        updateData(formData, loggedInUser._id);
+        asyncAuthActions.updateData(formData, loggedInUser._id);
       }
     };
   useEffect(() => {
