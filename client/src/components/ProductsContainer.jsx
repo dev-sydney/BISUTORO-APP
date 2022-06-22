@@ -7,10 +7,10 @@ import './../styles/containerStyle.scss';
 
 const ProductsControl = () => {
   const mealsContext = useContext(ProductContext);
-  const { meals, loadAllMeals } = mealsContext;
+  const { meals, asyncMealActions } = mealsContext;
 
   useEffect(() => {
-    loadAllMeals();
+    asyncMealActions.loadAllMeals();
     //eslint-disable-next-line
   }, [meals]);
 
