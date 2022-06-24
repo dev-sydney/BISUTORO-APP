@@ -1,0 +1,15 @@
+.review {
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.review_container {
+  height: 90%;
+  border: 2px solid red;
+  width: 100%;
+  textarea {
+    resize: none;
+    width: 20em;
+  }
+}
