@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Review from './Review';
+
+import productContext from './../contexts/ProductContext';
 
 import './../styles/reviewStyle.scss';
 
 const ReviewContainer = ({ setReviewBlock }) => {
+  const mealsContext = useContext(productContext);
+  const { reviews } = mealsContext;
+
   const ratings = [1, 2, 3, 4, 5];
+
   const [reviewBlock] = useState(true);
   const [reviewData, setReviewData] = useState({
     review: '',
     rating: 0,
   });
+
   const { review } = reviewData;
+
   const onTextareaChange = (e) => {
     setReviewData({ ...reviewData, [e.target.name]: e.target.value });
   };
 
   const onRatingsClick = (e) => {
-    console.log(e.target.dataset.rating);
-    console.log(e.target.dataset.name);
+    let fieldRating = e.target.dataset.rating;
+    let fieldName = e.target.dataset.name;
+    // console.log(fieldRating);
     setReviewData({
       ...reviewData,
-      rating: e.target.dataset.value,
+      [fieldName]: +fieldRating,
     });
+    // console.log(reviewData);
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(reviewData);
+    // console.log(reviewData);
   };
+
   return (
     <div className="review_container">
       <button
@@ -36,10 +48,10 @@ const ReviewContainer = ({ setReviewBlock }) => {
       >
         ❌
       </button>
-      <Review />
-      <Review />
-      <Review />
-      <Review />
+      {reviews.length === 0
+        ? 'No reviews yet'
+        : reviews.map((el) => <Review key={el._id} review={el} />)}
+
       <form onSubmit={onSubmit}>
         <div>
           {ratings.map((el, i) => (
@@ -48,6 +60,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
               data-name="rating"
               onClick={onRatingsClick}
               data-rating={el}
+              className="star"
             >
               ⭐
             </span>
