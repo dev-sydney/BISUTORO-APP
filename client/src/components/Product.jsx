@@ -12,10 +12,11 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
   }, [isActivitated]);
 
   const mealsContext = useContext(ProductContext);
-  const { setCurrentMeal, currentMeal, asyncMealActions } = mealsContext;
+  const { setCurrentMeal, asyncMealActions, aysncReviewActions } = mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
+    aysncReviewActions.loadReviewsOnMeal(meal._id);
     setIsModalOpen(true);
   };
   const onActivateClick = () => {
