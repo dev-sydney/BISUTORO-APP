@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react';
 import * as Type from './types';
 import ProductReducer from './../reducers/ProductReducer';
 import ProductActions from '../actions/productActions';
+import ReviewActions from '../actions/reviewActions';
 
 const mealContext = createContext();
 
@@ -14,10 +15,12 @@ export const MealContextProvider = ({ children }) => {
     loadingMeals: true,
     favourites: [],
     alertMsg: null,
+    reviews: [],
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const asyncMealActions = new ProductActions(dispatch);
+  const aysncReviewActions = new ReviewActions(dispatch);
 
   /**
    * Sets the selected meal as the currentMeal obj in the state
@@ -56,10 +59,12 @@ export const MealContextProvider = ({ children }) => {
         loadingMeals: state.loadingMeals,
         favourites: state.favourites,
         alertMsg: state.alertMsg,
+        reviews: state.reviews,
         setCurrentMeal,
         addToOrder,
         removeFromOrders,
         asyncMealActions,
+        aysncReviewActions,
       }}
     >
       {children}
