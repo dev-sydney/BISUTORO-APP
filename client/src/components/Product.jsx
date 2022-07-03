@@ -5,11 +5,11 @@ import './../styles/productStyle.scss';
 import ProductContext from './../contexts/ProductContext';
 
 const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
-  const [isActivitated, setIsActivitated] = useState(meal.isActive);
+  const [isActivitated, setIsActivitated] = useState(meal.isOnSale);
   useEffect(() => {
-    setIsActivitated(meal.isActive);
+    setIsActivitated(meal.isOnSale);
     //eslint-disable-next-line
-  }, [isActivitated]);
+  }, [meal]);
 
   const mealsContext = useContext(ProductContext);
   const { setCurrentMeal, asyncMealActions, aysncReviewActions } = mealsContext;
