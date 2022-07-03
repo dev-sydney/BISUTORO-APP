@@ -31,6 +31,10 @@ const mealSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isOnSale: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 mealSchema.pre('save', function (next) {
