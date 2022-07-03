@@ -6,7 +6,7 @@ export const config = {
 
 export const asyncActions = (fn, type, dispatch) => () => {
   fn().catch((err) => {
-    // console.log(err);
+    console.log(err);
     dispatch({
       type,
       payload: err.response.data.message,
