@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.POST_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, action.payload],
+      };
     case Type.LOAD_REVIEWS:
       return {
         ...state,
@@ -90,6 +95,12 @@ const mealReducer = (state, action) => {
         ...state,
         alertMsg: action.payload,
       };
+    case Type.POST_REVIEW_ERROR:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
+
     default:
       return state;
   }
