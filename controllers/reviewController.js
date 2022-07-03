@@ -14,7 +14,7 @@ exports.createReview = catchAsyncErrors(async (req, res, next) => {
   });
   res.status(200).json({
     status: 'success',
-    data: { review: doc },
+    review: doc,
   });
 });
 //READ
