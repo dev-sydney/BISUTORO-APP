@@ -5,6 +5,7 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
+router.route('/categories').get(mealController.getCategories);
 router.use(authController.authenticateUser);
 //ALIASING
 router.get(
@@ -22,7 +23,7 @@ router
     mealController.multerUpload,
     mealController.createMeal
   )
-  .get(mealController.getAllMeals);
+  .get(mealController.putOnSale, mealController.getAllMeals);
 
 router
   .route('/:mealID')
