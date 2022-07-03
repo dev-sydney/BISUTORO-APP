@@ -2,7 +2,7 @@ import React from 'react';
 
 import './../styles/reviewStyle.scss';
 const Review = ({ review }) => {
-  let i;
+  const ratings = [1, 2, 3, 4, 5];
   return (
     <div className="review">
       <div className="profile">
@@ -10,12 +10,18 @@ const Review = ({ review }) => {
       </div>
 
       <div className="details">
-        {[1, 2, 3, 4, 5].forEach((el, i) => {
-          if (review.rating < el) return <span key={i}>⭐</span>;
+        {ratings.map((el, i) => {
+          if (review.rating >= el) return <span key={i}>⭐</span>;
         })}
-        <span key={i}>⭐</span>
+
         <p>{review.review}</p>
-        <p>27 sept 2022</p>
+        <p>
+          {new Date(review.createAt).toLocaleString('en-us', {
+            month: 'long',
+            year: 'numeric',
+            day: '2-digit',
+          })}
+        </p>
       </div>
     </div>
   );
