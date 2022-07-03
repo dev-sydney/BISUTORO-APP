@@ -18,6 +18,10 @@ const reviewSchema = new mongoose.Schema({
     type: mongoose.ObjectId,
     ref: 'User',
   },
+  createAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 reviewSchema.pre(/^find/, function (next) {
   this.populate(['user', 'meal']);
