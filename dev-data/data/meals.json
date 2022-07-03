@@ -8,7 +8,8 @@
     "category": "main",
     "serving": 400,
     "image": "meal-1.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": true
   },
   {
     "_id": "627c171c5214612605247273",
@@ -19,7 +20,8 @@
     "category": "main",
     "serving": 300,
     "image": "meal-2.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": true
   },
   {
     "_id": "627c171c5214612605247274",
@@ -30,7 +32,8 @@
     "category": "main",
     "serving": 350,
     "image": "meal-3.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": false
   },
   {
     "_id": "627c171c5214612605247275",
@@ -41,7 +44,8 @@
     "category": "main",
     "serving": 250,
     "image": "meal-4.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": true
   },
   {
     "_id": "627c171c5214612605247276",
@@ -52,7 +56,8 @@
     "category": "main",
     "serving": 400,
     "image": "meal-5.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": false
   },
   {
     "_id": "627c171c5214612605247277",
@@ -63,6 +68,7 @@
     "category": "main",
     "serving": 250,
     "image": "meal-6.png",
-    "isDeleted": false
+    "isDeleted": false,
+    "isOnSale": true
   }
 ]
