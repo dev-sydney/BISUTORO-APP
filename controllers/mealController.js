@@ -60,6 +60,12 @@ exports.createMeal = catchAsyncErrors(async (req, res, next) => {
   });
 });
 //READING
+exports.putOnSale = (req, res, next) => {
+  if (req.user.role === 'user') {
+    req.query.isOnSale = true;
+  }
+  next();
+};
 exports.getAllMeals = catchAsyncErrors(async (req, res, next) => {
   let queryObj = { ...req.query };
   // Object.keys(req.query).forEach((el) => {
@@ -128,5 +134,27 @@ exports.getAllFavourites = catchAsyncErrors(async (req, res, next) => {
     status: 'success',
     meals: favoriteMeals.length,
     data: favoriteMeals,
+  });
+});
+
+exports.getCategories = catchAsyncErrors(async (req, res, next) => {
+  const categories = await Meal.aggregate([
+    {
+      $group: {
+        _id: '$category',
+        results: { $sum: 1 },
+      },
+    },
+    {
+      $addFields: { categoryName: '$_id' },
+    },
+    {
+      $unset: '_id',
+    },
+  ]);
+  // console.log(categories);
+  res.status(200).json({
+    status: 'sucesss',
+    categories,
   });
 });
