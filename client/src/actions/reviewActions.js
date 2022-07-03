@@ -29,6 +29,21 @@ class ReviewActions {
       });
     }
   };
+  postReview = async (mealID, reviewData) => {
+    try {
+      const res = await axios.post(
+        `/api/v1/reviews/${mealID}`,
+        reviewData,
+        config
+      );
+      this.successDispatcher(res, Type.POST_REVIEW, res.data.review);
+    } catch (err) {
+      this.dispatch({
+        type: Type.POST_REVIEW_ERROR,
+        payload: 'Trouble posting this review, please try again',
+      });
+    }
+  };
 }
 
 export default ReviewActions;
