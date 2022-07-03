@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Review from './Review';
 
 import productContext from './../contexts/ProductContext';
@@ -7,8 +7,10 @@ import './../styles/reviewStyle.scss';
 
 const ReviewContainer = ({ setReviewBlock }) => {
   const mealsContext = useContext(productContext);
-  const { reviews } = mealsContext;
-
+  const { reviews, aysncReviewActions, currentMeal } = mealsContext;
+  useEffect(() => {
+    aysncReviewActions.loadReviewsOnMeal(currentMeal._id);
+  }, [reviews]);
   const ratings = [1, 2, 3, 4, 5];
 
   const [reviewBlock] = useState(true);
@@ -37,6 +39,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log(reviewData);
+    aysncReviewActions.postReview(currentMeal._id, reviewData);
   };
 
   return (
@@ -48,9 +51,11 @@ const ReviewContainer = ({ setReviewBlock }) => {
       >
         ❌
       </button>
-      {reviews.length === 0
-        ? 'No reviews yet'
-        : reviews.map((el) => <Review key={el._id} review={el} />)}
+      <div className="reviews_section">
+        {reviews.length === 0
+          ? 'No reviews yet'
+          : reviews.map((el) => <Review key={el._id} review={el} />)}
+      </div>
 
       <form onSubmit={onSubmit}>
         <div>
