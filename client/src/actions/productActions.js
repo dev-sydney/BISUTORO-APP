@@ -79,7 +79,7 @@ class ProductActions {
     try {
       const res = await axios.patch(
         `/api/v1/meals/${meal._id}`,
-        { isActive: !meal.isActive },
+        { isOnSale: !meal.isOnSale },
         config
       );
       this.successDispatcher(
