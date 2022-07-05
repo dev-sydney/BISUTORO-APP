@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import productContext from './../../contexts/ProductContext';
 import AuthContext from '../../contexts/AuthContext';
+
+import { OrderMeals } from '../../js/stripe';
 
 import './../../styles/sideBarStyle.scss';
 
@@ -67,7 +70,14 @@ const RightSidebar = ({ loggedInUser }) => {
         <span>TOTAL</span>
         <span>{Math.round(total)}</span>
       </div>
-      <div className="checkout_btn">CHECKOUT</div>
+      <button
+        className="checkout_btn"
+        onClick={() => {
+          OrderMeals(orders);
+        }}
+      >
+        CHECKOUT
+      </button>
     </div>
   );
 };
