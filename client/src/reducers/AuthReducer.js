@@ -3,6 +3,11 @@ import * as Type from './../contexts/types';
 const authReducer = (state, action) => {
   switch (action.type) {
     //@TODO: SUCCESSES
+    case Type.SET_PICKUP_LOCATION:
+      return {
+        ...state,
+        pickupLocation: action.payload,
+      };
     case Type.UPDATE_DATA_SUCCESS:
       return {
         ...state,
