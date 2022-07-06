@@ -7,7 +7,7 @@ class AuthActions {
     this.dispatch = dispatch;
   }
   successDispatcher = (res, type, payload) => {
-    if (res.data.status === 'success') {
+    if (res.data.status === 'success' || res.status === 200) {
       this.dispatch({
         type,
         payload,
@@ -112,6 +112,31 @@ class AuthActions {
         type: Type.UPDATE_DATA_FAIL,
         payload: err.response.data.message,
       });
+    }
+  };
+
+  getPickLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            let geoCodeURL = `https://us1.locationiq.com/v1/reverse?key=${Type.LOCATION_IQ_KEY}&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`;
+
+            const res = await axios.get(geoCodeURL, config);
+            console.log(res);
+            this.successDispatcher(
+              res,
+              Type.SET_PICKUP_LOCATION,
+              res.data.display_name
+            );
+          } catch (err) {
+            console.log('PICK UP ERROR', err);
+          }
+        },
+        () => {
+          alert('Could not get coordinates');
+        }
+      );
     }
   };
 }
