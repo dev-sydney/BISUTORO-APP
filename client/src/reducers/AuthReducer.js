@@ -12,11 +12,14 @@ const authReducer = (state, action) => {
       return {
         ...state,
         loggedInUser: action.payload,
+        authMsg: 'Updated successfully!',
+        authMsgType: true, //set to TRUE if its a success
       };
     case Type.UPDATE_PASSWORD_SUCCESS:
       return {
         ...state,
         authMsg: action.payload,
+        authMsgType: true, //set to TRUE if its a success
       };
     case Type.SIGN_UP_SUCCESS:
       localStorage.setItem('token', action.payload);
@@ -24,6 +27,8 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
         loggedInUser: action.payload,
+        authMsg: 'Signed up successfully!',
+        authMsgType: true, //set to TRUE if its a success
       };
     case Type.LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload);
@@ -31,6 +36,8 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
         loggedInUser: action.payload,
+        authMsg: 'Logged in successfully !',
+        authMsgType: true, //set to TRUE if its a success
       };
     case Type.LOGOUT:
       localStorage.removeItem('token');
@@ -47,6 +54,7 @@ const authReducer = (state, action) => {
         isAuthenticated: null,
         authMsg: action.payload,
         loggedInUser: null,
+        authMsgType: false, //set to FAIL if its an error
       };
     case Type.LOGIN_FAIL:
       localStorage.removeItem('token');
@@ -55,6 +63,7 @@ const authReducer = (state, action) => {
         isAuthenticated: null,
         authMsg: action.payload,
         loggedInUser: null,
+        authMsgType: false, //set to false if its an error
       };
     case Type.LOGOUT_FAIL:
       localStorage.removeItem('token');
@@ -62,23 +71,27 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: false,
         authMsg: action.payload,
+        authMsgType: false, //set to FAALSE if its a success
       };
     case Type.UPDATE_PASSWORD_FAILED:
       return {
         ...state,
         authMsg: action.payload,
+        authMsgType: false, //set to FALSE if its an error
       };
     case Type.UPDATE_DATA_FAIL:
       return {
         ...state,
         authMsg: action.payload,
+        authMsgType: false, //set to TRUE if its a success
       };
     //@TODO: CLEARING
 
     case Type.CLEAR_AUTH_MSG:
       return {
         ...state,
-        authMsg: action.payload,
+        authMsg: null,
+        authMsgType: null,
       };
     default:
       return state;
