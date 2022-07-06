@@ -44,7 +44,7 @@ const Profile = () => {
    * @param {String} userID The ._id property of the currently logged in user
    * @returns another function, this function is the actual callback function needed for the eventlistener
    */
-  const onSubmit =
+  const onFormSubmit =
     (formData, userID = null) =>
     (e) => {
       e.preventDefault();
@@ -59,7 +59,7 @@ const Profile = () => {
   useEffect(() => {
     if (!isAuthenticated && !authMsg) navigate('/login');
     //eslint-disable-next-line
-  }, [isAuthenticated, authMsg]);
+  }, [isAuthenticated, authMsg, loggedInUser]);
   return (
     <div>
       {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
@@ -70,7 +70,7 @@ const Profile = () => {
         // onSubmit={onSubmit(user, loggedInUser._id)}
         onSubmit={
           // console.log(files[0]);
-          onSubmit(user, loggedInUser._id)
+          onFormSubmit(user, loggedInUser._id)
         }
       >
         <div>
@@ -96,7 +96,11 @@ const Profile = () => {
         <div className="profile_photo">
           <img
             className="form__user-photo"
-            src="/img/meals/meal-1.png"
+            src={`/img/users/${
+              loggedInUser.photo
+                ? loggedInUser.photo
+                : 'user-629d35ebaee820196aa455b3-1655325780778.jpeg'
+            }`}
             alt="profile"
           />
           <input
@@ -112,7 +116,7 @@ const Profile = () => {
       </form>
 
       <div>&nbsp;</div>
-      <form className="password_form" onSubmit={onSubmit(passwordData)}>
+      <form className="password_form" onSubmit={onFormSubmit(passwordData)}>
         <div>
           <label htmlFor="current">Current Password</label>
           <input
