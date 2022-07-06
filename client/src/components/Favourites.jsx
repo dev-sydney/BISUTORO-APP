@@ -26,7 +26,8 @@ const Favourites = () => {
     //eslint-disable-next-line
   }, [isAuthenticated]);
   return (
-    <div className="flex_container">
+    <div>
+      <h1>Favourites</h1>
       {isModalOpen && (
         <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
       )}

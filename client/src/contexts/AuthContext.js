@@ -1,9 +1,7 @@
 import { createContext, useReducer } from 'react';
-import axios from 'axios';
 import authReducer from '../reducers/AuthReducer';
 
 import * as Type from './types';
-import { config } from '../Utilss';
 import AuthActions from '../actions/authActions';
 
 const AuthContext = createContext();
@@ -21,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     authMsg: null,
     // loggedInUser: localStorage.getItem('User'),
     isLoggedIn: true,
+    pickupLocation: null,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -44,6 +43,7 @@ export const AuthProvider = ({ children }) => {
         loggedInUser: state.loggedInUser,
         token: state.token,
         authMsg: state.authMsg,
+        pickupLocation: state.pickupLocation,
         asyncAuthActions,
         clearAuthMsg,
       }}
