@@ -5,7 +5,6 @@ import productContext from './../../contexts/ProductContext';
 import AuthContext from '../../contexts/AuthContext';
 
 import { OrderMeals } from '../../js/stripe';
-
 import './../../styles/sideBarStyle.scss';
 
 const RightSidebar = ({ loggedInUser }) => {
@@ -13,7 +12,7 @@ const RightSidebar = ({ loggedInUser }) => {
   const authContxt = useContext(AuthContext);
 
   const { orders, removeFromOrders } = mealsContext;
-  const { isAuthenticated } = authContxt;
+  const { isAuthenticated, pickupLocation } = authContxt;
 
   const [total, setTotal] = useState(0);
 
@@ -26,7 +25,7 @@ const RightSidebar = ({ loggedInUser }) => {
             .reduce((prev, curr) => prev + curr, 0)
         );
     //eslint-disable-next-line
-  }, [orders, loggedInUser]);
+  }, [orders, loggedInUser, pickupLocation]);
 
   const onItemRemove = (mealID) => () => {
     removeFromOrders(mealID);
@@ -43,7 +42,7 @@ const RightSidebar = ({ loggedInUser }) => {
       <h1>My Order</h1>
       <div className="time_location">
         <p>{new Date().toDateString()}</p>
-        <p>%location%</p>
+        <p className="pickup">{pickupLocation ? pickupLocation : ''}</p>
         <p>Dial me for order specifications</p>
       </div>
       <div className="order_items">
