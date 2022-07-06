@@ -15,8 +15,7 @@ const MealForm = () => {
     serving: 0,
   });
 
-  const { name, price, ratingsAverage, ratingsQuantity, category, serving } =
-    meal;
+  const { name, price, category, serving } = meal;
 
   const onChange = (e) => {
     const numericFields = [
@@ -55,20 +54,6 @@ const MealForm = () => {
         <input type="text" name="name" value={name} onChange={onChange} />
         <label>PRICE: </label>
         <input type="number" name="price" value={+price} onChange={onChange} />
-        <label>AVERAGE: </label>
-        <input
-          type="number"
-          name="ratingsAverage"
-          value={+ratingsAverage}
-          onChange={onChange}
-        />
-        <label>RATING QTY: </label>
-        <input
-          type="number"
-          name="ratingsQuantity"
-          value={+ratingsQuantity}
-          onChange={onChange}
-        />
         <label>CATEGORY: </label>
         <input
           type="text"
