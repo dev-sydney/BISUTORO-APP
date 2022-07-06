@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <div>
-      {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
+      {<Alert setIsAlertOpen={setIsAlertOpen} />}
       <form onSubmit={onSubmit}>
         <h1>LOGIN INTO YOUR ACCOUNT!</h1>
         <div>
