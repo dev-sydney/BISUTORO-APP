@@ -4,9 +4,13 @@ import ReviewContainer from './ReviewContainer';
 import './../styles/ModalStyle.scss';
 
 import productContext from './../contexts/ProductContext';
+import AuthContext from '../contexts/AuthContext';
 
 const Modal = ({ setIsModalOpen }) => {
+  const authContxt = useContext(AuthContext);
   const mealsContext = useContext(productContext);
+
+  const { asyncAuthActions } = authContxt;
   const { currentMeal, addToOrder } = mealsContext;
   const [reviewBlock, setReviewBlock] = useState(false);
 
@@ -14,6 +18,7 @@ const Modal = ({ setIsModalOpen }) => {
     setIsModalOpen(false);
   };
   const onAddOrder = () => {
+    asyncAuthActions.getPickLocation();
     addToOrder(currentMeal);
   };
   return (

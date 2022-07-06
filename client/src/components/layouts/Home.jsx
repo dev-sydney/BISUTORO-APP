@@ -21,7 +21,7 @@ const Home = () => {
   const { isAuthenticated, loggedInUser } = authContxt;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFavouritesPage, setIsFavouritesPage] = useState(true);
+  const [isFavouritesPage] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
