@@ -28,8 +28,12 @@ function App() {
                 <Route exact path="/me" element={<Profile />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<Signup />} />
-                <Route exact path="/mealform" element={<MealForm />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
+                <Route
+                  exact
+                  path="/dashboard/new-meal"
+                  element={<MealForm />}
+                />
                 <Route exact path="/favourites" element={<Favourites />} />
               </Routes>
             </BrowserRouter>
