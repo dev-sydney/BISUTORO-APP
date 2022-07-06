@@ -25,4 +25,10 @@
       margin: 0px;
     }
   }
+  .pickup {
+    width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
