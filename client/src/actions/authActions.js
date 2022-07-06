@@ -37,6 +37,9 @@ class AuthActions {
 
         setTimeout(() => {
           navigate('/');
+          this.dispatch({
+            type: Type.CLEAR_AUTH_MSG,
+          });
         }, 1500);
       }
     } catch (err) {
