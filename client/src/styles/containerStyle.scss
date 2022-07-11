@@ -1,9 +1,11 @@
 .product_container {
-  border: 2px solid red;
   min-width: 30vw;
-  height: 40em;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  row-gap: 0%;
+  background-color: rgb(237, 237, 237);
+  justify-content: space-around;
 }
 .flex_container {
   display: flex;
