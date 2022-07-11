@@ -15,6 +15,7 @@ export const MealContextProvider = ({ children }) => {
     loadingMeals: true,
     favourites: [],
     alertMsg: null,
+    alertMsgType: null,
     reviews: [],
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
@@ -49,6 +50,11 @@ export const MealContextProvider = ({ children }) => {
       payload: mealID,
     });
   };
+  const removeAlerts = () => {
+    dispatch({
+      type: Type.REMOVE_ALERT,
+    });
+  };
 
   return (
     <mealContext.Provider
@@ -59,9 +65,11 @@ export const MealContextProvider = ({ children }) => {
         loadingMeals: state.loadingMeals,
         favourites: state.favourites,
         alertMsg: state.alertMsg,
+        alertMsgType: state.alertMsgType,
         reviews: state.reviews,
         setCurrentMeal,
         addToOrder,
+        removeAlerts,
         removeFromOrders,
         asyncMealActions,
         aysncReviewActions,
