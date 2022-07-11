@@ -27,12 +27,14 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: true,
       };
     case Type.DELETE_MEAL:
       return {
         ...state,
         meals: [...state.meals].filter((el) => el._id !== action.payload),
         alertMsg: action.payload,
+        alertMsgType: true,
       };
     case Type.SET_CURRENT:
       return {
@@ -48,6 +50,7 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: true,
       };
     case Type.REMOVE_FROM_ORDERS:
       return {
@@ -64,11 +67,13 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
     case Type.ADD_MEAL_ERROR:
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
     case Type.LOAD_ALL_MEALS_ERROR:
       return {
@@ -79,11 +84,13 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
     case Type.ADD_TO_FAVOURITES_ERROR:
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
     case Type.DELETE_MEAL_ERROR:
       return {
@@ -94,13 +101,19 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
     case Type.POST_REVIEW_ERROR:
       return {
         ...state,
         alertMsg: action.payload,
+        alertMsgType: false,
       };
-
+    case Type.REMOVE_ALERT:
+      return {
+        ...state,
+        alertMsg: null,
+      };
     default:
       return state;
   }
