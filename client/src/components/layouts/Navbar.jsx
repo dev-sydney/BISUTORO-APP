@@ -1,33 +1,21 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
-import AuthContext from '../../contexts/AuthContext';
+import './../../styles/navstyle.scss';
 
-import { NavLink } from 'react-router-dom';
 const Navbar = () => {
-  const authContxt = useContext(AuthContext);
-  const { isAuthenticated, asyncAuthActions } = authContxt;
-  const navigate = useNavigate();
-
   return (
-    <div>
-      {!isAuthenticated ? (
-        <div>
-          <NavLink to="/signup">
-            <button>SIGN UP</button>
-          </NavLink>
+    <div className="navblock">
+      <input className="search_field" type="text" placeholder="🔍Search" />
+      <span className="filter_btn">Filter</span>
+      <h1>Today's options</h1>
 
-          <button>LOGIN</button>
-        </div>
-      ) : (
-        <button
-          onClick={() => {
-            asyncAuthActions.logout(navigate);
-          }}
-        >
-          LOG OUT
-        </button>
-      )}
+      <div className="results_sort">
+        Sort by v
+        <ol>
+          <li>Price</li>
+          <li>ratings</li>
+        </ol>
+      </div>
     </div>
   );
 };
