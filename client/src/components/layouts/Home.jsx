@@ -34,6 +34,7 @@ const Home = () => {
   }, [isAuthenticated, meals]);
   return (
     <div className="flex_container">
+      <Alert />
       {isModalOpen && (
         <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
       )}
