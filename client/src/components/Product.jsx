@@ -28,8 +28,8 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
   };
   return (
     <div className="links product">
-      <div>
-        <span>⭐{meal.ratingsAverage}</span>
+      <div className="rating_favorite">
+        <span className="ratings">⭐{meal.ratingsAverage}</span>
         <span>
           {!isFavouritesPage ? (
             <div>
@@ -39,26 +39,28 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
               </button>
             </div>
           ) : (
-            <button
+            <div
+              className="favourite"
               onClick={() => {
                 asyncMealActions.AddMealToFavorites(meal._id);
               }}
             >
               💗
-            </button>
+            </div>
           )}
         </span>
       </div>
-      <div>
+      <div className="photo_wrapper">
         <img
           src={`/img/meals/${meal.image ? meal.image : 'meal-1.png'}`}
           alt="Meal"
           onClick={setCurrent}
         />
       </div>
-      <div>
+
+      <div className="name_price_serving">
         <span>{meal.name}</span>
-        <span>{meal.serving} g</span>
+        <span className="serving">{meal.serving} g</span>
         <p>${meal.price}</p>
       </div>
     </div>
