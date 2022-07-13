@@ -1,12 +1,16 @@
 .product_container {
-  min-width: 30vw;
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 0%;
-  background-color: rgb(237, 237, 237);
-  justify-content: space-around;
+  width: 41em;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: #f7f6fb;
+  overflow: auto;
+  padding-left: 15px;
+  padding-top: 15px;
+  grid-gap: 1em;
 }
 .flex_container {
+  width: 100%;
   display: flex;
+  flex-grow: 0.5;
 }

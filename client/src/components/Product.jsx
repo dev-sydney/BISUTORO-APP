@@ -27,7 +27,7 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
     asyncMealActions.deleteMeal(meal._id);
   };
   return (
-    <div className="links product">
+    <div className="product">
       <div className="rating_favorite">
         <span className="ratings">⭐{meal.ratingsAverage}</span>
         <span>
@@ -58,10 +58,10 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
         />
       </div>
 
+      <h3>{meal.name}</h3>
       <div className="name_price_serving">
-        <span>{meal.name}</span>
         <span className="serving">{meal.serving} g</span>
-        <p>${meal.price}</p>
+        <span style={{ fontWeight: 'bolder' }}>$ {meal.price}</span>
       </div>
     </div>
   );

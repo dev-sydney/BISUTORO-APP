@@ -23,17 +23,21 @@ const Modal = ({ setIsModalOpen }) => {
   };
   return (
     <div className="modal_bg">
-      <button onClick={onClick}>❌</button>
+      <button className="close_btn" onClick={onClick}>
+        ❌
+      </button>
       <div className="md_window">
         {!reviewBlock ? (
-          <div>
-            <img
-              src={`/img/meals/${currentMeal.image}`}
-              alt={currentMeal.name}
-            />
-            <div>{currentMeal.name}</div>
-            <div>{currentMeal.serving} g</div>
-            <div>${currentMeal.price}</div>
+          <div className="meal_info">
+            <div className="img_wrapper">
+              <img
+                src={`/img/meals/${currentMeal.image}`}
+                alt={currentMeal.name}
+              />
+            </div>
+            <h1>{currentMeal.name}</h1>
+            <p className="serving">{currentMeal.serving} g</p>
+            <div className="price">${currentMeal.price}</div>
 
             <div
               onClick={() => {
@@ -46,7 +50,9 @@ const Modal = ({ setIsModalOpen }) => {
               <span>How about a review ?</span>
             </div>
 
-            <button onClick={onAddOrder}>Add To Order</button>
+            <button className="add_order_btn" onClick={onAddOrder}>
+              Add To Order
+            </button>
           </div>
         ) : (
           <ReviewContainer setReviewBlock={setReviewBlock} />
