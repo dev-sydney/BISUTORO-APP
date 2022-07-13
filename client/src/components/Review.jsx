@@ -6,7 +6,7 @@ const Review = ({ review }) => {
   return (
     <div className="review">
       <div className="profile">
-        <p>PP</p>
+        <img src="/img/users/user-629d35ebaee820196aa455b3-1657126613463.jpeg" />
       </div>
 
       <div className="details">
@@ -14,8 +14,8 @@ const Review = ({ review }) => {
           if (review.rating >= el) return <span key={i}>⭐</span>;
         })}
 
-        <p>{review.review}</p>
-        <p>
+        <p className="comment">{review.review}</p>
+        <p className="date">
           {new Date(review.createAt).toLocaleString('en-us', {
             month: 'long',
             year: 'numeric',

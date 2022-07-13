@@ -56,7 +56,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
           ? 'No reviews yet'
           : reviews.map((el) => <Review key={el._id} review={el} />)}
       </div>
-
+      <hr />
       <form onSubmit={onSubmit}>
         <div>
           {ratings.map((el, i) => (
@@ -77,7 +77,6 @@ const ReviewContainer = ({ setReviewBlock }) => {
           value={review}
           onChange={onTextareaChange}
         ></textarea>
-        <input type="submit" value="Done" />
       </form>
     </div>
   );
