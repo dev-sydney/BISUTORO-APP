@@ -1,7 +1,7 @@
 .left_side {
   border: 2px solid green;
   width: 20em;
-  height: 41.2em;
+  height: 100vh;
   background-color: #e1e7e1;
   padding-top: 10em;
 
@@ -37,32 +37,77 @@
     border: 1px solid black;
   }
 }
+
 .right-side {
-  border: 2px solid blue;
-  width: 35em;
-  .time_location {
-    border: 2px solid yellow;
-  }
-  .order_items {
-    border: 2px solid gray;
-  }
-  .totals {
-    border: 2px solid rgb(255, 0, 170);
-  }
-  .checkout_btn {
-    border: 2px solid rgb(255, 0, 0);
-  }
-  .order_item {
-    display: flex;
-    height: 5em;
+  width: 40%;
+  .order_specs {
+    height: 200px;
+    padding-left: 10px;
+    padding-top: 20%;
     p {
-      margin: 0px;
+      margin-bottom: 5px;
+    }
+    .time_location {
+      text-align: left;
+    }
+    .pickup {
+      width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
-  .pickup {
-    width: 280px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .order_items {
+    height: 352px;
+    overflow: auto;
+    .order_item {
+      padding-top: 9px;
+      display: flex;
+      column-gap: 5px;
+      border: 1px solid black;
+      width: 100%;
+      height: 5em;
+      .name_serving {
+        width: 100px;
+      }
+      .image_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 50px;
+        img {
+          height: inherit;
+        }
+      }
+      p {
+        margin: 0px;
+      }
+      .qty_controls {
+        width: 50px;
+        height: fit-content;
+        border: 1px solid rgb(255, 166, 2);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .totals {
+    margin-bottom: 1.2em;
+    .total_label {
+      text-align: left;
+    }
+    .total_value {
+      margin-left: 50px;
+      width: 20em;
+      text-align: right;
+    }
+  }
+  .checkout_btn {
+    color: white;
+    width: 80%;
+    height: 30px;
+    border-radius: 25px;
+    background-color: rgb(255, 166, 2);
   }
 }

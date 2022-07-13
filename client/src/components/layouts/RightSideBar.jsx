@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
 import productContext from './../../contexts/ProductContext';
 import AuthContext from '../../contexts/AuthContext';
@@ -25,7 +24,7 @@ const RightSidebar = ({ loggedInUser }) => {
             .reduce((prev, curr) => prev + curr, 0)
         );
     //eslint-disable-next-line
-  }, [orders, loggedInUser, pickupLocation]);
+  }, [orders, pickupLocation]);
 
   const onItemRemove = (mealID) => () => {
     removeFromOrders(mealID);
@@ -33,41 +32,59 @@ const RightSidebar = ({ loggedInUser }) => {
 
   return (
     <div className="right-side">
-      {loggedInUser && isAuthenticated ? (
-        <NavLink to="/me">{loggedInUser.name.split(' ')[0]}</NavLink>
-      ) : (
-        ''
-      )}
-
-      <h1>My Order</h1>
-      <div className="time_location">
-        <p>{new Date().toDateString()}</p>
-        <p className="pickup">{pickupLocation ? pickupLocation : ''}</p>
-        <p>Dial me for order specifications</p>
+      <div className="order_specs">
+        <h1>My Order</h1>
+        <div className="time_location">
+          <p>
+            ⌚
+            {`${new Date().getHours()}:${new Date().getMinutes()}${
+              new Date().getUTCHours() > 12 ? ' pm' : 'am'
+            }`}
+          </p>
+          <p className="pickup">
+            📍{pickupLocation ? pickupLocation : 'Delivery Pickup not set yet'}
+          </p>
+          <p>📞Dial me for order specifications</p>
+        </div>
       </div>
+      <hr />
       <div className="order_items">
         {orders.length === 0 ? (
           <p>No orders yet</p>
         ) : (
           orders.map((el) => (
             <div className="order_item" key={el._id}>
-              <span>
-                <p>{el.name}</p>
-                <p>{el.serving} g</p>
+              <span className="image_wrapper">
+                <img src={`/img/meals/${el.image}`} />
               </span>
-              <span>
-                <button>-</button>
-                <button>+</button>
+              <span className="name_serving">
+                <p
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {el.name}
+                </p>
+                <p style={{ color: 'darkgray' }}>{el.serving} g</p>
               </span>
-              <span>${el.price}</span>
-              <button onClick={onItemRemove(el._id)}>❌</button>
+              <span className="qty_controls">
+                <span>-</span>
+                <span>1</span>
+                <span>+</span>
+              </span>
+              <span style={{ width: '50px', fontWeight: 'bold' }}>
+                $ {el.price}
+              </span>
+              <span onClick={onItemRemove(el._id)}>❌</span>
             </div>
           ))
         )}
       </div>
       <div className="totals">
-        <span>TOTAL</span>
-        <span>{Math.round(total)}</span>
+        <span className="total_label">TOTAL</span>
+        <span className="total_value">$ {Math.round(total)}</span>
       </div>
       <button
         className="checkout_btn"
