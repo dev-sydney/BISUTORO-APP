@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef } from 'react';
 import productContext from './../contexts/ProductContext';
+import './../styles/mealFormStyle.scss';
 
 const MealForm = () => {
   const mealContext = useContext(productContext);
@@ -48,28 +49,69 @@ const MealForm = () => {
     asyncMealActions.addMeal(meal);
   };
   return (
-    <div>
-      <form onSubmit={onSubmit} encType="multipart/form-data">
-        <label>NAME: </label>
-        <input type="text" name="name" value={name} onChange={onChange} />
-        <label>PRICE: </label>
-        <input type="number" name="price" value={+price} onChange={onChange} />
-        <label>CATEGORY: </label>
-        <input
-          type="text"
-          name="category"
-          value={category}
-          onChange={onChange}
-        />
-        <label>SERVING: </label>
-        <input
-          type="number"
-          name="serving"
-          value={+serving}
-          onChange={onChange}
-        />
-        <input type="file" name="image" ref={fileInput} accept="image/*" />
-        <input type="submit" value="ENTER" />
+    <div style={{ width: '100%', backgroundColor: '#F8F7FC' }}>
+      <form
+        onSubmit={onSubmit}
+        encType="multipart/form-data"
+        className="meal_form"
+        style={{ color: '#ed3367' }}
+      >
+        <h1>ADD A NEW MEAL !</h1>
+        <div className="form__fields">
+          <div className="form__group">
+            <label>Name of meal: </label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="form__group">
+            <label>Price: </label>
+            <input
+              type="number"
+              name="price"
+              value={+price}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="form__group">
+            <label>Category: </label>
+            <input
+              type="text"
+              name="category"
+              value={category}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="form__group">
+            <label>Serving: </label>
+            <input
+              type="number"
+              name="serving"
+              value={+serving}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <label className="upload__label">
+            Add meal photo +
+            <input
+              className="form__upload"
+              id="mealPhoto"
+              type="file"
+              name="image"
+              ref={fileInput}
+              accept="image/*"
+              required
+            />
+          </label>
+        </div>
+        <input className="submit_btn" type="submit" value="ENTER" />
       </form>
     </div>
   );

@@ -96,11 +96,7 @@ const Profile = () => {
         <div className="profile_photo">
           <img
             className="form__user-photo"
-            src={`/img/users/${
-              loggedInUser.photo
-                ? loggedInUser.photo
-                : 'user-629d35ebaee820196aa455b3-1655325780778.jpeg'
-            }`}
+            src={`/img/users/${'user-629d35ebaee820196aa455b3-1657126613463.jpeg'}`}
             alt="profile"
           />
           <input

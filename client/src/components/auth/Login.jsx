@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Alert from '../Alert';
 
 import AuthContext from '../../contexts/AuthContext';
+import './../../styles/authStyle.scss';
 
 const Login = () => {
   const authContxt = useContext(AuthContext);
@@ -25,24 +26,35 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       {<Alert setIsAlertOpen={setIsAlertOpen} />}
-      <form onSubmit={onSubmit}>
-        <h1>LOGIN INTO YOUR ACCOUNT!</h1>
-        <div>
-          <label htmlFor="email">EMAIL:</label>
-          <input type="email" name="email" value={email} onChange={onChange} />
-        </div>
-        <div>
-          <label htmlFor="password">PASSWORD:</label>
+      <form className="login_form" onSubmit={onSubmit}>
+        <h1>WELCOME BACK!</h1>
+        <div className="form_group">
+          <label htmlFor="email">Email address:</label>
           <input
+            className="input"
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+            placeholder="you@example.com"
+          />
+        </div>
+        <div className="form_group">
+          <label htmlFor="password">Password:</label>
+          <input
+            className="input"
             type="password"
             name="password"
             value={password}
             onChange={onChange}
+            required
+            placeholder="••••••••"
           />
         </div>
-        <input type="submit" value="LOGIN" />
+        <input className="submit_btn" type="submit" value="LOGIN" />
       </form>
     </div>
   );

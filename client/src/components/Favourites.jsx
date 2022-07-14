@@ -27,10 +27,11 @@ const Favourites = () => {
   }, [isAuthenticated]);
   return (
     <div>
-      <h1>Favourites</h1>
+      <h1 style={{ height: '3em', paddingTop: '1em' }}>My Favourites</h1>
       {isModalOpen && (
         <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
       )}
+      <hr />
       {favourites.length > 0 ? (
         <div className="product_container">
           {favourites.map((el) => (
