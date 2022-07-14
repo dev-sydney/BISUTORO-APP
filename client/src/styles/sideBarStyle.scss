@@ -1,14 +1,16 @@
 .left_side {
-  border: 2px solid green;
   width: 20em;
-  height: 100vh;
-  background-color: #e1e7e1;
-  padding-top: 10em;
-
-  .profile {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
+  height: 100%;
+  background-color: #f5f7fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .logo {
+    width: 200px;
+    margin-bottom: 30px;
+  }
+  .menu_items {
+    margin-bottom: 30px;
   }
   .links {
     height: 35px;
@@ -19,22 +21,21 @@
   }
   .add_meal_btn {
     height: 35px;
-    margin-left: 25%;
     width: max-content;
-    border: 1px solid green;
+    border: 1px solid #ed3367;
     border-radius: 5px;
     color: white;
-    background-color: green;
+    background-color: #ed3367;
     padding: 10px 15px;
+    margin-bottom: 30px;
   }
   a {
     color: #314237;
     text-decoration: none;
     text-align: center;
   }
-
-  .clicked {
-    border: 1px solid black;
+  .auth_btns div {
+    margin-bottom: 90px;
   }
 }
 

@@ -1,11 +1,15 @@
 .alert {
-  border: 2px solid red;
+  border-radius: 6px;
   height: 2.5em;
   width: 20em;
   color: white;
   position: fixed;
   z-index: 10;
   transition: 0.5s all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10%;
 }
 .hidden {
   transform: translateY(-100%);
