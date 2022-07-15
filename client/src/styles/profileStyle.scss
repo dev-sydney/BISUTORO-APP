@@ -1,12 +1,106 @@
-.user_update {
-  border: 2px solid red;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  .form__user-photo {
-    height: 7.5rem;
-    width: 7.5rem;
-    border-radius: 50%;
-    margin-right: 2rem;
+.profile {
+  padding: 4em 9em;
+  width: 100%;
+  height: fit-content;
+  background-color: #f5f7fb;
+  h1 {
+    color: #ed3367;
+    margin-bottom: 20px;
+  }
+  .form__group {
+    text-align: left;
+    margin-bottom: 2em;
+    label {
+      font-size: large;
+      font-weight: bold;
+      color: gray;
+    }
+    input {
+      display: block;
+      width: 30em;
+      padding-left: 10px;
+      height: 2em;
+      background-color: #e6e6e6fe;
+      font-size: large;
+      border-radius: 4px;
+      border: none;
+      transition: 0.4s all;
+      margin-top: 5px;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 3px solid #ed3367;
+    }
+  }
+  /*STYLING FOR BOTH SUBMIT BUTTONS BELOW*/
+  .btn {
+    background-color: #ed3367;
+    text-align: center;
+    border-radius: 2em;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    height: 2.5em;
+    width: fit-content;
+    position: relative;
+    cursor: pointer;
+    left: 67%;
+  }
+  /*STYLING FOR THE FIRST SUBMIT BUTTON*/
+
+  .btn:hover {
+    transition: 0.2s all;
+    box-shadow: -1px 8px 23px -9px rgba(0, 0, 0, 0.79);
+    -webkit-box-shadow: -1px 8px 23px -9px rgba(0, 0, 0, 0.79);
+    -moz-box-shadow: -1px 8px 23px -9px rgba(0, 0, 0, 0.79);
+    transform: translateY(-10%);
+  }
+  .update__form {
+    margin: 0 2em;
+    padding: 0 4em 1em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f5f7fb;
+  }
+
+  /* STYLING FOR THE USER-DATA UPDATE FORM (1ST FORM)*/
+
+  .profile__photo {
+    text-align: left;
+    display: flex;
+    column-gap: 10px;
+    .form__user-photo {
+      height: 5rem;
+      width: 5rem;
+      border-radius: 100%;
+    }
+    .label__upload {
+      border: 1px solid green;
+      width: 9em;
+      height: fit-content;
+      margin-top: 45px;
+      transition: 0.2s all;
+      color: #ed3367;
+      border: none;
+      border-bottom: 1px solid #ed3367;
+      padding-left: 5px;
+      .form__upload {
+        width: 0em;
+        opacity: 0;
+        margin-top: 0;
+      }
+    }
+    .label__upload:hover {
+      background-color: #ed3367;
+      color: #fff;
+      -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+      transform: translateY(-10%);
+    }
+  }
+
+  hr {
+    margin: 10px 0 20px 0;
   }
 }
