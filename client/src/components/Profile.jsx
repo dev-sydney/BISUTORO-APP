@@ -61,11 +61,12 @@ const Profile = () => {
     //eslint-disable-next-line
   }, [isAuthenticated, authMsg, loggedInUser]);
   return (
-    <div>
+    <div className="profile">
       {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
       <h1>YOUR ACCOUNT SETTINGS</h1>
+      {/* USER DATA UPDATE FORM */}
       <form
-        className="user_update"
+        className="user_update update__form"
         encType="multipart/form-data"
         // onSubmit={onSubmit(user, loggedInUser._id)}
         onSubmit={
@@ -73,8 +74,8 @@ const Profile = () => {
           onFormSubmit(user, loggedInUser._id)
         }
       >
-        <div>
-          <label htmlFor="name">NAME:</label>
+        <div className="form__group">
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             name="name"
@@ -83,8 +84,8 @@ const Profile = () => {
             onChange={onUserChange}
           />
         </div>
-        <div>
-          <label htmlFor="email">EMAIL:</label>
+        <div className="form__group">
+          <label htmlFor="email">Email adress:</label>
           <input
             type="email"
             name="email"
@@ -93,28 +94,36 @@ const Profile = () => {
             onChange={onUserChange}
           />
         </div>
-        <div className="profile_photo">
+        <div className="profile__photo">
           <img
             className="form__user-photo"
             src={`/img/users/${'user-629d35ebaee820196aa455b3-1657126613463.jpeg'}`}
             alt="profile"
           />
-          <input
-            type="file"
-            name="photo"
-            accept="image/*"
-            id="photo"
-            ref={fileInput}
-          />
-          <label htmlFor="photo">CHOOSE A PHOTO</label>
+          <label htmlFor="photo" className="label__upload">
+            Choose new photo.
+            <input
+              type="file"
+              name="photo"
+              accept="image/*"
+              id="photo"
+              ref={fileInput}
+              className="form__upload"
+            />
+          </label>
         </div>
-        <input type="submit" value="SAVE SETTINGS" />
+        <input type="submit" value="SAVE SETTINGS" className="save_btn btn" />
       </form>
 
-      <div>&nbsp;</div>
-      <form className="password_form" onSubmit={onFormSubmit(passwordData)}>
-        <div>
-          <label htmlFor="current">Current Password</label>
+      <hr />
+      {/* PASSWORD UPDATE FORM */}
+      <h1>SECURITY SETTINGS</h1>
+      <form
+        className="password__form update__form"
+        onSubmit={onFormSubmit(passwordData)}
+      >
+        <div className="form__group">
+          <label htmlFor="current">Current password:</label>
           <input
             type="password"
             name="currentPassword"
@@ -124,8 +133,8 @@ const Profile = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="newpassword">New Password</label>
+        <div className="form__group">
+          <label htmlFor="newpassword">New password:</label>
           <input
             type="password"
             name="newPassword"
@@ -135,8 +144,8 @@ const Profile = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="passwordconfirm">Confirm Password</label>
+        <div className="form__group">
+          <label htmlFor="passwordconfirm">Confirm password:</label>
           <input
             type="password"
             name="passwordConfirm"
@@ -146,7 +155,11 @@ const Profile = () => {
           />
         </div>
 
-        <input type="submit" value="SAVE PASSWORD" />
+        <input
+          type="submit"
+          value="SAVE PASSWORD"
+          className="save_password btn"
+        />
       </form>
     </div>
   );

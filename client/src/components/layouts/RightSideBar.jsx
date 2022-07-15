@@ -32,6 +32,13 @@ const RightSidebar = ({ loggedInUser }) => {
 
   return (
     <div className="right-side">
+      <div className="profile">
+        <span>{loggedInUser && loggedInUser.name.split(' ')[0]}</span>
+        <img
+          className="user__photo"
+          src="/img/users/user-629d35ebaee820196aa455b3-1655397533706.jpeg"
+        />
+      </div>
       <div className="order_specs">
         <h1>My Order</h1>
         <div className="time_location">

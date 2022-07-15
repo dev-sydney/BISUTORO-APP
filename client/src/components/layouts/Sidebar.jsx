@@ -17,32 +17,37 @@ const Sidebar = () => {
     <div className="left_side">
       <img className="logo" src="/img/bisutoro-removebg.png" />
       <div className="menu_items">
-        <div className={`links`}>
-          <NavLink to="/">OVERVIEW</NavLink>
-        </div>
-        <div className={`links`}>
-          <NavLink to="/favourites">FAVORITES</NavLink>
-        </div>
-        <div className={`links`}>
-          <NavLink to="/me">PROFILE</NavLink>
-        </div>
-        <div className={`links`}>
-          <NavLink to="/order-history">ORDERS</NavLink>
-        </div>
-        <div className={`links`}>
-          <NavLink to="/faq">FAQ</NavLink>
-        </div>
+        <NavLink className={`links`} to="/">
+          OVERVIEW
+        </NavLink>
+
+        <NavLink className={`links`} to="/favourites">
+          FAVOURITES
+        </NavLink>
+
+        <NavLink className={`links`} to="/me">
+          PROFILE
+        </NavLink>
+
+        <NavLink className={`links`} to="/order-history">
+          ORDERS
+        </NavLink>
+
+        <NavLink className={`links`} to="/faq">
+          FAQ
+        </NavLink>
+
         {loggedInUser && loggedInUser.role === 'manager' ? (
-          <div className={`links`}>
-            <NavLink to="/dashboard" className={'links'}>
-              DASHBOARD
-            </NavLink>
-          </div>
+          <NavLink className={`links`} to="/dashboard">
+            DASHBOARD
+          </NavLink>
         ) : (
           ''
         )}
       </div>
-      <button className={`add_meal_btn `}> + NEW MEAL </button>
+      <NavLink to="/new-meal" className={`add_meal_btn `}>
+        + New Meal
+      </NavLink>
       <div className="auth_btns">
         {!isAuthenticated ? (
           <div>
