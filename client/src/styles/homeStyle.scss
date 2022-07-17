@@ -1,0 +1,16 @@
+.home {
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5em;
+  align-items: center;
+  padding: 0 0 0 5em;
+  max-width: 120em;
+  margin: 0 auto;
+  overflow: hidden;
+  background: white;
+  .product_container {
+    max-width: 120em;
+    margin: 0 auto;
+  }
+}

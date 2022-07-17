@@ -31,10 +31,10 @@
       color: black;
     }
     a:hover {
-      background-color: #ed33688b;
-      /*       transform: translate(2%);
- */
-      color: white;
+      /*  background-color: #ed33688b;
+      color: white; */
+      color: #e50846;
+      background-color: #f37b9d;
       transform: scale(1.05, 1.05);
     }
     .links {
@@ -71,7 +71,8 @@
 }
 
 .right-side {
-  width: 40%;
+  width: fit-content;
+  height: 100%;
   .profile {
     padding: 0 0 0 0;
     text-align: right;
@@ -92,20 +93,19 @@
       transition: 0.4s transform;
       cursor: pointer;
     }
-    img:hover {
-      transform: translateY(-10%);
-      box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.54);
-      -webkit-box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.54);
-      -moz-box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.54);
-    }
   }
   .order_specs {
-    height: 200px;
+    height: fit-content;
     padding-left: 10px;
+    margin-bottom: 10px;
     p {
       margin-bottom: 5px;
     }
     .time_location {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
       text-align: left;
     }
     .pickup {
@@ -159,6 +159,7 @@
       margin-left: 50px;
       width: 20em;
       text-align: right;
+      font-weight: bolder;
     }
   }
   .checkout_btn {
@@ -166,6 +167,15 @@
     width: 80%;
     height: 30px;
     border-radius: 25px;
-    background-color: rgb(255, 166, 2);
+    background-color: #ed3367;
+    border: none;
+    transition: 0.4s transform;
+    cursor: pointer;
+  }
+  .checkout_btn:hover {
+    transform: translateY(-10%);
+    box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.89);
+    -webkit-box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.89);
+    -moz-box-shadow: -1px 2px 17px -2px rgba(0, 0, 0, 0.89);
   }
 }

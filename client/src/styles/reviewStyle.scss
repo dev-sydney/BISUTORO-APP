@@ -3,11 +3,10 @@
   width: 95%;
   height: 100px;
   border-radius: 10px;
-  padding-left: 10px;
   margin-bottom: 10px;
   background-color: whitesmoke;
   .profile {
-    padding-top: 10px;
+    padding: 5px;
     width: 100px;
     height: 100%;
     img {
@@ -16,16 +15,22 @@
       border-radius: 100%;
     }
   }
+
   .date {
     color: rgb(88, 88, 88);
   }
   .comment {
-    min-width: 348px;
+    width: 348px;
+    padding: 5px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  box-shadow: -3px 5px 3px 1px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: -3px 5px 3px 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: -3px 5px 3px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: -3px 5px 3px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: -3px 5px 3px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: -3px 5px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
 .review_container {
