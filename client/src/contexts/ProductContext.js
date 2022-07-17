@@ -17,6 +17,7 @@ export const MealContextProvider = ({ children }) => {
     alertMsg: null,
     alertMsgType: null,
     reviews: [],
+    isModalOpen: false,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
@@ -55,6 +56,11 @@ export const MealContextProvider = ({ children }) => {
       type: Type.REMOVE_ALERT,
     });
   };
+  const setModalOpen = () => {
+    dispatch({
+      type: Type.SET_MODAL,
+    });
+  };
 
   return (
     <mealContext.Provider
@@ -67,12 +73,14 @@ export const MealContextProvider = ({ children }) => {
         alertMsg: state.alertMsg,
         alertMsgType: state.alertMsgType,
         reviews: state.reviews,
+        isModalOpen: state.isModalOpen,
         setCurrentMeal,
         addToOrder,
         removeAlerts,
         removeFromOrders,
         asyncMealActions,
         aysncReviewActions,
+        setModalOpen,
       }}
     >
       {children}

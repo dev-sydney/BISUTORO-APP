@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.SET_MODAL:
+      return {
+        ...state,
+        isModalOpen: !state.isModalOpen,
+      };
     case Type.POST_REVIEW:
       return {
         ...state,
