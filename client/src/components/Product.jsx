@@ -4,7 +4,7 @@ import './../styles/productStyle.scss';
 
 import ProductContext from './../contexts/ProductContext';
 
-const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
+const Product = ({ meal, setIsModal, isFavouritesPage, isModal }) => {
   const [isActivitated, setIsActivitated] = useState(meal.isOnSale);
   useEffect(() => {
     setIsActivitated(meal.isOnSale);
@@ -12,12 +12,13 @@ const Product = ({ meal, setIsModalOpen, isFavouritesPage }) => {
   }, [meal]);
 
   const mealsContext = useContext(ProductContext);
-  const { setCurrentMeal, asyncMealActions, aysncReviewActions } = mealsContext;
+  const { setCurrentMeal, asyncMealActions, aysncReviewActions, setModalOpen } =
+    mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
     aysncReviewActions.loadReviewsOnMeal(meal._id);
-    setIsModalOpen(true);
+    setIsModal(!isModal);
   };
   const onActivateClick = () => {
     asyncMealActions.ActivateDeactivateMeal(meal);

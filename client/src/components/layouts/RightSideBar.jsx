@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import productContext from './../../contexts/ProductContext';
 import AuthContext from '../../contexts/AuthContext';
 
@@ -32,26 +31,19 @@ const RightSidebar = ({ loggedInUser }) => {
 
   return (
     <div className="right-side">
-      <div className="profile">
-        <span>{loggedInUser && loggedInUser.name.split(' ')[0]}</span>
-        <img
-          className="user__photo"
-          src="/img/users/user-629d35ebaee820196aa455b3-1655397533706.jpeg"
-        />
-      </div>
       <div className="order_specs">
         <h1>My Order</h1>
         <div className="time_location">
           <p>
             ⌚
-            {`${new Date().getHours()}:${new Date().getMinutes()}${
+            {` ${new Date().getHours()}:${new Date().getMinutes()}${
               new Date().getUTCHours() > 12 ? ' pm' : 'am'
             }`}
           </p>
           <p className="pickup">
-            📍{pickupLocation ? pickupLocation : 'Delivery Pickup not set yet'}
+            📍 {pickupLocation ? pickupLocation : 'Delivery Pickup not set yet'}
           </p>
-          <p>📞Dial me for order specifications</p>
+          <p>📞 Dial me for order specifications</p>
         </div>
       </div>
       <hr />
@@ -81,16 +73,14 @@ const RightSidebar = ({ loggedInUser }) => {
                 <span>1</span>
                 <span>+</span>
               </span>
-              <span style={{ width: '50px', fontWeight: 'bold' }}>
-                $ {el.price}
-              </span>
+              <span style={{ fontWeight: 'bold' }}>$ {el.price}</span>
               <span onClick={onItemRemove(el._id)}>❌</span>
             </div>
           ))
         )}
       </div>
       <div className="totals">
-        <span className="total_label">TOTAL</span>
+        <span className="total_label">Total</span>
         <span className="total_value">$ {Math.round(total)}</span>
       </div>
       <button

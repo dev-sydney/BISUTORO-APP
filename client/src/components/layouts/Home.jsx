@@ -6,14 +6,13 @@ import AuthContext from '../../contexts/AuthContext';
 
 import Product from '../Product';
 import Modal from '../Modal';
-import Navbar from './Navbar';
 import RightSidebar from './RightSideBar';
-import Alert from '../Alert';
 
 import './../../styles/sideBarStyle.scss';
 import './../../styles/containerStyle.scss';
+import './../../styles/homeStyle.scss';
 
-const Home = () => {
+const Home = ({ setIsModal }) => {
   const mealsContext = useContext(ProductContext);
   const authContxt = useContext(AuthContext);
 
@@ -33,25 +32,17 @@ const Home = () => {
     //eslint-disable-next-line
   }, [isAuthenticated, meals]);
   return (
-    <div className="flex_container">
-      <Alert />
-      {isModalOpen && (
-        <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
-      )}
-
-      <div>
-        <Navbar />
-        <div className="product_container">
-          {meals &&
-            meals.map((el) => (
-              <Product
-                meal={el}
-                key={el._id}
-                setIsModalOpen={setIsModalOpen}
-                isFavouritesPage={isFavouritesPage}
-              />
-            ))}
-        </div>
+    <div className="home">
+      <div className="product_container">
+        {meals &&
+          meals.map((el) => (
+            <Product
+              meal={el}
+              key={el._id}
+              setIsModal={setIsModal}
+              isFavouritesPage={isFavouritesPage}
+            />
+          ))}
       </div>
       <RightSidebar loggedInUser={loggedInUser} />
     </div>

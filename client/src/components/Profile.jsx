@@ -130,6 +130,7 @@ const Profile = () => {
             value={currentPassword}
             id="current"
             onChange={onPasswordChange}
+            placeholder="••••••••"
           />
         </div>
 
@@ -141,6 +142,7 @@ const Profile = () => {
             value={newPassword}
             id="newpassword"
             onChange={onPasswordChange}
+            placeholder="••••••••"
           />
         </div>
 
@@ -152,6 +154,7 @@ const Profile = () => {
             vaue={passwordConfirm}
             id="passwordconfirm"
             onChange={onPasswordChange}
+            placeholder="••••••••"
           />
         </div>
 

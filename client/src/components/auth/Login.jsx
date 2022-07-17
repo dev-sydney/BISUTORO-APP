@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import Alert from '../Alert';
@@ -27,9 +28,10 @@ const Login = () => {
 
   return (
     <div className="login">
-      {<Alert setIsAlertOpen={setIsAlertOpen} />}
+      {/*       {<Alert setIsAlertOpen={setIsAlertOpen} />}
+       */}{' '}
       <form className="login_form" onSubmit={onSubmit}>
-        <h1>WELCOME BACK!</h1>
+        <h2>BISUTORO</h2>
         <div className="form_group">
           <label htmlFor="email">Email address:</label>
           <input
@@ -56,6 +58,10 @@ const Login = () => {
         </div>
         <input className="submit_btn" type="submit" value="LOGIN" />
       </form>
+      <div>
+        <p>Don't have an account? </p>
+        <NavLink to="/signup">Sign up</NavLink>
+      </div>
     </div>
   );
 };

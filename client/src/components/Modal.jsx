@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import ReviewContainer from './ReviewContainer';
 import './../styles/ModalStyle.scss';
@@ -6,38 +6,41 @@ import './../styles/ModalStyle.scss';
 import productContext from './../contexts/ProductContext';
 import AuthContext from '../contexts/AuthContext';
 
-const Modal = ({ setIsModalOpen }) => {
+const Modal = ({ isModal, setIsModal }) => {
   const authContxt = useContext(AuthContext);
   const mealsContext = useContext(productContext);
 
   const { asyncAuthActions } = authContxt;
-  const { currentMeal, addToOrder } = mealsContext;
+  const { currentMeal, addToOrder, setModalOpen } = mealsContext;
   const [reviewBlock, setReviewBlock] = useState(false);
 
   const onClick = () => {
-    setIsModalOpen(false);
+    setIsModal(!isModal);
   };
   const onAddOrder = () => {
     asyncAuthActions.getPickLocation();
     addToOrder(currentMeal);
   };
   return (
-    <div className="modal_bg">
+    <div className={`modal_bg ${isModal ? 'mod__show' : 'mod__hidden'}`}>
       <button className="close_btn" onClick={onClick}>
         ❌
       </button>
-      <div className="md_window">
+      <div className={`md_window ${isModal ? 'win_show' : 'win_hidden'}`}>
         {!reviewBlock ? (
           <div className="meal_info">
             <div className="img_wrapper">
               <img
-                src={`/img/meals/${currentMeal.image}`}
-                alt={currentMeal.name}
+                src={`/img/meals/${
+                  currentMeal ? currentMeal.image : 'meal-1.png'
+                }`}
               />
             </div>
-            <h1>{currentMeal.name}</h1>
-            <p className="serving">{currentMeal.serving} g</p>
-            <div className="price">${currentMeal.price}</div>
+            <h1>{currentMeal ? currentMeal.name : ''}</h1>
+            <p className="serving">
+              {currentMeal ? currentMeal.serving : ''} g
+            </p>
+            <div className="price">${currentMeal ? currentMeal.price : ''}</div>
 
             <div
               onClick={() => {

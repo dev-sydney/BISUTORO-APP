@@ -25,6 +25,7 @@ const ProductsControl = () => {
             meal={el}
             key={el._id}
             setIsModalOpen={setIsModalOpen}
+            isModalOpen={isModalOpen}
             isFavouritesPage={isFavouritesPage}
           />
         ))}
