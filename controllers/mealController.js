@@ -44,13 +44,14 @@ const upload = multer({
 exports.multerUpload = upload.single('image');
 
 exports.createMeal = catchAsyncErrors(async (req, res, next) => {
-  const { name, price, ratingsAverage, category } = req.body;
+  const { name, price, ratingsAverage, category, serving } = req.body;
   // console.log(req);
   const meal = await Meal.create({
     name,
     price,
     ratingsAverage,
     category,
+    serving,
     image: req.file.filename,
   });
 
