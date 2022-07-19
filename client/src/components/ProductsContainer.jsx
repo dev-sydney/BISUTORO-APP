@@ -7,28 +7,31 @@ import './../styles/containerStyle.scss';
 
 const ProductsControl = () => {
   const mealsContext = useContext(ProductContext);
+
   const { meals, asyncMealActions } = mealsContext;
 
   useEffect(() => {
     asyncMealActions.loadAllMeals();
+
     //eslint-disable-next-line
   }, [meals]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFavouritesPage, setIsFavouritesPage] = useState(false);
+  const [isFavouritesPage] = useState(false);
 
   return (
     <Fragment>
       <div className="product_container">
-        {meals.map((el) => (
-          <Product
-            meal={el}
-            key={el._id}
-            setIsModalOpen={setIsModalOpen}
-            isModalOpen={isModalOpen}
-            isFavouritesPage={isFavouritesPage}
-          />
-        ))}
+        {meals &&
+          meals.map((el) => (
+            <Product
+              meal={el}
+              key={el._id}
+              setIsModalOpen={setIsModalOpen}
+              isModalOpen={isModalOpen}
+              isFavouritesPage={isFavouritesPage}
+            />
+          ))}
       </div>
     </Fragment>
   );
