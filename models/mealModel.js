@@ -14,13 +14,15 @@ const mealSchema = new mongoose.Schema({
   ratingsAverage: {
     type: Number,
     max: [5.0, 'ratingsAverage cannot be more than 5.0'],
-    min: [1, 'ratingsAverage cannot be less than 1.0'],
   },
   category: {
     type: String,
     required: [true, 'Meal must belong to a category'],
   },
-  serving: Number,
+  serving: {
+    type: Number,
+    required: [true, 'Meal must have a serving'],
+  },
   image: String,
   slug: String,
   isActive: {
