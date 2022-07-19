@@ -24,37 +24,60 @@ const Signup = () => {
     asyncAuthActions.loginSignupUser(user, navigate);
   };
   return (
-    <div>
-      {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
-      <form onSubmit={onSubmit}>
-        <h1>SIGN UP FOR FREE!</h1>
-        <div>
+    <div className="login">
+      <form
+        onSubmit={onSubmit}
+        className="login_form"
+        style={{ height: 'fit-content' }}
+      >
+        <h2>SIGN UP FOR FREE!</h2>
+        <div className="form_group">
           <label htmlFor="name">NAME:</label>
-          <input type="text" name="name" value={name} onChange={onChange} />
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={onChange}
+            className="input"
+            required
+          />
         </div>
-        <div>
+        <div className="form_group">
           <label htmlFor="email">EMAIL:</label>
-          <input type="email" name="email" value={email} onChange={onChange} />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            className="input"
+            required
+          />
         </div>
-        <div>
+        <div className="form_group">
           <label htmlFor="password">PASSWORD:</label>
           <input
+            className="input"
+            required
             type="password"
             name="password"
             value={password}
             onChange={onChange}
+            placeholder="••••••••"
           />
         </div>
-        <div>
+        <div className="form_group">
           <label htmlFor="passwordConfirm">CONFIRM PASSWORD:</label>
           <input
+            className="input"
+            required
             type="password"
             name="passwordConfirm"
             value={passwordConfirm}
             onChange={onChange}
+            placeholder="••••••••"
           />
         </div>
-        <input type="submit" value=" SIGN UP" />
+        <input type="submit" value=" SIGN UP" className="submit_btn" />
       </form>
     </div>
   );

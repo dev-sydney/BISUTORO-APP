@@ -12,25 +12,36 @@ const Alert = ({ setIsAlertOpen }) => {
   let { alertMsg, alertMsgType, removeAlerts } = productContxt;
 
   useEffect(() => {
-    authMsg && setIsAlertOpen(true);
+    let m = authMsg;
     //eslint-disable-next-line
   }, [authMsg, alertMsg]);
   return (
-    <div
-      className={`alert ${authMsg || alertMsg ? 'show' : 'hidden'} ${
-        authMsgType || alertMsgType ? 'success' : 'error'
-      }`}
-    >
-      {authMsg && authMsg}
-      {alertMsg && alertMsg}
-      <button
-        onClick={() => {
-          clearAuthMsg();
-          removeAlerts();
-        }}
+    <div className={`alert ${authMsg || alertMsg ? 'show' : 'hidden'}`}>
+      <div
+        className={`alert__content ${
+          authMsgType || alertMsgType ? 'success' : 'error'
+        }`}
       >
-        ❌
-      </button>
+        {authMsg && authMsg}
+        {alertMsg && alertMsg}
+        <lord-icon
+          src="https://cdn.lordicon.com/vfzqittk.json"
+          trigger="hover"
+          style={{ width: '30px', height: '30px' }}
+          onClick={() => {
+            clearAuthMsg();
+            removeAlerts();
+          }}
+        ></lord-icon>
+        {/*  <button
+          onClick={() => {
+            clearAuthMsg();
+            removeAlerts();
+          }}
+        >
+          ❌
+        </button> */}
+      </div>
     </div>
   );
 };

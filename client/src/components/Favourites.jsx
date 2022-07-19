@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MealContext from './../contexts/ProductContext';
@@ -26,27 +26,30 @@ const Favourites = () => {
     //eslint-disable-next-line
   }, [isAuthenticated]);
   return (
-    <div>
+    <Fragment>
       <h1 style={{ height: '3em', paddingTop: '1em' }}>My Favourites</h1>
-      {isModalOpen && (
-        <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
-      )}
+
       <hr />
-      {favourites.length > 0 ? (
-        <div className="product_container">
-          {favourites.map((el) => (
-            <Product
-              key={el._id}
-              meal={el}
-              setIsModalOpen={setIsModalOpen}
-              isFavouritesPage={true}
-            />
-          ))}
-        </div>
-      ) : (
-        <h1>No Favourites yet</h1>
-      )}
-    </div>
+      <div style={{ padding: '0 10em', height: '100%' }}>
+        {isModalOpen && (
+          <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
+        )}
+        {favourites.length > 0 ? (
+          <div className="product_container" style={{ padding: '0 10em' }}>
+            {favourites.map((el) => (
+              <Product
+                key={el._id}
+                meal={el}
+                setIsModalOpen={setIsModalOpen}
+                isFavouritesPage={true}
+              />
+            ))}
+          </div>
+        ) : (
+          <h1>No Favourites yet</h1>
+        )}
+      </div>
+    </Fragment>
   );
 };
 export default Favourites;

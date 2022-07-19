@@ -73,8 +73,16 @@ const RightSidebar = ({ loggedInUser }) => {
                 <span>1</span>
                 <span>+</span>
               </span>
-              <span style={{ fontWeight: 'bold' }}>$ {el.price}</span>
-              <span onClick={onItemRemove(el._id)}>❌</span>
+              <span style={{ fontWeight: 'bold', width: '40px' }}>
+                $ {el.price}
+              </span>
+              <span
+                className="remove__btn"
+                onClick={onItemRemove(el._id)}
+                style={{ cursor: 'pointer' }}
+              >
+                &#x2715;
+              </span>
             </div>
           ))
         )}

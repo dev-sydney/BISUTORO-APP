@@ -5,11 +5,9 @@ import ProductContext from '../../contexts/ProductContext';
 import AuthContext from '../../contexts/AuthContext';
 
 import Product from '../Product';
-import Modal from '../Modal';
 import RightSidebar from './RightSideBar';
 
 import './../../styles/sideBarStyle.scss';
-import './../../styles/containerStyle.scss';
 import './../../styles/homeStyle.scss';
 
 const Home = ({ setIsModal }) => {

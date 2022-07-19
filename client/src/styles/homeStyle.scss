@@ -1,5 +1,5 @@
 .home {
-  border: 2px solid red;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   column-gap: 5em;
@@ -9,8 +9,17 @@
   margin: 0 auto;
   overflow: hidden;
   background: white;
+  padding: 15px 0;
   .product_container {
     max-width: 120em;
     margin: 0 auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /*   background-color: #f8f7fc;
+ */
+    background-color: white;
+    overflow: auto;
+    grid-gap: 1em;
   }
 }

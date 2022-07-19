@@ -23,9 +23,10 @@ const Modal = ({ isModal, setIsModal }) => {
   };
   return (
     <div className={`modal_bg ${isModal ? 'mod__show' : 'mod__hidden'}`}>
-      <button className="close_btn" onClick={onClick}>
+      {/* <button className="close_btn" >
         ❌
-      </button>
+      </button> */}
+      <div className="close__bar" onClick={onClick}></div>
       <div className={`md_window ${isModal ? 'win_show' : 'win_hidden'}`}>
         {!reviewBlock ? (
           <div className="meal_info">
@@ -54,7 +55,13 @@ const Modal = ({ isModal, setIsModal }) => {
             </div>
 
             <button className="add_order_btn" onClick={onAddOrder}>
-              Add To Order
+              Add To Order{'     '}
+              <lord-icon
+                src="https://cdn.lordicon.com/aoggitwj.json"
+                trigger="hover"
+                colors="primary:#ffffff"
+                style={{ width: '30px', height: '30px' }}
+              ></lord-icon>
             </button>
           </div>
         ) : (

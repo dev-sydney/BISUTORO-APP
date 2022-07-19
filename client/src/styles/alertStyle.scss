@@ -1,25 +1,35 @@
 .alert {
   border-radius: 6px;
   height: 2.5em;
-  width: 20em;
-  color: white;
+  width: 100%;
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   transition: 0.5s all;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10%;
+
+  .alert__content {
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.67);
+    -webkit-box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.67);
+  }
 }
 .hidden {
-  transform: translateY(-200%);
+  transform: translateY(-300%);
 }
 .show {
-  transform: translateY(100%);
+  transform: translateY(-90%);
 }
 .success {
-  background-color: green;
+  background-color: rgb(91, 243, 91);
 }
 .error {
-  background-color: red;
+  background-color: rgb(196, 49, 49);
 }

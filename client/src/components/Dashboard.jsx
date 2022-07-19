@@ -1,19 +1,15 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Fragment } from 'react';
 import ProductsContainer from './ProductsContainer';
 import './../styles/dashBoardStyle.scss';
+import './../styles/containerStyle.scss';
 const Dashboard = () => {
   return (
-    <div className="admin">
+    <Fragment>
       <h1>DashBoard</h1>
-      <div className="controls">
-        <span className="tabs">Products</span>
-        <NavLink to="/dashboard/new-meal">➕</NavLink>
-      </div>
-      <div>
+      <div className="admin">
         <ProductsContainer />
       </div>
-    </div>
+    </Fragment>
   );
 };
 

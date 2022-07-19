@@ -14,6 +14,7 @@ import MealForm from './components/MealForm';
 import Dashboard from './components/Dashboard';
 import Favourites from './components/Favourites';
 import Modal from './components/Modal';
+import Alert from './components/Alert';
 //////////////////CONTEXT IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -24,10 +25,10 @@ function App() {
       <AuthProvider>
         <MealContextProvider>
           <BrowserRouter>
-            <div /* className="flex_container" */ style={{ height: '100%' }}>
+            <div style={{ height: '100%' }}>
               <Modal setIsModal={setIsModal} isModal={isModal} />
-
               <Header />
+              <Alert />
               <Routes>
                 <Route
                   exact

@@ -49,7 +49,7 @@ const MealForm = () => {
     asyncMealActions.addMeal(meal);
   };
   return (
-    <div style={{ width: '100%', backgroundColor: '#F8F7FC' }}>
+    <div className="form__container">
       <form
         onSubmit={onSubmit}
         encType="multipart/form-data"
