@@ -57,7 +57,7 @@ const Profile = () => {
       }
     };
   useEffect(() => {
-    if (!isAuthenticated && !authMsg) navigate('/login');
+    if (!loggedInUser) navigate('/login');
     //eslint-disable-next-line
   }, [isAuthenticated, authMsg, loggedInUser]);
   return (
@@ -71,7 +71,7 @@ const Profile = () => {
         // onSubmit={onSubmit(user, loggedInUser._id)}
         onSubmit={
           // console.log(files[0]);
-          onFormSubmit(user, loggedInUser._id)
+          loggedInUser && onFormSubmit(user, loggedInUser._id)
         }
       >
         <div className="form__group">

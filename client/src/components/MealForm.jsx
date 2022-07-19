@@ -1,10 +1,27 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import productContext from './../contexts/ProductContext';
+import AuthContext from '../contexts/AuthContext';
+
 import './../styles/mealFormStyle.scss';
 
 const MealForm = () => {
   const mealContext = useContext(productContext);
+  const authContxt = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const { asyncMealActions } = mealContext;
+  const { loggedInUser, isAuthenticated } = authContxt;
+
+  const allowedRoles = ['admin', 'manager'];
+  useEffect(() => {
+    if (!isAuthenticated || !allowedRoles.includes(loggedInUser.role)) {
+      navigate('/');
+    }
+  }, [loggedInUser, isAuthenticated]);
+
   const fileInput = useRef(null);
 
   const [meal, setMeal] = useState({
@@ -41,7 +58,7 @@ const MealForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log(meal);
+    console.log(meal);
     setMeal({
       ...meal,
       image: fileInput.current.files[0],
