@@ -1,10 +1,11 @@
+@import 'main';
 .profile {
   padding: 4em 9em;
   width: 100%;
   height: fit-content;
   background-color: #f5f7fb;
   h1 {
-    color: #ed3367;
+    color: $primary_color;
     margin-bottom: 20px;
   }
   .form__group {
@@ -26,15 +27,16 @@
       border: none;
       transition: 0.4s all;
       margin-top: 5px;
+      font-family: $input_form_family;
     }
     input:focus {
       outline: none;
-      border-bottom: 3px solid #ed3367;
+      border-bottom: 3px solid $primary_color;
     }
   }
   /*STYLING FOR BOTH SUBMIT BUTTONS BELOW*/
   .btn {
-    background-color: #ed3367;
+    background-color: $primary_color;
     text-align: center;
     border-radius: 2em;
     color: white;
@@ -81,9 +83,9 @@
       height: fit-content;
       margin-top: 45px;
       transition: 0.2s all;
-      color: #ed3367;
+      color: $primary_color;
       border: none;
-      border-bottom: 1px solid #ed3367;
+      border-bottom: 1px solid $primary_color;
       padding-left: 5px;
       .form__upload {
         width: 0em;
@@ -92,7 +94,7 @@
       }
     }
     .label__upload:hover {
-      background-color: #ed3367;
+      background-color: $primary_color;
       color: #fff;
       -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);

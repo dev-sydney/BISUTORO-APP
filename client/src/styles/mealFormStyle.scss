@@ -1,3 +1,4 @@
+@import 'main';
 .form__container {
   height: 100%;
   width: 100%;
@@ -37,6 +38,7 @@
           height: 2.5em;
           padding-left: 10px;
           font-size: large;
+          font-family: $input_form_family;
           outline: none;
           border-top: 0px;
           border-right: 0px;
@@ -47,7 +49,7 @@
         }
         input:focus {
           outline: none;
-          border-bottom: 3px solid #ed3367;
+          border-bottom: 3px solid $primary_color;
         }
       }
     }
@@ -57,14 +59,14 @@
       margin-bottom: 1.5em;
       margin-top: 3em;
       transition: 0.4s all;
-      border-bottom: 1px solid #ed3367;
+      border-bottom: 1px solid $primary_color;
     }
     .form__upload {
       width: 5em;
       opacity: 0;
     }
     .upload__label:hover {
-      background-color: #ed3367;
+      background-color: $primary_color;
       color: #fff;
       -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -74,7 +76,7 @@
       width: 15em;
       height: 2em;
       border-radius: 10px;
-      background-color: #ed3367;
+      background-color: $primary_color;
       color: white;
       border: none;
       cursor: pointer;

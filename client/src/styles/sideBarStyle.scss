@@ -1,3 +1,4 @@
+@import 'main';
 .left_side {
   max-width: 30em;
   height: 100%;
@@ -46,10 +47,10 @@
   .add_meal_btn {
     height: 30px;
     width: 100px;
-    border: 1px solid #ed3367;
+    border: 1px solid $primary_color;
     border-radius: 5px;
     color: white;
-    background-color: #ed3367;
+    background-color: $primary_color;
     margin-bottom: 30px;
     padding-top: 5px;
     text-decoration: none;
@@ -179,7 +180,7 @@
     width: 80%;
     height: 30px;
     border-radius: 25px;
-    background-color: #ed3367;
+    background-color: $primary_color;
     border: none;
     transition: 0.4s transform;
     cursor: pointer;

@@ -2,7 +2,7 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
-  column-gap: 5em;
+  column-gap: 2em;
   align-items: center;
   padding: 0 0 0 5em;
   max-width: 120em;
@@ -10,15 +10,15 @@
   overflow: hidden;
   background: white;
   padding: 15px 0;
+  background-color: #fafafa;
   .product_container {
     max-width: 120em;
     margin: 0 auto;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /*   background-color: #f8f7fc;
- */
     background-color: white;
+    padding-top: 10px;
     overflow: auto;
     grid-gap: 1em;
   }
