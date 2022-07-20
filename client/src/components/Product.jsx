@@ -12,8 +12,7 @@ const Product = ({ meal, setIsModal, isFavouritesPage, isModal }) => {
   }, [meal]);
 
   const mealsContext = useContext(ProductContext);
-  const { setCurrentMeal, asyncMealActions, aysncReviewActions, setModalOpen } =
-    mealsContext;
+  const { setCurrentMeal, asyncMealActions, aysncReviewActions } = mealsContext;
 
   const setCurrent = () => {
     setCurrentMeal(meal);
@@ -34,20 +33,27 @@ const Product = ({ meal, setIsModal, isFavouritesPage, isModal }) => {
         <span>
           {!isFavouritesPage ? (
             <div>
-              <button onClick={onDeleteClick}>🗑️</button>
+              <lord-icon
+                src="https://cdn.lordicon.com/dovoajyj.json"
+                trigger="hover"
+                style={{ width: '20px', height: '20px' }}
+                onClick={onDeleteClick}
+              ></lord-icon>
               <button onClick={onActivateClick}>
                 {isActivitated ? 'Deactivate' : 'Activate'}
               </button>
             </div>
           ) : (
-            <div
-              className="favourite"
+            <lord-icon
+              src="https://cdn.lordicon.com/kkcllwsu.json"
+              trigger="click"
+              colors="primary:#ed3367"
+              state="morph"
+              style={{ width: '32px', height: '32px', cursor: 'pointer' }}
               onClick={() => {
                 asyncMealActions.AddMealToFavorites(meal._id);
               }}
-            >
-              💗
-            </div>
+            ></lord-icon>
           )}
         </span>
       </div>
