@@ -30,7 +30,7 @@ const Favourites = () => {
       <h1 style={{ height: '3em', paddingTop: '1em' }}>My Favourites</h1>
 
       <hr />
-      <div style={{ padding: '0 10em', height: '100%' }}>
+      <div style={{ padding: '2em 10em', height: '100%' }}>
         {isModalOpen && (
           <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
         )}

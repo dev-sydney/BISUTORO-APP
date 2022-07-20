@@ -44,6 +44,7 @@ const Modal = ({ isModal, setIsModal }) => {
             <div className="price">${currentMeal ? currentMeal.price : ''}</div>
 
             <div
+              className="review__btn"
               onClick={() => {
                 setReviewBlock(!reviewBlock);
               }}
