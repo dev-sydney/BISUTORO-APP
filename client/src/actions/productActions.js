@@ -75,7 +75,7 @@ class ProductActions {
    * @param {*} meal
    */
   ActivateDeactivateMeal = async (meal) => {
-    console.log(meal);
+    // console.log(meal);
     try {
       const res = await axios.patch(
         `/api/v1/meals/${meal._id}`,

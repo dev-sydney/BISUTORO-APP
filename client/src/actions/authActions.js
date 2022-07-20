@@ -126,7 +126,7 @@ class AuthActions {
             let geoCodeURL = `https://us1.locationiq.com/v1/reverse?key=${Type.LOCATION_IQ_KEY}&lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`;
 
             const res = await axios.get(geoCodeURL, config);
-            console.log(res);
+            // console.log(res);
             this.successDispatcher(
               res,
               Type.SET_PICKUP_LOCATION,

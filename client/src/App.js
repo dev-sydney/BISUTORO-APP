@@ -15,7 +15,7 @@ import Dashboard from './components/Dashboard';
 import Favourites from './components/Favourites';
 import Modal from './components/Modal';
 import Alert from './components/Alert';
-//////////////////CONTEXT IMPORTS
+//////////////////CONTEXT-PROVIDER IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
 function App() {
