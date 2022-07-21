@@ -32,7 +32,7 @@ const RightSidebar = ({ loggedInUser }) => {
   return (
     <div className="right-side">
       <div className="order_specs">
-        <h1>My Order</h1>
+        <h2>My Order</h2>
         <div className="time_location">
           <p>
             <lord-icon
@@ -41,7 +41,7 @@ const RightSidebar = ({ loggedInUser }) => {
               colors="primary:#e8308c"
               style={{ width: '20px', height: '20px' }}
             ></lord-icon>
-            {` ${new Date().getHours()}:${new Date().getMinutes()}${
+            {`  ${new Date().getHours()}:${new Date().getMinutes()}${
               new Date().getUTCHours() > 12 ? ' pm' : 'am'
             }`}
           </p>

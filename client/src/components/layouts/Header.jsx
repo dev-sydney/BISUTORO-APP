@@ -39,13 +39,16 @@ const Header = () => {
             <img src="/img/141-history.svg" className="icons" />
           </NavLink>
 
-          <NavLink to="/me">
+          <NavLink to="/me" className="pp">
             <img
               className="profile__photo"
               src={`/img/users/${
                 loggedInUser ? loggedInUser.photo : 'default.jpg'
               }`}
             />
+            <div className="menu__hidden">
+              <p>Logout</p>
+            </div>
           </NavLink>
         </div>
       )}

@@ -28,6 +28,7 @@ const Alert = ({ setIsAlertOpen }) => {
           src="https://cdn.lordicon.com/vfzqittk.json"
           trigger="hover"
           style={{ width: '30px', height: '30px' }}
+          color="#ffffff"
           onClick={() => {
             clearAuthMsg();
             removeAlerts();

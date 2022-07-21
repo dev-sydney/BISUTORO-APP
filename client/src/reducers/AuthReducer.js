@@ -3,6 +3,20 @@ import * as Type from './../contexts/types';
 const authReducer = (state, action) => {
   switch (action.type) {
     //@TODO: SUCCESSES
+    case Type.RESET_PASSWORD:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loggedInUser: action.payload,
+        authMsg: 'Password reset successful!',
+        authMsgType: true, //set to TRUE if its a success
+      };
+    case Type.FORGOT_PASSWORD:
+      return {
+        ...state,
+        authMsg: action.payload,
+        authMsgType: true,
+      };
     case Type.SET_PICKUP_LOCATION:
       return {
         ...state,
@@ -84,6 +98,18 @@ const authReducer = (state, action) => {
         ...state,
         authMsg: action.payload,
         authMsgType: false, //set to TRUE if its a success
+      };
+    case Type.FORGOT_PASSWORD_FAIL:
+      return {
+        ...state,
+        authMsg: action.payload,
+        authMsgType: false, //set to TRUE if its a success
+      };
+    case Type.RESET_PASSWORD_FAIL:
+      return {
+        ...state,
+        authMsg: action.payload,
+        authMsgType: false,
       };
     //@TODO: CLEARING
 

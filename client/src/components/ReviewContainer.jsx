@@ -44,13 +44,23 @@ const ReviewContainer = ({ setReviewBlock }) => {
 
   return (
     <div className="review_container">
-      <button
-        onClick={() => {
-          setReviewBlock(!reviewBlock);
+      <div
+        style={{
+          textAlign: 'left',
+          width: '100%',
+          paddingLeft: '2em',
+          cursor: 'pointer',
         }}
       >
-        ❌
-      </button>
+        <span
+          className="material-symbols-rounded"
+          onClick={() => {
+            setReviewBlock(!reviewBlock);
+          }}
+        >
+          arrow_back
+        </span>
+      </div>
       <div className="reviews_section">
         {reviews.length === 0
           ? 'No reviews yet'
