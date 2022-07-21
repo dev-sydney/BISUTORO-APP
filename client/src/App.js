@@ -15,6 +15,8 @@ import Dashboard from './components/Dashboard';
 import Favourites from './components/Favourites';
 import Modal from './components/Modal';
 import Alert from './components/Alert';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
 //////////////////CONTEXT-PROVIDER IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -45,6 +47,16 @@ function App() {
                   element={<MealForm />}
                 />
                 <Route exact path="/favourites" element={<Favourites />} />
+                <Route
+                  exact
+                  path="/forgot-password"
+                  element={<ForgotPassword />}
+                />
+                <Route
+                  exact
+                  path="/reset-password/:resetToken"
+                  element={<ResetPassword />}
+                />
               </Routes>
             </div>
           </BrowserRouter>
