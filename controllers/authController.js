@@ -8,7 +8,6 @@ const catchAsyncErrors = require('../utils/catchAsyncErrors');
 const APIFeatures = require('../utils/APIFeatures');
 const CustomError = require('../utils/CustomError');
 const Email = require('./../utils/email');
-const res = require('express/lib/response');
 
 /**
  *
@@ -69,6 +68,8 @@ exports.signup = catchAsyncErrors(async (req, res, next) => {
     passwordConfirm,
     role,
   });
+  const url = `${req.protocol}://${req.get('host')}/me`;
+  await new Email(user, url).sendWelcomeMail();
 
   createSendTokenCookie(user, res);
 
@@ -171,19 +172,20 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const resetToken = user.setResetPasswordToken();
   await user.save({ validateModifiedOnly: true });
 
-  const resetPasswordURL = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/users/resetPassword/${resetToken}`;
+  const resetPasswordURL = `http://192.168.100.4:3000/reset-password/${resetToken}`;
 
-  const emailMsg = `Forgot your password? submit a PATCH request with your new password and passwordConfirm to: ${resetPasswordURL}.\nIf you didn't forget your password, please ignore this email`;
   try {
-    await new Email(user, emailMsg).sendMail();
+    await new Email(user, resetPasswordURL).sendPasswordResetMail();
 
     res.status(200).json({
       status: 'success',
-      message: 'Email sent sucessfully',
+      message: `We've sent you an email, please just your inbox`,
     });
   } catch (err) {
+    user.resetPasswordToken = undefined;
+    user.passwordResetExpiresIn = undefined;
+    await user.save({ validateModifiedOnly: false });
+
     return next(
       new CustomError('Error sending Email, please try again...', 500)
     );
@@ -211,10 +213,7 @@ exports.resetPasssword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
-    status: 'success',
-    data: { user },
-  });
+  createSendTokenCookie(user, res);
 });
 
 //FOR USER UPDATING OWN PASSWORD W/O FORGETTING IT
