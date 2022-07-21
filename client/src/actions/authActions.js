@@ -67,6 +67,43 @@ class AuthActions {
       });
     }
   };
+  forgotpassword = async (formData) => {
+    try {
+      const res = await axios.post(
+        '/api/v1/users/forgotPassword',
+        formData,
+        config
+      );
+      this.successDispatcher(res, Type.FORGOT_PASSWORD, res.data.message);
+    } catch (err) {
+      this.dispatch({
+        type: Type.FORGOT_PASSWORD_FAIL,
+        payload: err.response.data.message,
+      });
+    }
+  };
+  resetpassword = async (formData, resetToken, navigate) => {
+    try {
+      const res = await axios.patch(
+        `/api/v1/users/resetPassword/${resetToken}`,
+        formData,
+        config
+      );
+      this.successDispatcher(res, Type.RESET_PASSWORD, res.data.data.user);
+
+      setTimeout(() => {
+        navigate('/');
+        this.dispatch({
+          type: Type.CLEAR_AUTH_MSG,
+        });
+      }, 1000);
+    } catch (err) {
+      this.dispatch({
+        type: Type.RESET_PASSWORD_FAIL,
+        payload: err.response.data.message,
+      });
+    }
+  };
 
   updatePassword = async (formData) => {
     try {
