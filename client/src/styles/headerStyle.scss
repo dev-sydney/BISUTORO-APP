@@ -73,7 +73,7 @@
 }
  */
 header {
-  height: 3em;
+  height: 4em;
   text-align: right;
   padding: 0 5em;
   .user__profile {
@@ -102,5 +102,18 @@ header {
   }
   img:hover {
     transform: translateY(-10%);
+  }
+  .pp {
+    position: relative;
+    .menu__hidden {
+      opacity: 0;
+      transition: 0.4s opacity;
+      border: 1px solid red;
+      color: black;
+      width: inherit;
+    }
+  }
+  .pp:hover .menu__hidden {
+    opacity: 1;
   }
 }

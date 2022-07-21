@@ -53,12 +53,14 @@ $roundness: 10px;
     .submit_btn {
       cursor: pointer;
       border: none;
-      width: 7em;
+      width: fit-content;
       background-color: $primary_color;
       height: 3em;
       border-radius: 10px;
       color: white;
       margin-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
     .submit_btn:hover {
       transition: 0.2s all;
