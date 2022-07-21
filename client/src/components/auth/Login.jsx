@@ -2,21 +2,18 @@ import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import Alert from '../Alert';
-
 import AuthContext from '../../contexts/AuthContext';
 import './../../styles/authStyle.scss';
 
 const Login = () => {
   const authContxt = useContext(AuthContext);
-  const { asyncAuthActions, authMsg } = authContxt;
+  const { asyncAuthActions } = authContxt;
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
-  const [sAlertOpen, setIsAlertOpen] = useState(false);
   const { email, password } = user;
 
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -28,8 +25,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      {/*       {<Alert setIsAlertOpen={setIsAlertOpen} />}
-       */}{' '}
       <form className="login_form" onSubmit={onSubmit}>
         <h2>BISUTORO</h2>
         <div className="form_group">
@@ -57,6 +52,7 @@ const Login = () => {
           />
         </div>
         <input className="submit_btn" type="submit" value="LOGIN" />
+        <NavLink to="/forgot-password">Forgot password</NavLink>
       </form>
       <div className="signup__tab">
         <p>Don't have an account? </p>
