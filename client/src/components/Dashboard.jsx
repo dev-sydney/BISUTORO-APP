@@ -22,8 +22,11 @@ const Dashboard = () => {
   }, [loggedInUser, isAuthenticated]);
   return (
     <Fragment>
-      <h1>DashBoard</h1>
+      <h1 style={{ height: '1em', paddingTop: '1em', paddingLeft: '7.5em' }}>
+        DashBoard
+      </h1>
       <div className="admin">
+        <hr />
         <ProductsContainer />
       </div>
     </Fragment>

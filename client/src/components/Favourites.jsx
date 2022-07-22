@@ -6,16 +6,16 @@ import AuthContext from './../contexts/AuthContext';
 
 import Product from './Product';
 import Modal from './Modal';
-
+import SkeletonProduct from './SkeletonProduct';
 import './../styles/containerStyle.scss';
 
-const Favourites = () => {
+const Favourites = ({ setIsModal }) => {
   const mealContxt = useContext(MealContext);
   const authcontxt = useContext(AuthContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
-  const { favourites, currentMeal, asyncMealActions } = mealContxt;
+  const { favourites, asyncMealActions } = mealContxt;
   const { isAuthenticated } = authcontxt;
   useEffect(() => {
     if (isAuthenticated) {
@@ -27,27 +27,29 @@ const Favourites = () => {
   }, [isAuthenticated]);
   return (
     <Fragment>
-      <h1 style={{ height: '3em', paddingTop: '1em' }}>My Favourites</h1>
+      <h1 style={{ height: '3em', paddingTop: '1em', paddingLeft: '7.5em' }}>
+        My Favourites
+      </h1>
 
       <hr />
-      <div style={{ padding: '2em 10em', height: '100%' }}>
-        {isModalOpen && (
-          <Modal setIsModalOpen={setIsModalOpen} currentMeal={currentMeal} />
-        )}
-        {favourites.length > 0 ? (
-          <div className="product_container" style={{ padding: '0 10em' }}>
-            {favourites.map((el) => (
-              <Product
-                key={el._id}
-                meal={el}
-                setIsModalOpen={setIsModalOpen}
-                isFavouritesPage={true}
-              />
+      <div style={{ padding: '0em 10em' }}>
+        <div className="product_container">
+          {favourites &&
+            (favourites.length === 0 ? (
+              <h2>No favourites available at the moment</h2>
+            ) : (
+              favourites.map((el) => (
+                <Product
+                  meal={el}
+                  key={el._id}
+                  setIsModal={setIsModal}
+                  isFavouritesPage={true}
+                />
+              ))
             ))}
-          </div>
-        ) : (
-          <h1>No Favourites yet</h1>
-        )}
+          {!favourites &&
+            [1, 2, 3, , 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
+        </div>
       </div>
     </Fragment>
   );
