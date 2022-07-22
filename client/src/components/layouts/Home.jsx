@@ -6,6 +6,7 @@ import AuthContext from '../../contexts/AuthContext';
 
 import Product from '../Product';
 import RightSidebar from './RightSideBar';
+import SkeletonProduct from '../SkeletonProduct';
 
 import './../../styles/sideBarStyle.scss';
 import './../../styles/homeStyle.scss';
@@ -14,10 +15,9 @@ const Home = ({ setIsModal }) => {
   const mealsContext = useContext(ProductContext);
   const authContxt = useContext(AuthContext);
 
-  const { meals, currentMeal, asyncMealActions } = mealsContext;
+  const { meals, asyncMealActions } = mealsContext;
   const { isAuthenticated, loggedInUser } = authContxt;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavouritesPage] = useState(true);
   const navigate = useNavigate();
 
@@ -33,14 +33,20 @@ const Home = ({ setIsModal }) => {
     <div className="home">
       <div className="product_container">
         {meals &&
-          meals.map((el) => (
-            <Product
-              meal={el}
-              key={el._id}
-              setIsModal={setIsModal}
-              isFavouritesPage={isFavouritesPage}
-            />
+          (meals.length === 0 ? (
+            <h2>No meals available at the moment</h2>
+          ) : (
+            meals.map((el) => (
+              <Product
+                meal={el}
+                key={el._id}
+                setIsModal={setIsModal}
+                isFavouritesPage={isFavouritesPage}
+              />
+            ))
           ))}
+        {!meals &&
+          [1, 2, 3, , 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
       </div>
       <RightSidebar loggedInUser={loggedInUser} />
     </div>
