@@ -40,7 +40,7 @@ class AuthActions {
           this.dispatch({
             type: Type.CLEAR_AUTH_MSG,
           });
-        }, 1500);
+        }, 500);
       }
     } catch (err) {
       this.dispatch({
