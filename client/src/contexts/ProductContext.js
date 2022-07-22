@@ -13,10 +13,10 @@ export const MealContextProvider = ({ children }) => {
     currentMeal: null,
     orders: [],
     loadingMeals: true,
-    favourites: [],
+    favourites: null,
     alertMsg: null,
     alertMsgType: null,
-    reviews: [],
+    reviews: null,
     isModalOpen: false,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
