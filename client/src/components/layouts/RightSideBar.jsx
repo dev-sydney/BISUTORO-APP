@@ -15,7 +15,7 @@ const RightSidebar = ({ loggedInUser }) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    orders.length === 0
+    !orders || orders.length === 0
       ? setTotal(0)
       : setTotal(
           [...orders]
@@ -38,7 +38,7 @@ const RightSidebar = ({ loggedInUser }) => {
             <lord-icon
               src="https://cdn.lordicon.com/abgtphux.json"
               trigger="hover"
-              colors="primary:#e8308c"
+              colors="primary:#000000"
               style={{ width: '20px', height: '20px' }}
             ></lord-icon>
             {`  ${new Date().getHours()}:${new Date().getMinutes()}${
@@ -62,7 +62,7 @@ const RightSidebar = ({ loggedInUser }) => {
       </div>
       <hr />
       <div className="order_items">
-        {orders.length === 0 ? (
+        {!orders ? (
           <p>No orders yet</p>
         ) : (
           orders.map((el) => (
