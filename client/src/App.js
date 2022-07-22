@@ -46,7 +46,13 @@ function App() {
                   path="/dashboard/new-meal"
                   element={<MealForm />}
                 />
-                <Route exact path="/favourites" element={<Favourites />} />
+                <Route
+                  exact
+                  path="/favourites"
+                  element={
+                    <Favourites setIsModal={setIsModal} isModal={isModal} />
+                  }
+                />
                 <Route
                   exact
                   path="/forgot-password"
