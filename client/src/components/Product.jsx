@@ -47,7 +47,7 @@ const Product = ({ meal, setIsModal, isFavouritesPage, isModal }) => {
             <lord-icon
               src="https://cdn.lordicon.com/kkcllwsu.json"
               trigger="click"
-              colors="primary:#ed3367"
+              colors="primary:#000000"
               state="morph"
               style={{ width: '32px', height: '32px', cursor: 'pointer' }}
               onClick={() => {
