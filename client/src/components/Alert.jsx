@@ -8,8 +8,8 @@ const Alert = ({ setIsAlertOpen }) => {
   const authContxt = useContext(AuthContext);
   const productContxt = useContext(productContext);
 
-  let { authMsg, clearAuthMsg, authMsgType } = authContxt;
-  let { alertMsg, alertMsgType, removeAlerts } = productContxt;
+  let { authMsg, clearAuthMsg } = authContxt;
+  let { alertMsg, removeAlerts } = productContxt;
 
   useEffect(() => {
     let m = authMsg;
@@ -17,31 +17,19 @@ const Alert = ({ setIsAlertOpen }) => {
   }, [authMsg, alertMsg]);
   return (
     <div className={`alert ${authMsg || alertMsg ? 'show' : 'hidden'}`}>
-      <div
-        className={`alert__content ${
-          authMsgType || alertMsgType ? 'success' : 'error'
-        }`}
-      >
+      <div className={`alert__content`}>
         {authMsg && authMsg}
         {alertMsg && alertMsg}
         <lord-icon
           src="https://cdn.lordicon.com/vfzqittk.json"
           trigger="hover"
           style={{ width: '30px', height: '30px' }}
-          color="#ffffff"
+          colors="primary:#ffffff"
           onClick={() => {
             clearAuthMsg();
             removeAlerts();
           }}
         ></lord-icon>
-        {/*  <button
-          onClick={() => {
-            clearAuthMsg();
-            removeAlerts();
-          }}
-        >
-          ❌
-        </button> */}
       </div>
     </div>
   );
