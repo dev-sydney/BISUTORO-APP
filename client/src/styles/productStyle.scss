@@ -6,8 +6,7 @@
   flex-direction: column;
   justify-content: space-around;
   row-gap: 10px;
-  /*   background-color: #f5f7f6;
- */
+  transition: 0.4s background-color;
   background-color: #fff;
   padding-bottom: 10px;
 
@@ -71,4 +70,7 @@
       padding: 0 5px 0 5px;
     }
   }
+}
+.product:hover {
+  background-color: #fefcfc;
 }

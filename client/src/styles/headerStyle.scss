@@ -1,81 +1,13 @@
-/* .navblock {
-  height: 10em;
-  text-align: left;
-  padding: 20px 5px 5px 5px;
-  h1 {
-    margin-left: 75px;
-    padding-left: 0px;
-  }
-  .search_field {
-    min-width: 70%;
-    outline: none;
-    height: 30px;
-    background-color: #fbfbfbfe;
-    font-size: large;
-    border-radius: 5px;
-    padding-left: 10px;
-    border: none;
-  }
-  .info {
-    display: flex;
-    .prompts {
-      flex-grow: 1;
-      h2 {
-        text-align: left;
-        margin: 0 0 3px 0;
-      }
-      p {
-        color: gray;
-      }
-    }
-    .controls {
-      flex-grow: 1;
-      text-align: right;
-      margin: 5px;
-      padding-top: 6px;
-      span {
-        height: 2em;
-        border-radius: 5px;
-        padding: 5px;
-      }
-      .filter_btn {
-        width: 50px;
-        border: 1.5px solid lightgray;
-        margin-right: 10px;
-      }
-      .compare {
-        color: #e50846;
-        background-color: #f37b9d;
-      }
-      .dots {
-        color: gray;
-      }
-    }
-  }
-  .results_sort {
-    left: 79%;
-    position: relative;
-    width: fit-content;
-    height: fit-content;
-    overflow: hidden;
-    transition: 0.2s all;
-    select {
-      border: none;
-      outline: none;
-      font-weight: bold;
-      background: transparent;
-      option {
-        width: 2em;
-        color: gray;
-      }
-    }
-  }
-}
- */
+@import url('https://fonts.googleapis.com/css2?family=Splash&display=swap');
 header {
   height: 4em;
-  text-align: right;
   padding: 0 5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h2 {
+    font-family: 'Splash', cursive;
+  }
   .user__profile {
     overflow: hidden;
     margin: 0 0 0 10px;
@@ -104,7 +36,7 @@ header {
     transform: translateY(-10%);
   }
   .pp {
-    position: relative;
+    margin-top: 5px;
     .menu__hidden {
       opacity: 0;
       transition: 0.4s opacity;

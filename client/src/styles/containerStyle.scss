@@ -11,11 +11,13 @@
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /*   background-color: #f8f7fc;
- */
-  background-color: white;
+  background-color: #fdfdfd;
+
+  // background-color: #eeeeee;
   overflow: auto;
+  overflow-x: hidden;
   grid-gap: 1em;
   padding: 0 5em;
   padding-bottom: 10px;
+  padding-top: 10px;
 }
