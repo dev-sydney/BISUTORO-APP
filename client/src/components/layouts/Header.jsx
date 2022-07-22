@@ -8,20 +8,39 @@ const Header = () => {
 
   return (
     <header>
+      <h2>Bisutoro</h2>
       {loggedInUser && (
         <div className="user__profile">
           <NavLink to="/">
-            <img src="/img/41-home.svg" className="icons" />
+            <lord-icon
+              className="icons"
+              src="https://cdn.lordicon.com/igpbsrza.json"
+              trigger="hover"
+              colors="primary:#000000"
+              style={{ width: '30px', height: '30px' }}
+            ></lord-icon>
           </NavLink>
 
           <NavLink to="/favourites">
-            <img src="/img/48-favorite-heart.svg" className="icons" />
+            <lord-icon
+              src="https://cdn.lordicon.com/kkcllwsu.json"
+              trigger="morph"
+              colors="primary:#121331"
+              state="morph"
+              style={{ width: '30px', height: '30px' }}
+            ></lord-icon>
           </NavLink>
           {loggedInUser &&
             (loggedInUser.role === 'admin' ||
             loggedInUser.role === 'manager' ? (
               <NavLink to="/dashboard/new-meal">
-                <img src="/img/40-add-card.svg" className="icons" />
+                <lord-icon
+                  src="https://cdn.lordicon.com/auvicynv.json"
+                  trigger="hover"
+                  colors="primary:#121331"
+                  state="hover"
+                  style={{ width: '30px', height: '30px' }}
+                ></lord-icon>
               </NavLink>
             ) : (
               ''
@@ -30,13 +49,23 @@ const Header = () => {
             (loggedInUser.role === 'admin' ||
             loggedInUser.role === 'manager' ? (
               <NavLink to="/dashboard">
-                <img src="/img/17-assignment.svg" className="icons" />
+                <lord-icon
+                  src="https://cdn.lordicon.com/aslgozpd.json"
+                  trigger="hover"
+                  colors="primary:#121331"
+                  style={{ width: '30px', height: '30px' }}
+                ></lord-icon>
               </NavLink>
             ) : (
               ''
             ))}
           <NavLink to="/order-history">
-            <img src="/img/141-history.svg" className="icons" />
+            <lord-icon
+              src="https://cdn.lordicon.com/lefmybnc.json"
+              trigger="hover"
+              colors="primary:#121331"
+              style={{ width: '30px', height: '30px' }}
+            ></lord-icon>
           </NavLink>
 
           <NavLink to="/me" className="pp">
@@ -46,9 +75,6 @@ const Header = () => {
                 loggedInUser ? loggedInUser.photo : 'default.jpg'
               }`}
             />
-            <div className="menu__hidden">
-              <p>Logout</p>
-            </div>
           </NavLink>
         </div>
       )}
