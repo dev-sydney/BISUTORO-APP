@@ -11,7 +11,12 @@ const Review = ({ review }) => {
 
       <div className="details">
         {ratings.map((el, i) => {
-          if (review.rating >= el) return <span key={i}>⭐</span>;
+          if (review.rating >= el)
+            return (
+              <span key={i}>
+                <span className="material-symbols-rounded">grade</span>
+              </span>
+            );
         })}
 
         <p className="comment">{review.review}</p>
