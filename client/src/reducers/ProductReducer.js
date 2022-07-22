@@ -49,7 +49,7 @@ const mealReducer = (state, action) => {
     case Type.ADD_TO_ORDER:
       return {
         ...state,
-        orders: [...state.orders, action.payload],
+        orders: [action.payload, ...state.orders],
       };
     case Type.ADD_TO_FAVOURITES:
       return {

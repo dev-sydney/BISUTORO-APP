@@ -26,7 +26,7 @@ const Login = () => {
   return (
     <div className="login">
       <form className="login_form" onSubmit={onSubmit}>
-        <h2>BISUTORO</h2>
+        <h2 className="logo">Bisutoro</h2>
         <div className="form_group">
           <label htmlFor="email">Email address:</label>
           <input
