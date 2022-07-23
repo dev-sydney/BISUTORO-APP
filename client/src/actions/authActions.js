@@ -58,7 +58,7 @@ class AuthActions {
         });
         setTimeout(() => {
           navigate('/login');
-        }, 1500);
+        }, 500);
       }
     } catch (err) {
       this.dispatch({
