@@ -1,3 +1,4 @@
+@import 'main';
 .home {
   height: 100%;
   display: flex;
@@ -10,7 +11,7 @@
   overflow: hidden;
   background: white;
   padding: 15px 0;
-  background-color: #fafafa;
+  background-color: $prim_background-color;
   .product_container {
     max-width: 120em;
     margin: 0 auto;

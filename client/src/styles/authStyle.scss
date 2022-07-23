@@ -12,6 +12,7 @@ $roundness: 10px;
   justify-content: center;
   padding: 0 9em 5em 9em;
   row-gap: 1em;
+  background-color: $prim_background-color;
   .login_form {
     padding: 2em 2.5em;
     height: 25em;
@@ -23,9 +24,17 @@ $roundness: 10px;
     box-shadow: -1px 0px 17px 0px rgba(0, 0, 0, 0.27);
     -webkit-box-shadow: -1px 0px 17px 0px rgba(0, 0, 0, 0.27);
     -moz-box-shadow: -1px 0px 17px 0px rgba(0, 0, 0, 0.27);
+    .form_icon {
+      height: 70px;
+      margin-top: 20px;
+    }
+    .prompt {
+      color: gray;
+      margin-bottom: 20px;
+    }
     h2 {
       color: $primary_color;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       margin-left: 0;
     }
     .logo {

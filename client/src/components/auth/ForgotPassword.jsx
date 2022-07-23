@@ -21,11 +21,14 @@ const ForgotPassword = () => {
   return (
     <div className="login">
       <form className="login_form" onSubmit={onSubmit}>
-        <span className="material-symbols-rounded">lock_person</span>
+        <img
+          src="/img/lock_person_FILL0_wght400_GRAD0_opsz48.svg"
+          className="form_icon"
+        />
         <h2>Trouble logging in ?</h2>
-        <p>
-          Enter your email address and we'll send you a link to get back into
-          your account.
+        <p className="prompt">
+          Enter your email address and we'll send you <br /> a link to get back
+          into your account.
         </p>
         <div className="form_group">
           <input

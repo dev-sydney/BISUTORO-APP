@@ -2,12 +2,15 @@
 .form__container {
   height: 100%;
   width: 100%;
-  background-color: #f8f7fc;
+  background-color: $prim_background-color;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 10px;
   padding-bottom: 10px;
+  h1 {
+    color: $primary_color;
+  }
   .meal_form {
     height: 90%;
     width: 40em;
@@ -46,6 +49,8 @@
           border-bottom: 1px solid rgb(88, 88, 88);
           background: transparent;
           transition: 0.4s all;
+          color: black;
+          font-weight: bolder;
         }
         input:focus {
           outline: none;
@@ -60,6 +65,7 @@
       margin-top: 3em;
       transition: 0.4s all;
       border-bottom: 1px solid $primary_color;
+      color: $primary_color;
     }
     .form__upload {
       width: 5em;
@@ -74,8 +80,8 @@
     }
     .submit_btn {
       width: 15em;
-      height: 2em;
-      border-radius: 10px;
+      height: 2.5em;
+      border-radius: 20px;
       background-color: $primary_color;
       color: white;
       border: none;

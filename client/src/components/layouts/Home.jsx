@@ -45,8 +45,7 @@ const Home = ({ setIsModal }) => {
               />
             ))
           ))}
-        {!meals &&
-          [1, 2, 3, , 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
+        {!meals && [1, 2, 3, 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
       </div>
       <RightSidebar loggedInUser={loggedInUser} />
     </div>

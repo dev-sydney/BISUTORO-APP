@@ -1,3 +1,4 @@
+@import 'main';
 .flex_container {
   height: fit-content;
   width: 100%;
@@ -11,7 +12,7 @@
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background-color: #fdfdfd;
+  background-color: $prim_background-color;
 
   // background-color: #eeeeee;
   overflow: auto;

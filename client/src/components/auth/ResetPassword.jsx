@@ -27,9 +27,15 @@ const ResetPassword = () => {
   return (
     <div className="login">
       <form className="login_form" onSubmit={onSubmit}>
-        <span className="material-symbols-rounded">lock_reset</span>
+        <img
+          src="/img/lock_reset_FILL0_wght400_GRAD0_opsz48.svg"
+          className="form_icon"
+        />
         <h2>Reset your password !</h2>
-        <p>Enter your new password and confirm it to be logged in</p>
+        <p className="prompt">
+          Enter your new password and confirm it
+          <br /> to be logged in
+        </p>
         <div className="form_group">
           <input
             type="password"
