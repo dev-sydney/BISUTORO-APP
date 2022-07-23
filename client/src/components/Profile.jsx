@@ -27,7 +27,12 @@ const Profile = () => {
   const { asyncAuthActions, isAuthenticated, authMsg, loggedInUser } =
     authContxt;
   const navigate = useNavigate();
-
+  /**
+   * Callback funtion that logs out the user from the application and navigates to the login page
+   */
+  const onlogoutclick = () => {
+    asyncAuthActions.logout(navigate);
+  };
   const onUserChange = (e) => {
     setUser({
       ...user,
@@ -39,7 +44,7 @@ const Profile = () => {
     setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
   };
   /**
-   * This Higer order function is responsible for returning the event handler for both forms
+   * This Higher order function is responsible for returning the event handler for both forms
    * @param {Object} formData The Object gotten from the form data
    * @param {String} userID The ._id property of the currently logged in user
    * @returns another function, this function is the actual callback function needed for the eventlistener
@@ -164,6 +169,9 @@ const Profile = () => {
           className="save_password btn"
         />
       </form>
+      <button className="logout" onClick={onlogoutclick}>
+        LOGOUT
+      </button>
     </div>
   );
 };
