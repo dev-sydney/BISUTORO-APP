@@ -6,7 +6,11 @@ const CustomError = require('./../utils/customError');
 
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
+/**
+ * Creates the line items needed for the checkout session
+ * @param {Array} meals An array of meal docs
+ * @returns an Array
+ */
 const createLineItems = (meals) =>
   meals.map((el) => ({
     quantity: 1,
@@ -21,8 +25,9 @@ const createLineItems = (meals) =>
   }));
 
 exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
-  //Get the ordered meals
-  const mealIDS = req.query.mealIds.split(',');
+  //Get the IDs of ordered meals from the mealIDs query object,(which its value is a string)
+  const mealIDS = req.query.mealIds.split(','); //splitin the IDs into an array
+  //Getting the meals using the array of  mealIDs
   const meals = await Meal.find({ _id: { $in: mealIDS } });
 
   let line_items = createLineItems(meals);

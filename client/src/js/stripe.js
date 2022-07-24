@@ -6,7 +6,7 @@ const stripe = loadStripe(
 );
 export const OrderMeals = async (orders) => {
   try {
-    //get the ids of the ordered meals
+    //get the ids of the ordered meals arrays and storing them as a single string
     let mealIds = orders.map((el) => el._id).join(',');
     //pass meal ids as queries + Get the chekout session from the API
     const res = await axios.get(
