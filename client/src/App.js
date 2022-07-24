@@ -59,10 +59,10 @@ function App() {
                   element={<ForgotPassword />}
                 />
                 <Route
-                  exact
                   path="/reset-password/:resetToken"
                   element={<ResetPassword />}
                 />
+                <Route path="/reset-password" element={<ResetPassword />} />
               </Routes>
             </div>
           </BrowserRouter>
