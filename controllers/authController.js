@@ -52,8 +52,8 @@ const createSendTokenCookie = (user, res) => {
     status: 'success',
     data: {
       user,
+      token,
     },
-    token,
   });
 };
 /////////////////////////////////////////////////////////////////////////////////////

@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.NOT_AUTHENTICATED:
+      return {
+        ...state,
+        alertMsg: action.payload,
+      };
     case Type.SET_MODAL:
       return {
         ...state,

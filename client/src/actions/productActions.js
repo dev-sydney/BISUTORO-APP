@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as Type from './../contexts/types';
 import { asyncActions } from '../Utilss';
 import { config } from '../Utilss';
-
+import { instance } from '../Utilss';
 class ProductActions {
   constructor(dispatch) {
     this.dispatch = dispatch;
@@ -104,14 +104,37 @@ class ProductActions {
     this.dispatch
   );
 
-  loadAllMeals = asyncActions(
+  /*  loadAllMeals = asyncActions(
     async () => {
-      const res = await axios.get('/api/v1/meals/', config);
+      // const res = await axios.get('/api/v1/meals/', config);
+      const res = await instance.get('/api/v1/meals');
       this.successDispatcher(res, Type.LOAD_ALL_MEALS, res.data.data.meals);
     },
     Type.LOAD_ALL_MEALS_ERROR,
     this.dispatch
-  );
+    ); */
+  loadAllMeals = async (navigate) => {
+    try {
+      const res = await instance.get('/api/v1/meals');
+      if (res.status === 200) {
+        this.dispatch({
+          type: Type.LOAD_ALL_MEALS,
+          payload: res.data.data.meals,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 403) {
+        this.dispatch({
+          type: Type.NOT_AUTHENTICATED,
+          payload: err.response.data.message,
+        });
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
+      }
+    }
+  };
 
   deleteMeal = async (mealID) => {
     try {

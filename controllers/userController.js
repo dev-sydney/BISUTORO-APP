@@ -106,6 +106,7 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 
 exports.getMe = catchAsyncErrors(async (req, res, next) => {
   req.params.userID = req.user._id;
+  console.log('hit');
   next();
 });
 //ADDING A MEAL TO FAVOURITES

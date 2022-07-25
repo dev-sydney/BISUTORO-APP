@@ -15,20 +15,22 @@ const Home = ({ setIsModal }) => {
   const mealsContext = useContext(ProductContext);
   const authContxt = useContext(AuthContext);
 
-  const { meals, asyncMealActions } = mealsContext;
+  const { meals, asyncMealActions, alertMsg } = mealsContext;
   const { isAuthenticated, loggedInUser } = authContxt;
 
   const [isFavouritesPage] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      asyncMealActions.loadAllMeals();
-    } else {
-      navigate('/login');
-    }
+    // if (isAuthenticated) {
+    //   asyncMealActions.loadAllMeals();
+    // } else {
+    //   navigate('/login');
+    // }
+    asyncMealActions.loadAllMeals(navigate);
+    console.log('rendered');
     //eslint-disable-next-line
-  }, [isAuthenticated, meals]);
+  }, []);
   return (
     <div className="home">
       <div className="product_container">

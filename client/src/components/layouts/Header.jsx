@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './../../styles/headerStyle.scss';
 import AuthContext from '../../contexts/AuthContext';
 const Header = () => {
   const authContxt = useContext(AuthContext);
-  const { loggedInUser } = authContxt;
-
+  const { loggedInUser, asyncAuthActions, isAuthenticated } = authContxt;
+  useEffect(() => {
+    asyncAuthActions.getMeForHeader();
+  }, []);
   return (
     <header>
       <h2>Bisutoro</h2>
-      {loggedInUser && (
+      {isAuthenticated && (
         <div className="user__profile">
           <NavLink to="/">
             <lord-icon

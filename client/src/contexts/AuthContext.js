@@ -44,7 +44,6 @@ export const AuthProvider = ({ children }) => {
         loggedInUser: state.loggedInUser,
         token: state.token,
         authMsg: state.authMsg,
-        authMsgType: state.authMsgType,
         pickupLocation: state.pickupLocation,
         asyncAuthActions,
         clearAuthMsg,

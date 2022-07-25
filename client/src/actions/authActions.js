@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as Type from './../contexts/types';
 import { config } from '../Utilss';
+import { instance } from '../Utilss';
 
 class AuthActions {
   constructor(dispatch) {
@@ -28,11 +29,12 @@ class AuthActions {
       : Type.LOGIN_FAIL;
 
     try {
-      const res = await axios.post(url, formData, config);
+      // const res = await axios.post(url, formData, config);
+      const res = await instance.post(url, formData);
       if (res.data.status === 'success') {
         this.dispatch({
           type: successType,
-          payload: res.data.data.user,
+          payload: res.data.data,
         });
 
         setTimeout(() => {
@@ -104,7 +106,46 @@ class AuthActions {
       });
     }
   };
-
+  getMe = async (navigate) => {
+    try {
+      const res = await instance.get('/api/v1/users/me');
+      if (res.data.status === 'success') {
+        this.dispatch({
+          type: Type.LOAD_USER,
+          payload: res.data.data.users,
+        });
+      }
+    } catch (err) {
+      if (err.response.status === 403) {
+        this.dispatch({
+          type: Type.LOAD_USER_ERROR,
+          payload: err.response.data.message,
+        });
+        setTimeout(() => {
+          navigate('/login');
+        }, 500);
+      }
+    }
+  };
+  getMeForHeader = async () => {
+    try {
+      const res = await instance.get('/api/v1/users/me');
+      console.log(res.data);
+      if (res.data.status === 'success') {
+        this.dispatch({
+          type: Type.LOAD_USER,
+          payload: res.data.data.user,
+        });
+      }
+    } catch (err) {
+      if (err.response.status === 403) {
+        this.dispatch({
+          type: Type.LOAD_USER_HEADER_ERROR,
+          payload: err.response.data.message,
+        });
+      }
+    }
+  };
   updatePassword = async (formData) => {
     try {
       const res = await axios.patch(

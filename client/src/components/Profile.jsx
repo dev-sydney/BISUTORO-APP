@@ -62,12 +62,12 @@ const Profile = () => {
       }
     };
   useEffect(() => {
-    if (!loggedInUser) navigate('/login');
+    asyncAuthActions.getMe(navigate);
+    console.log('render');
     //eslint-disable-next-line
-  }, [isAuthenticated, authMsg, loggedInUser]);
+  }, []);
   return (
     <div className="profile">
-      {authMsg && <Alert setIsAlertOpen={setIsAlertOpen} />}
       <h1>YOUR ACCOUNT SETTINGS</h1>
       {/* USER DATA UPDATE FORM */}
       <form

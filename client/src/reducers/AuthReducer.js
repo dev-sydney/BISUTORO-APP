@@ -3,6 +3,19 @@ import * as Type from './../contexts/types';
 const authReducer = (state, action) => {
   switch (action.type) {
     //@TODO: SUCCESSES
+    case Type.LOAD_USER:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        isAuthenticated: true,
+        loggedInUser: action.payload,
+      };
+    case Type.LOAD_USER_ERROR:
+      return {
+        ...state,
+        isAuthenticated: false,
+        authMsg: action.payload,
+      };
     case Type.RESET_PASSWORD:
       return {
         ...state,
@@ -33,25 +46,25 @@ const authReducer = (state, action) => {
       return {
         ...state,
         authMsg: action.payload,
-        authMsgType: true, //set to TRUE if its a success
+        authMsgType: true, //set to TRUE if its a successssss
       };
     case Type.SIGN_UP_SUCCESS:
-      localStorage.setItem('token', action.payload);
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         isAuthenticated: true,
-        loggedInUser: action.payload,
+        loggedInUser: action.payload.user,
         authMsg: 'Signed up successfully!',
-        authMsgType: true, //set to TRUE if its a success
+        token: action.payload.token,
       };
     case Type.LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload);
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         isAuthenticated: true,
-        loggedInUser: action.payload,
+        loggedInUser: action.payload.user,
         authMsg: 'Logged in successfully !',
-        authMsgType: true, //set to TRUE if its a success
+        token: action.payload.token,
       };
     case Type.LOGOUT:
       localStorage.removeItem('token');
@@ -77,7 +90,6 @@ const authReducer = (state, action) => {
         isAuthenticated: null,
         authMsg: action.payload,
         loggedInUser: null,
-        authMsgType: false, //set to false if its an error
       };
     case Type.LOGOUT_FAIL:
       localStorage.removeItem('token');
