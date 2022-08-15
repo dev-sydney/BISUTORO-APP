@@ -28,7 +28,7 @@ const Home = ({ setIsModal }) => {
       navigate('/login');
     }
     //eslint-disable-next-line
-  }, [isAuthenticated, meals]);
+  }, [isAuthenticated]);
   return (
     <div className="home">
       <div className="product_container">
