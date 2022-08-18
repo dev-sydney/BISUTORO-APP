@@ -102,7 +102,9 @@ const Profile = () => {
         <div className="profile__photo">
           <img
             className="form__user-photo"
-            src={`/img/users/${'user-629d35ebaee820196aa455b3-1657126613463.jpeg'}`}
+            src={`/img/users/${
+              loggedInUser ? loggedInUser.photo : 'default.jpg'
+            }`}
             alt="profile"
           />
           <label htmlFor="photo" className="label__upload">
