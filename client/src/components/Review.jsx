@@ -6,7 +6,9 @@ const Review = ({ review }) => {
   return (
     <div className="review">
       <div className="profile">
-        <img src="/img/users/user-629d35ebaee820196aa455b3-1657126613463.jpeg" />
+        {/*         <img src={`/img/users/user-629d35ebaee820196aa455b3-1657126613463.jpeg`} />
+         */}{' '}
+        <img src={`/img/users/${review.user.photo}`} />
       </div>
 
       <div className="details">
