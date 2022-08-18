@@ -62,7 +62,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
         </span>
       </div>
       <div className="reviews_section">
-        {reviews.length === 0
+        {!reviews
           ? 'No reviews yet'
           : reviews.map((el) => <Review key={el._id} review={el} />)}
       </div>
