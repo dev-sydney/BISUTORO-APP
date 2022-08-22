@@ -79,7 +79,7 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
-  console.log(req.file);
+  // console.log(req.file);
   if (req.body.password || req.body.passwordConfirm)
     return next(
       new CustomError(`This route isn't meant for updating passwords`, 400)

@@ -58,7 +58,7 @@ const MealForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(meal);
+    // console.log(meal);
     setMeal({
       ...meal,
       image: fileInput.current.files[0],

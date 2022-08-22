@@ -31,6 +31,7 @@ class ReviewActions {
   };
   postReview = async (mealID, reviewData) => {
     try {
+      // console.log('Review Data', reviewData);
       const res = await axios.post(
         `/api/v1/reviews/${mealID}`,
         reviewData,
