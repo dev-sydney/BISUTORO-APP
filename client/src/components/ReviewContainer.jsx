@@ -7,10 +7,12 @@ import './../styles/reviewStyle.scss';
 
 const ReviewContainer = ({ setReviewBlock }) => {
   const mealsContext = useContext(productContext);
-  const { reviews, aysncReviewActions, currentMeal } = mealsContext;
+  const { reviews, aysncReviewActions, currentMeal, reiviewChange } =
+    mealsContext;
   useEffect(() => {
     aysncReviewActions.loadReviewsOnMeal(currentMeal._id);
-  }, [reviews]);
+    // console.log('Loading reviews');
+  }, [reiviewChange]);
   const ratings = [1, 2, 3, 4, 5];
 
   const [reviewBlock] = useState(true);
@@ -36,10 +38,11 @@ const ReviewContainer = ({ setReviewBlock }) => {
     // console.log(reviewData);
   };
 
-  const onSubmit = (e) => {
+  const onSubmitReview = (e) => {
     e.preventDefault();
     // console.log(reviewData);
     aysncReviewActions.postReview(currentMeal._id, reviewData);
+    setReviewData({ review: '', rating: 0 });
   };
 
   return (
@@ -67,7 +70,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
           : reviews.map((el) => <Review key={el._id} review={el} />)}
       </div>
       <hr />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmitReview}>
         <div>
           {ratings.map((el, i) => (
             <span
@@ -87,6 +90,7 @@ const ReviewContainer = ({ setReviewBlock }) => {
           value={review}
           onChange={onTextareaChange}
         ></textarea>
+        <input type="submit" className="review-submit" />
       </form>
     </div>
   );

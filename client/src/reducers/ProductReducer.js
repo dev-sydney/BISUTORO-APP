@@ -11,6 +11,7 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         reviews: [...state.reviews, action.payload],
+        reiviewChange: state.reiviewChange + 1,
       };
     case Type.LOAD_REVIEWS:
       return {

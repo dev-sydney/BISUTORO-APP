@@ -18,6 +18,7 @@ export const MealContextProvider = ({ children }) => {
     alertMsgType: null,
     reviews: null,
     isModalOpen: false,
+    reiviewChange: 0,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
@@ -39,7 +40,7 @@ export const MealContextProvider = ({ children }) => {
    * @param {Object} meal
    */
   const addToOrder = (meal) => {
-    console.log(meal);
+    // console.log(meal);
     dispatch({
       type: Type.ADD_TO_ORDER,
       payload: meal,
@@ -74,6 +75,7 @@ export const MealContextProvider = ({ children }) => {
         alertMsgType: state.alertMsgType,
         reviews: state.reviews,
         isModalOpen: state.isModalOpen,
+        reiviewChange: state.reiviewChange,
         setCurrentMeal,
         addToOrder,
         removeAlerts,
