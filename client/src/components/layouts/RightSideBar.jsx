@@ -108,7 +108,7 @@ const RightSidebar = ({ loggedInUser }) => {
       <button
         className="checkout_btn"
         onClick={() => {
-          if (orders.length < 1) return;
+          if (!orders.length) return;
           OrderMeals(orders);
         }}
       >
