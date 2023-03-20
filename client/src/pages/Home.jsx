@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ProductContext from '../../contexts/ProductContext';
-import AuthContext from '../../contexts/AuthContext';
+import ProductContext from '../contexts/ProductContext';
+import AuthContext from '../contexts/AuthContext';
 
-import Product from '../Product';
-import RightSidebar from './RightSideBar';
-import SkeletonProduct from '../SkeletonProduct';
+import Product from '../components/Product';
+import RightSidebar from '../components/layouts/RightSideBar';
+import SkeletonProduct from '../components/SkeletonProduct';
 
 import './../../styles/sideBarStyle.scss';
 import './../../styles/homeStyle.scss';

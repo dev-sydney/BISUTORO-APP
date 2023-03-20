@@ -5,7 +5,6 @@ import MealContext from './../contexts/ProductContext';
 import AuthContext from './../contexts/AuthContext';
 
 import Product from './Product';
-import Modal from './Modal';
 import SkeletonProduct from './SkeletonProduct';
 import './../styles/containerStyle.scss';
 
@@ -36,7 +35,9 @@ const Favourites = ({ setIsModal }) => {
         <div className="product_container">
           {favourites &&
             (favourites.length === 0 ? (
-              <h2>No favourites available at the moment</h2>
+              <h2 style={{ textAlign: 'center' }}>
+                No favourites available at the moment
+              </h2>
             ) : (
               favourites.map((el) => (
                 <Product
@@ -48,7 +49,7 @@ const Favourites = ({ setIsModal }) => {
               ))
             ))}
           {!favourites &&
-            [1, 2, 3, , 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
+            [1, 2, 3, 4, 5, 6].map((el) => <SkeletonProduct key={el} />)}
         </div>
       </div>
     </Fragment>

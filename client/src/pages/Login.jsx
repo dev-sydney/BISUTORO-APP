@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
-import './../../styles/authStyle.scss';
+import AuthContext from '../contexts/AuthContext';
+import './../styles/authStyle.scss';
 
 const Login = () => {
   const authContxt = useContext(AuthContext);
@@ -24,40 +24,41 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <form className="login_form" onSubmit={onSubmit}>
-        <h2 className="logo">Bisutoro</h2>
-        <div className="form_group">
-          <label htmlFor="email">Email address:</label>
+    <div className="login-container">
+      <form onSubmit={onSubmit} style={{ padding: '0 1%' }}>
+        <div className="input-block">
           <input
-            className="input"
             type="email"
             name="email"
             value={email}
             onChange={onChange}
             required
-            placeholder="you@example.com"
           />
+          <span className="placeholder">Email: </span>
         </div>
-        <div className="form_group">
-          <label htmlFor="password">Password:</label>
+
+        <div className="input-block">
           <input
-            className="input"
             type="password"
             name="password"
             value={password}
             onChange={onChange}
             required
-            placeholder="••••••••"
           />
+          <span className="placeholder">Password:</span>
         </div>
-        <input className="submit_btn" type="submit" value="LOGIN" />
-        <NavLink to="/forgot-password">Forgot password</NavLink>
+
+        <button className="submit__btn">login</button>
+
+        <div style={{ textAlign: 'center', marginTop: '1em' }}>
+          <Link to="/forgot-password">
+            <p> Forgot password?</p>
+          </Link>
+        </div>
       </form>
-      <div className="signup__tab">
-        <p>Don't have an account? </p>
-        <NavLink to="/signup">Sign up</NavLink>
-      </div>
+      <span className="signup__note">
+        Don't have an account? <Link to="/signup">Sign up</Link>
+      </span>
     </div>
   );
 };

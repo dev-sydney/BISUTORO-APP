@@ -1,0 +1,139 @@
+.meal__item {
+  outline: 1px solid gray;
+  min-height: 15em;
+  max-height: 15em;
+  //   margin-top: 0.4em;
+  border-radius: 20px;
+  padding: 0.5em;
+  overflow: hidden;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    min-height: 100%;
+    max-width: 100%;
+    // min-width: 100%;
+    // max-width: 100%;
+    overflow: hidden;
+    margin: 0;
+    // align-content: center;
+    // justify-content: center;
+  }
+  img {
+    max-height: 7em;
+    min-height: 7em;
+    min-width: 9em;
+    max-width: 9em;
+    // outline: 1px solid red;
+    margin-left: auto;
+    margin-right: auto;
+    // margin-top: auto;
+  }
+  p,
+  h2 {
+    text-align: left;
+    margin-top: 0.5em;
+  }
+  p {
+    font-size: 1.2em;
+  }
+  .meal_name {
+    color: black;
+    font-weight: 900;
+    font-size: 1.4em;
+    margin-top: 0.5em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 99%;
+    // outline: 1px solid red;
+    white-space: nowrap;
+  }
+}
+.price__heart {
+  display: flex;
+  margin-top: auto;
+  p {
+    margin-top: 0;
+  }
+  .heart_icon {
+    margin-left: auto;
+  }
+}
+
+.meals_container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 0.5em;
+  row-gap: 0.4em;
+}
+
+.selected_meal_page {
+  min-height: inherit;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  row-gap: 1.1em;
+  img {
+    max-height: 16em;
+    min-height: 16em;
+    min-width: 16em;
+    max-width: 16em;
+    // outline: 1px solid red;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .qty_controls {
+    display: flex;
+    justify-content: center;
+    // margin: 0.5em 0;
+    .qty_btn {
+      border-radius: 10px;
+      background: #000000;
+      height: 4em;
+      width: 4em;
+    }
+    p {
+      font-size: 2em;
+      font-weight: 800;
+      height: fit-content;
+      width: fit-content;
+      margin: 0 0.5em;
+      padding-top: 0.2em;
+      //   padding: 0.5em;
+      //   margin-bottom: auto;
+    }
+  }
+  .meal_details {
+    display: flex;
+    overflow-x: auto;
+    div {
+      display: flex;
+      width: fit-content;
+      height: fit-content;
+      background: #efefefa5;
+      color: black;
+      padding: 0 0.4em;
+      border-radius: 10px;
+      font-size: 1.5em;
+      flex-wrap: nowrap;
+      margin-right: 0.4em;
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+  .price_cart {
+    display: flex;
+    .total_price {
+      margin-right: auto;
+      p {
+        text-align: center;
+      }
+    }
+    button {
+      margin-left: auto;
+    }
+  }
+}

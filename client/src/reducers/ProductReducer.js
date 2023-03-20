@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.MEALS_LOADING:
+      return {
+        ...state,
+        isMealsLoading: true,
+      };
     case Type.SET_MODAL:
       return {
         ...state,
@@ -27,7 +32,7 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         meals: action.payload,
-        loadingMeals: false,
+        isMealsLoading: null,
       };
     case Type.ADD_MEAL:
       return {
@@ -45,7 +50,8 @@ const mealReducer = (state, action) => {
     case Type.SET_CURRENT:
       return {
         ...state,
-        currentMeal: { ...action.payload },
+        currentMeal: action.payload,
+        isMealsLoading: null,
       };
     case Type.ADD_TO_ORDER:
       return {

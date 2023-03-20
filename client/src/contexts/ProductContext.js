@@ -1,5 +1,6 @@
 import { createContext, useReducer } from 'react';
-
+import { config } from '../Utilss';
+import axios from 'axios';
 import * as Type from './types';
 import ProductReducer from './../reducers/ProductReducer';
 import ProductActions from '../actions/productActions';
@@ -12,7 +13,7 @@ export const MealContextProvider = ({ children }) => {
     meals: null,
     currentMeal: null,
     orders: [],
-    loadingMeals: true,
+    isMealsLoading: null,
     favourites: null,
     alertMsg: null,
     alertMsgType: null,
@@ -25,6 +26,40 @@ export const MealContextProvider = ({ children }) => {
   const asyncMealActions = new ProductActions(dispatch);
   const aysncReviewActions = new ReviewActions(dispatch);
 
+  const loadAllMeals = async () => {
+    try {
+      dispatch({
+        type: Type.MEALS_LOADING,
+      });
+      const res = await axios.get('/api/v1/meals/', config);
+      if (res.status === 200) {
+        dispatch({
+          type: Type.LOAD_ALL_MEALS,
+          payload: res.data.data.meals,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loadSelectedMeal = async (mealId) => {
+    try {
+      dispatch({
+        type: Type.MEALS_LOADING,
+      });
+
+      const res = await axios.get(`/api/v1/meals/${mealId}`, config);
+      if (res.status === 200) {
+        dispatch({
+          type: Type.SET_CURRENT,
+          payload: res.data.data.meal,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /**
    * Sets the selected meal as the currentMeal obj in the state
    * @param {Object} meal The selected meal
@@ -69,13 +104,14 @@ export const MealContextProvider = ({ children }) => {
         meals: state.meals,
         currentMeal: state.currentMeal,
         orders: state.orders,
-        loadingMeals: state.loadingMeals,
+        isMealsLoading: state.isMealsLoading,
         favourites: state.favourites,
         alertMsg: state.alertMsg,
         alertMsgType: state.alertMsgType,
         reviews: state.reviews,
         isModalOpen: state.isModalOpen,
         reiviewChange: state.reiviewChange,
+        loadAllMeals,
         setCurrentMeal,
         addToOrder,
         removeAlerts,
@@ -83,6 +119,7 @@ export const MealContextProvider = ({ children }) => {
         asyncMealActions,
         aysncReviewActions,
         setModalOpen,
+        loadSelectedMeal,
       }}
     >
       {children}

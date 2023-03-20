@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../contexts/AuthContext';
-import Alert from '../Alert';
+import { useNavigate, Link } from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
+// import Alert from '../Alert';
+import './../styles/authStyle.scss';
 
 const Signup = () => {
   const authContxt = useContext(AuthContext);
   const navigate = useNavigate();
-  const { asyncAuthActions, authMsg } = authContxt;
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const { asyncAuthActions } = authContxt;
+  // const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const [user, setUser] = useState({
     name: '',
@@ -24,60 +25,58 @@ const Signup = () => {
     asyncAuthActions.loginSignupUser(user, navigate);
   };
   return (
-    <div className="login">
-      <form
-        onSubmit={onSubmit}
-        className="login_form"
-        style={{ height: 'fit-content' }}
-      >
-        <h2>SIGN UP FOR FREE!</h2>
-        <div className="form_group">
-          <label htmlFor="name">NAME:</label>
+    <div className="signup-container">
+      <form onSubmit={onSubmit}>
+        <div className="input-block">
           <input
             type="text"
             name="name"
             value={name}
             onChange={onChange}
-            className="input"
             required
           />
+          <span className="placeholder">Name</span>
         </div>
-        <div className="form_group">
-          <label htmlFor="email">EMAIL:</label>
+
+        <div className="input-block">
           <input
             type="email"
             name="email"
             value={email}
             onChange={onChange}
-            className="input"
             required
           />
+          <span className="placeholder">Email</span>
         </div>
-        <div className="form_group">
-          <label htmlFor="password">PASSWORD:</label>
+
+        <div className="input-block">
           <input
-            className="input"
             required
             type="password"
             name="password"
             value={password}
             onChange={onChange}
-            placeholder="••••••••"
           />
+          <span className="placeholder">Password</span>
         </div>
-        <div className="form_group">
-          <label htmlFor="passwordConfirm">CONFIRM PASSWORD:</label>
+
+        <div className="input-block">
           <input
-            className="input"
             required
             type="password"
             name="passwordConfirm"
             value={passwordConfirm}
             onChange={onChange}
-            placeholder="••••••••"
           />
+          <span className="placeholder">Confirm password</span>
         </div>
-        <input type="submit" value=" SIGN UP" className="submit_btn" />
+
+        <button className="submit__btn" onClick={onSubmit}>
+          Sign up
+        </button>
+        <span className={`login__note`}>
+          Already have an account? <Link to={'/login'}>Log in</Link>
+        </span>
       </form>
     </div>
   );

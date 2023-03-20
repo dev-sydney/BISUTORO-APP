@@ -47,3 +47,5 @@ export const LOCATION_IQ_KEY = 'pk.87b43b77fc40335820ef0ad7624e0117';
 export const SET_PICKUP_LOCATION = 'SET_PICKUP_LOCATION';
 
 export const SET_MODAL = 'SET_MODAL';
+
+export const MEALS_LOADING = 'MEALS_LOADING';

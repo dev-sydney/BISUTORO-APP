@@ -29,6 +29,7 @@ class AuthActions {
 
     try {
       const res = await axios.post(url, formData, config);
+      console.log(res);
       if (res.data.status === 'success') {
         this.dispatch({
           type: successType,

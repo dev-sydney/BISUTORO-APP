@@ -1,3 +1,92 @@
 $primary_color: #000000;
 $input_form_family: 'lato';
 $prim_background-color: #fafafa;
+
+@mixin page-container {
+  display: flex;
+  flex-direction: column;
+}
+@mixin btn {
+  color: white;
+  // background-color: #1fa1f8;
+  background-color: #284b63;
+
+  font-size: 1rem;
+  padding: 0.7rem 3rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  transition: all 0.4s;
+  font-weight: 400;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /*Add later when we use this for the button in form*/
+  border: none;
+  cursor: pointer;
+}
+
+@mixin form-input {
+  padding: 1rem 1.7rem;
+  text-align: left;
+  font-size: 1em;
+  border: none;
+  width: 100%;
+  background-color: #f2f2f2;
+  color: #284b63;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+div.input-block {
+  position: relative;
+  margin: 0.7em 0;
+}
+
+div.input-block input {
+  font-weight: 500;
+  font-size: 1em;
+  color: #495055;
+  width: 100%;
+  padding: 1rem 1.7rem;
+  border-radius: 10px;
+  border: 2px solid #d9d9d9;
+  outline: none;
+}
+
+div.input-block span.placeholder {
+  position: absolute;
+  margin: 17px 0;
+  padding: 0 4px;
+  font-family: Roboto, sans-serif;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  top: 0;
+  left: 17px;
+  transition: all 0.2s;
+  transform-origin: 0% 0%;
+  background: none;
+  pointer-events: none;
+}
+
+div.input-block input:valid + span.placeholder,
+div.input-block input:focus + span.placeholder {
+  transform: scale(0.8) translateY(-30px);
+  background: #fff;
+}
+
+div.input-block input:focus {
+  color: #284b63;
+}
+
+div.input-block input:focus + span.placeholder {
+  color: #284b63;
+}
