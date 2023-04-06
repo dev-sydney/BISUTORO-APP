@@ -2,6 +2,24 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.SET_TOP_FIVE:
+      return {
+        ...state,
+        topFiveMeals: action.payload,
+        isMealsLoading: null,
+      };
+    case Type.CLEAR_CART:
+      return {
+        ...state,
+        cart: null,
+      };
+    case Type.ADD_TO_CART:
+      return {
+        ...state,
+        // cart: [action.payload, ...state.cart],
+        cart: !state.cart ? [action.payload] : [action.payload, ...state.cart],
+        alertMsg: action.alert,
+      };
     case Type.MEALS_LOADING:
       return {
         ...state,
@@ -38,7 +56,6 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
-        alertMsgType: true,
       };
     case Type.DELETE_MEAL:
       return {
@@ -73,6 +90,7 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         favourites: action.payload,
+        isMealsLoading: null,
       };
     //TODO: ALERTS
     case Type.UPDATE_DATA_FAIL:
@@ -85,7 +103,6 @@ const mealReducer = (state, action) => {
       return {
         ...state,
         alertMsg: action.payload,
-        alertMsgType: false,
       };
     case Type.LOAD_ALL_MEALS_ERROR:
       return {

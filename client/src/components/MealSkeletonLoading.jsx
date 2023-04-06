@@ -1,8 +1,11 @@
 import React from 'react';
 import './../styles/skeletonStyling.scss';
-const MealSkeletonLoading = () => {
+const MealSkeletonLoading = ({ showInFlex }) => {
   return (
-    <div className="skeleton_meals_container">
+    <div
+      className={`skeleton_meals_container`}
+      style={{ display: `${showInFlex ? 'flex' : ''}` }}
+    >
       {[12, 3, 45, 6].map((el) => (
         <div className="meal__item" key={el}>
           <div className="img"></div>

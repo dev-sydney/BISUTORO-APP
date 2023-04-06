@@ -15,7 +15,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import MealForm from './components/MealForm';
 import Dashboard from './components/Dashboard';
-import Favourites from './components/Favourites';
+// import Favourites from './components/Favourites';
+import FavoritesMealsPage from './pages/FavoritesMealsPage';
 import Modal from './components/Modal';
 import Alert from './components/Alert';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -24,9 +25,12 @@ import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
 import CartPage from './pages/CartPage';
 import SelectedMealPage from './pages/SelectedMealPage';
+import AccountOverviewPage from './pages/AccountOverviewPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 //////////////////CONTEXT-PROVIDER IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
+import AddMealPage from './pages/AddMealPage';
 ///////////////////////STRIPE-INTEGRATION
 // const stripePromise = loadStripe(
 //   'pk_test_51LHFLYCzMWGZTWYcO8piuiqgYo6Kj3dSdpihgTmnxEpsRvvbKH3Y1CpKhWGtGcvBgUMuB9vJ7hR82fzhTwuhKUgk00FwuueWL2'
@@ -36,13 +40,13 @@ function App() {
   const [isModal, setIsModal] = useState(false);
 
   return (
-    <div className="App">
-      <AuthProvider>
-        <MealContextProvider>
-          {/* <Elements stripe={stripePromise}> */}
-          <BrowserRouter>
-            <Modal setIsModal={setIsModal} isModal={isModal} />
-            {/* <Header /> */}
+    <AuthProvider>
+      <MealContextProvider>
+        {/* <Elements stripe={stripePromise}> */}
+        <BrowserRouter>
+          <Modal setIsModal={setIsModal} isModal={isModal} />
+          {/* <Header /> */}
+          <div className="App">
             <Alert />
             <Routes>
               {/* <Route exact path="/checkout" element={<CheckoutForm />} /> */}
@@ -66,9 +70,7 @@ function App() {
               <Route
                 exact
                 path="/favourites"
-                element={
-                  <Favourites setIsModal={setIsModal} isModal={isModal} />
-                }
+                element={<FavoritesMealsPage />}
               />
               <Route
                 exact
@@ -80,13 +82,20 @@ function App() {
                 element={<ResetPassword />}
               />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route
+                path="/account/overview"
+                element={<AccountOverviewPage />}
+              />
+
+              <Route path="/manage/add-meal" element={<AddMealPage />} />
+              <Route path="/manage/analytics" element={<AnalyticsPage />} />
             </Routes>
-            <NavBar />
-          </BrowserRouter>
-          {/* </Elements> */}
-        </MealContextProvider>
-      </AuthProvider>
-    </div>
+          </div>
+          <NavBar />
+        </BrowserRouter>
+        {/* </Elements> */}
+      </MealContextProvider>
+    </AuthProvider>
   );
 }
 

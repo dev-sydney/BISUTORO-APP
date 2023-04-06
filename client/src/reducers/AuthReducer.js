@@ -2,6 +2,11 @@ import * as Type from './../contexts/types';
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case Type.AUTH_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
     //@TODO: SUCCESSES
     case Type.RESET_PASSWORD:
       return {
@@ -36,22 +41,24 @@ const authReducer = (state, action) => {
         authMsgType: true, //set to TRUE if its a success
       };
     case Type.SIGN_UP_SUCCESS:
-      localStorage.setItem('token', action.payload);
+      localStorage.removeItem('BisutoroUser');
+      localStorage.setItem('BisutoroUser', JSON.stringify(action.payload));
+      // localStorage.setItem('token', action.payload);
       return {
         ...state,
-        isAuthenticated: true,
-        loggedInUser: action.payload,
-        authMsg: 'Signed up successfully!',
-        authMsgType: true, //set to TRUE if its a success
+        user: action.payload,
+        authMsg: action.alert,
+        isLoading: null,
       };
     case Type.LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload);
+      localStorage.removeItem('BisutoroUser');
+      localStorage.setItem('BisutoroUser', JSON.stringify(action.payload));
       return {
         ...state,
-        isAuthenticated: true,
-        loggedInUser: action.payload,
-        authMsg: 'Logged in successfully !',
-        authMsgType: true, //set to TRUE if its a success
+        isLoggedIn: true,
+        isLoading: null,
+        user: action.payload,
+        authMsg: action.alert,
       };
     case Type.LOGOUT:
       localStorage.removeItem('token');

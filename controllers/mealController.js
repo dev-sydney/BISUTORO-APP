@@ -7,7 +7,7 @@ const catchAsyncErrors = require('./../utils/catchAsyncErrors');
 
 exports.getTopMeals = (req, res, next) => {
   req.query.sort = '-ratingsAverage';
-  req.query.fields = 'name,price,ratingsAverage';
+  req.query.fields = 'name,price,ratingsAverage,image,_id';
   req.query.limit = 5;
   next();
 };

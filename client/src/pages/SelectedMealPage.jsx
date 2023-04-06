@@ -15,10 +15,20 @@ const stat = 1;
 
 const SelectedMealPage = () => {
   let { mealId } = useParams();
+
   const productContxt = useContext(ProductContext);
+
+  const addItemToCart = (selectedMeal) => () => {
+    // console.log(selectedMeal);
+    productContxt.addToCart(selectedMeal);
+  };
+
   useEffect(() => {
-    productContxt.loadSelectedMeal(mealId);
-  }, [stat]);
+    if (mealId) {
+      productContxt.loadSelectedMeal(mealId);
+    }
+  }, [mealId]);
+
   return (
     <div style={{ minHeight: 'inherit' }}>
       {productContxt.isMealsLoading ? (
@@ -86,7 +96,7 @@ const SelectedMealPage = () => {
                 ${productContxt.currentMeal && productContxt.currentMeal.price}
               </p>
             </div>
-            <button>
+            <button onClick={addItemToCart(productContxt?.currentMeal)}>
               <UilShoppingBag color="black" size="1.2em" /> Add to cart
             </button>
           </div>

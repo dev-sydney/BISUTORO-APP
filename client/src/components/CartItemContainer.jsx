@@ -1,12 +1,12 @@
 import React from 'react';
 import CartItem from './CartItem';
 
-const CartItemContainer = () => {
+const CartItemContainer = ({ cartItems }) => {
   return (
     <div style={{ outline: '1px solid gray', borderRadius: '10px' }}>
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {cartItems.map((cartItem) => (
+        <CartItem cartItem={cartItem} key={cartItem._id} />
+      ))}
     </div>
   );
 };

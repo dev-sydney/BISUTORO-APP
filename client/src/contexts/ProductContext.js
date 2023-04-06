@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { config } from '../Utilss';
+import { config, CartItem, AppAlert } from '../Utilss';
 import axios from 'axios';
 import * as Type from './types';
 import ProductReducer from './../reducers/ProductReducer';
@@ -20,12 +20,21 @@ export const MealContextProvider = ({ children }) => {
     reviews: null,
     isModalOpen: false,
     reiviewChange: 0,
+    cart: null,
+    topFiveMeals: null,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const asyncMealActions = new ProductActions(dispatch);
   const aysncReviewActions = new ReviewActions(dispatch);
 
+  const clearContextAlerts = (secs = 3000) => {
+    setTimeout(() => {
+      dispatch({
+        type: Type.REMOVE_ALERT,
+      });
+    }, secs);
+  };
   const loadAllMeals = async () => {
     try {
       dispatch({
@@ -60,26 +69,88 @@ export const MealContextProvider = ({ children }) => {
       console.log(err);
     }
   };
-  /**
-   * Sets the selected meal as the currentMeal obj in the state
-   * @param {Object} meal The selected meal
-   */
-  const setCurrentMeal = (meal) => {
+
+  const addToCart = (selectedMeal) => {
     dispatch({
-      type: Type.SET_CURRENT,
-      payload: meal,
+      type: Type.ADD_TO_CART,
+      payload: new CartItem(selectedMeal),
+      alert: new AppAlert('Added to cart', 'success'),
+    });
+    clearContextAlerts();
+  };
+
+  const clearCart = () => {
+    dispatch({
+      type: Type.CLEAR_CART,
     });
   };
-  /**
-   * Adds a Meal to orders array
-   * @param {Object} meal
-   */
-  const addToOrder = (meal) => {
-    // console.log(meal);
-    dispatch({
-      type: Type.ADD_TO_ORDER,
-      payload: meal,
-    });
+
+  const loadFavorites = async () => {
+    try {
+      dispatch({
+        type: Type.MEALS_LOADING,
+      });
+      const res = await axios.get(`/api/v1/meals/favourite-meals`, config);
+      // console.log(res);
+      if (res.status === 200) {
+        dispatch({
+          type: Type.LOAD_FAVOURITES,
+          payload: res.data.data,
+        });
+      }
+    } catch (err) {}
+  };
+
+  const checkout = async (cartItems, navigateTo) => {
+    try {
+      let url = `/api/v1/orders/checkout-session`;
+      const res = await axios.post(url, { cartItems }, config);
+
+      // navigateTo(.url);
+      window.location = res.data.session.url;
+      // console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addNewMeal = async (formData) => {
+    try {
+      const res = await axios.post('/api/v1/meals/', formData, config);
+
+      if (res.status === 200) {
+        dispatch({
+          type: Type.ADD_MEAL,
+          payload: new AppAlert(res.data.successMsg, 'success'),
+        });
+      }
+
+      clearContextAlerts();
+    } catch (err) {
+      dispatch({
+        type: Type.ADD_MEAL_ERROR,
+        payload: new AppAlert(err.response.data.message, 'success'),
+      });
+      clearContextAlerts();
+    }
+  };
+
+  const getTopFiveMeals = async () => {
+    try {
+      dispatch({
+        type: Type.MEALS_LOADING,
+      });
+      const res = await axios.get(`/api/v1/meals/top-5-meals`, config);
+
+      if (res.status === 200) {
+        dispatch({
+          type: Type.SET_TOP_FIVE,
+          payload: res.data.data.meals,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   const removeFromOrders = (mealID) => {
     dispatch({
@@ -111,15 +182,21 @@ export const MealContextProvider = ({ children }) => {
         reviews: state.reviews,
         isModalOpen: state.isModalOpen,
         reiviewChange: state.reiviewChange,
+        cart: state.cart,
+        topFiveMeals: state.topFiveMeals,
         loadAllMeals,
-        setCurrentMeal,
-        addToOrder,
         removeAlerts,
         removeFromOrders,
         asyncMealActions,
         aysncReviewActions,
         setModalOpen,
         loadSelectedMeal,
+        addToCart,
+        clearCart,
+        loadFavorites,
+        checkout,
+        addNewMeal,
+        getTopFiveMeals,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ const authController = require('./../controllers/authController');
 const orderController = require('./../controllers/orderController');
 const router = express.Router();
 
-router.get(
+router.post(
   '/checkout-session',
   authController.authenticateUser,
   orderController.createCheckoutSession

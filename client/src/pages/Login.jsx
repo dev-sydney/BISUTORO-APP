@@ -20,7 +20,8 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    asyncAuthActions.loginSignupUser(user, navigate);
+    // asyncAuthActions.loginSignupUser(user, navigate);
+    authContxt.loginUser(user, navigate);
   };
 
   return (

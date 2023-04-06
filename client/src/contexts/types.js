@@ -49,3 +49,10 @@ export const SET_PICKUP_LOCATION = 'SET_PICKUP_LOCATION';
 export const SET_MODAL = 'SET_MODAL';
 
 export const MEALS_LOADING = 'MEALS_LOADING';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const CLEAR_CART = 'CLEAR_CART';
+export const SET_NAVBAR_VISIBIITY = 'SET_NAVBAR_VISIBIITY';
+export const AUTH_LOADING = 'AUTH_LOADING';
+export const CLEAR_PRODUCTS_ALERT = 'CLEAR_PRODUCTS_ALERT';
+
+export const SET_TOP_FIVE = 'SET_TOP_FIVE';
