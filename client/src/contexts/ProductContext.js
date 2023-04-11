@@ -22,6 +22,8 @@ export const MealContextProvider = ({ children }) => {
     reiviewChange: 0,
     cart: null,
     topFiveMeals: null,
+    tables: null,
+    isTablesLoading: null,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
@@ -152,6 +154,63 @@ export const MealContextProvider = ({ children }) => {
       console.log(err);
     }
   };
+
+  const addNewTable = async (formData) => {
+    try {
+      dispatch({
+        type: Type.TABLES_LOADING,
+      });
+      const res = await axios.post(`/api/v1/tables/`, formData, config);
+
+      if (res.status === 201) {
+        dispatch({
+          type: Type.ADD_TABLE,
+          payload: new AppAlert(res.data.successMsg, 'success'),
+        });
+      }
+
+      clearContextAlerts();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loadAllTables = async () => {
+    try {
+      dispatch({
+        type: Type.TABLES_LOADING,
+      });
+
+      const res = await axios.get(`/api/v1/tables/`, config);
+
+      if (res.status === 200) {
+        dispatch({
+          type: Type.LOAD_TABLES,
+          payload: res.data.tables,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const makeTableReservation = async (table) => {
+    try {
+      // dispatch({
+      //   type: Type.TABLES_LOADING,
+      // });
+      let url = `/api/v1/orders/tables/checkout-session`;
+
+      const res = await axios.post(url, { table }, config);
+
+      if (res.status === 200) {
+        window.location = res.data.session.url;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const removeFromOrders = (mealID) => {
     dispatch({
       type: Type.REMOVE_FROM_ORDERS,
@@ -163,11 +222,11 @@ export const MealContextProvider = ({ children }) => {
       type: Type.REMOVE_ALERT,
     });
   };
-  const setModalOpen = () => {
-    dispatch({
-      type: Type.SET_MODAL,
-    });
-  };
+  // const setModalOpen = () => {
+  //   dispatch({
+  //     type: Type.SET_MODAL,
+  //   });
+  // };
 
   return (
     <mealContext.Provider
@@ -184,12 +243,14 @@ export const MealContextProvider = ({ children }) => {
         reiviewChange: state.reiviewChange,
         cart: state.cart,
         topFiveMeals: state.topFiveMeals,
+        isTablesLoading: state.isTablesLoading,
+        tables: state.tables,
         loadAllMeals,
         removeAlerts,
         removeFromOrders,
         asyncMealActions,
         aysncReviewActions,
-        setModalOpen,
+        // setModalOpen,
         loadSelectedMeal,
         addToCart,
         clearCart,
@@ -197,6 +258,9 @@ export const MealContextProvider = ({ children }) => {
         checkout,
         addNewMeal,
         getTopFiveMeals,
+        addNewTable,
+        loadAllTables,
+        makeTableReservation,
       }}
     >
       {children}

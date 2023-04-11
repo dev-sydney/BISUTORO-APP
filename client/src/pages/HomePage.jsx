@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import MealContainer from '../components/MealContainer';
 import ProductContext from './../contexts/ProductContext';
 import MealSkeletonLoading from '../components/MealSkeletonLoading';
-import { UilShoppingCart } from '@iconscout/react-unicons';
+import { UilShoppingCart, UilBookmark } from '@iconscout/react-unicons';
 import { Link } from 'react-router-dom';
 import './../styles/homepageStyle.scss';
 
@@ -11,12 +11,25 @@ const HomePage = () => {
 
   useEffect(() => {
     productContext.loadAllMeals();
+    //eslint-disable-next-line
   }, []);
+
   return (
     <div className="home-container">
       <div style={{ textAlign: 'right' }}>
         <Link to="/cart">
           <UilShoppingCart
+            size="3em"
+            color="white"
+            style={{
+              borderRadius: '20px',
+              background: '#000000',
+              padding: '.5em',
+            }}
+          />
+        </Link>
+        <Link to="/table-reservations">
+          <UilBookmark
             size="3em"
             color="white"
             style={{

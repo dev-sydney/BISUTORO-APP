@@ -9,8 +9,10 @@ const mealRouter = require('./routes/mealRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const orderRouter = require('./routes/orderRoutes');
+const tableRouter = require('./routes/tableRoutes');
 
-const CustomError = require('./utils/customError');
+// const CustomError = require('./utils/customError');
+const CustomError = require('./utils/CustomError');
 const errorController = require('./controllers/errorController');
 
 const app = express();
@@ -25,6 +27,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/meals', mealRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/orders', orderRouter);
+app.use('/api/v1/tables', tableRouter);
 
 app.all('*', (req, res, next) => {
   next(

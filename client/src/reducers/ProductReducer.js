@@ -2,6 +2,23 @@ import * as Type from './../contexts/types';
 
 const mealReducer = (state, action) => {
   switch (action.type) {
+    case Type.LOAD_TABLES:
+      return {
+        ...state,
+        tables: action.payload,
+        isTablesLoading: null,
+      };
+    case Type.ADD_TABLE:
+      return {
+        ...state,
+        alertMsg: action.payload,
+        isTablesLoading: null,
+      };
+    case Type.TABLES_LOADING:
+      return {
+        ...state,
+        isTablesLoading: true,
+      };
     case Type.SET_TOP_FIVE:
       return {
         ...state,

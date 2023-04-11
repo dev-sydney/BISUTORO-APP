@@ -3,10 +3,12 @@ const authController = require('./../controllers/authController');
 const orderController = require('./../controllers/orderController');
 const router = express.Router();
 
-router.post(
-  '/checkout-session',
-  authController.authenticateUser,
-  orderController.createCheckoutSession
-);
+router.use(authController.authenticateUser);
 
+router.post('/checkout-session', orderController.createMealsCheckoutSession);
+
+router.post(
+  '/tables/checkout-session',
+  orderController.createTablesCheckoutSession
+);
 module.exports = router;

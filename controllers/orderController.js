@@ -1,8 +1,10 @@
 // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const Meal = require('./../models/mealModel');
+const Table = require('./../models/tableModel');
+
 const catchAsyncErrors = require('./../utils/catchAsyncErrors');
-const CustomError = require('./../utils/customError');
+const CustomError = require('./../utils/CustomError');
 const dotenv = require('dotenv');
 dotenv.config({
   path: './config.env',
@@ -30,29 +32,70 @@ const createLineItems = (cartItems) =>
     },
   }));
 
-exports.createCheckoutSession = catchAsyncErrors(async (req, res, next) => {
-  //Get the IDs of ordered meals from the mealIDs query object,(which its value is a string)
-  // const mealIDS = req.query.mealIds.split(','); //splitin the IDs into an array
-  //Getting the meals using the array of  mealIDs
-  // const meals = await Meal.find({ _id: { $in: mealIDS } });
-  //req.body.cartItems.map(item=>item._id).join(',')
-  let line_items = createLineItems(req.body.cartItems);
-  //create a checkout session
-  const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
-    payment_method_types: ['card'],
-    success_url: `http://localhost:3000/meals`,
-    cancel_url: `http://localhost:3000/cart`,
-    customer_email: req.user.email,
-    line_items,
-    client_reference_id: req.body.cartItems.map((item) => item._id).join(','),
-  });
-  //Send the session as a response
-  res.status(200).json({
-    status: 'success',
-    session,
-  });
-});
+exports.createMealsCheckoutSession = catchAsyncErrors(
+  async (req, res, next) => {
+    //Get the IDs of ordered meals from the mealIDs query object,(which its value is a string)
+    // const mealIDS = req.query.mealIds.split(','); //splitin the IDs into an array
+    //Getting the meals using the array of  mealIDs
+    // const meals = await Meal.find({ _id: { $in: mealIDS } });
+    //req.body.cartItems.map(item=>item._id).join(',')
+    let line_items = createLineItems(req.body.cartItems);
+    //create a checkout session
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      success_url: `http://localhost:3000/meals`,
+      cancel_url: `http://localhost:3000/cart`,
+      customer_email: req.user.email,
+      line_items,
+      client_reference_id: req.body.cartItems.map((item) => item._id).join(','),
+    });
+    //Send the session as a response
+    res.status(200).json({
+      status: 'success',
+      session,
+    });
+  }
+);
+
+exports.createTablesCheckoutSession = catchAsyncErrors(
+  async (req, res, next) => {
+    const { table } = req.body;
+
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      success_url: `http://localhost:3000/meals`,
+      cancel_url: `http://localhost:3000/table-reservations`,
+      customer_email: req.user.email,
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: 'usd',
+            unit_amount: table.price * 100,
+            product_data: {
+              name: table.name,
+              images: [`https://www.natours.dev/img/tours/tour-2-cover.jpg`],
+            },
+          },
+        },
+      ],
+      client_reference_id: table._id,
+    });
+
+    const updatePro = await Table.findByIdAndUpdate(
+      table._id,
+      { $set: { isBooked: true } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      session,
+    });
+  }
+);
 
 exports.getIDS = (req, res, next) => {
   console.log(req.query);

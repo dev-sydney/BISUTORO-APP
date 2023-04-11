@@ -1,0 +1,36 @@
+.table_item {
+  outline: 1px solid black;
+  text-align: left;
+  padding: 0.6em;
+  border-radius: 10px;
+  .table_image {
+    max-height: 7em;
+    min-height: 7em;
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  .table_description {
+    // outline: 1px solid green;
+    max-height: 3.5em;
+    min-height: 3.5em;
+    overflow: hidden;
+    white-space: normal;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .price_seating {
+    display: flex;
+    .book_btn {
+      margin-left: auto;
+    }
+  }
+}
+.table-container {
+  min-height: inherit;
+  overflow-y: auto;
+  h1 {
+    text-align: left;
+  }
+}

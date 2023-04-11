@@ -55,4 +55,8 @@ export const SET_NAVBAR_VISIBIITY = 'SET_NAVBAR_VISIBIITY';
 export const AUTH_LOADING = 'AUTH_LOADING';
 export const CLEAR_PRODUCTS_ALERT = 'CLEAR_PRODUCTS_ALERT';
 
+export const TABLES_LOADING = 'TABLES_LOADING';
+export const ADD_TABLE = 'ADD_TABLE';
+export const LOAD_TABLES = 'LOAD_TABLES';
+
 export const SET_TOP_FIVE = 'SET_TOP_FIVE';

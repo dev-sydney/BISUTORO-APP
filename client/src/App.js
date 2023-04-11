@@ -27,10 +27,13 @@ import CartPage from './pages/CartPage';
 import SelectedMealPage from './pages/SelectedMealPage';
 import AccountOverviewPage from './pages/AccountOverviewPage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import TableReservationsPage from './pages/TableReservationsPage';
+
 //////////////////CONTEXT-PROVIDER IMPORTS
 import { MealContextProvider } from './contexts/ProductContext';
 import { AuthProvider } from './contexts/AuthContext';
 import AddMealPage from './pages/AddMealPage';
+import AddTablePage from './pages/AddTablePage';
 ///////////////////////STRIPE-INTEGRATION
 // const stripePromise = loadStripe(
 //   'pk_test_51LHFLYCzMWGZTWYcO8piuiqgYo6Kj3dSdpihgTmnxEpsRvvbKH3Y1CpKhWGtGcvBgUMuB9vJ7hR82fzhTwuhKUgk00FwuueWL2'
@@ -88,7 +91,12 @@ function App() {
               />
 
               <Route path="/manage/add-meal" element={<AddMealPage />} />
+              <Route path="/manage/add-table" element={<AddTablePage />} />
               <Route path="/manage/analytics" element={<AnalyticsPage />} />
+              <Route
+                path="/table-reservations"
+                element={<TableReservationsPage />}
+              />
             </Routes>
           </div>
           <NavBar />
